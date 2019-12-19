@@ -1,0 +1,6 @@
+---
+en:
+  decidim:
+    components:
+      comparative_stats:
+        name: ComparativeStats
