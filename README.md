@@ -1,5 +1,9 @@
 # Decidim::ComparativeStats
 
+[![Build Status](https://github.com/Platoniq/decidim-module-comparative_stats/workflows/CI/badge.svg)](https://github.com/Platoniq/decidim-module-comparative_stats/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f69b2b0ab0ffcd26f002/maintainability)](https://codeclimate.com/github/Platoniq/decidim-module-comparative_maps/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f69b2b0ab0ffcd26f002/test_coverage)](https://codeclimate.com/github/Platoniq/decidim-module-comparative_maps/test_coverage)
+
 Allows to compare different Decidim sites by accessing their GraphQL API and generate graphs.
 
 > NOTE: This module is in development and not ready to use yet.
