@@ -3,11 +3,7 @@
 require "decidim/core/test/factories"
 
 FactoryBot.define do
-  factory :comparative_stats_component, parent: :component do
-    name { Decidim::Components::Namer.new(participatory_space.organization.available_locales, :comparative_stats).i18n_name }
-    manifest_name { :comparative_stats }
-    participatory_space { create(:participatory_process, :with_steps) }
+  factory :endpoint, class: "Decidim::ComparativeStats::Endpoint" do
+    organization { create(:organization) }
   end
-
-  # Add engine factories here
 end
