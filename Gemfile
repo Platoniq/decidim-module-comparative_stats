@@ -3,7 +3,6 @@
 source "https://rubygems.org"
 
 ruby RUBY_VERSION
-
 # DECIDIM_VERSION =  { git: "https://github.com/decidim/decidim" }
 DECIDIM_VERSION = "0.19"
 
@@ -27,4 +26,8 @@ group :development do
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
   gem "web-console", "~> 3.5"
+end
+
+group :test do
+  gem "codecov", require: false
 end
