@@ -8,7 +8,7 @@ module Decidim
       #
       class ApplicationController < Decidim::Admin::ApplicationController
         register_permissions(::Decidim::Admin::ApplicationController,
-        	                   ::Decidim::ComparativeStats::Admin::Permissions,
+                             ::Decidim::ComparativeStats::Admin::Permissions,
                              ::Decidim::Admin::Permissions)
       end
     end

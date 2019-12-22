@@ -9,11 +9,11 @@ module Decidim::ComparativeStats
     scope :active, -> { where(active: true) }
 
     def api
-    	@api ||= ApiFetcher.new endpoint
+      @api ||= ApiFetcher.new endpoint
     end
 
     def name
-    	api.fetch_name_and_version.data.decidim.application_name
+      api.fetch_name_and_version.data.decidim.application_name
     end
   end
 end
