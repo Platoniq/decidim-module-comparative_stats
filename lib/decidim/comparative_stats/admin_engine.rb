@@ -12,6 +12,7 @@ module Decidim
       routes do
         # Add admin engine routes here
         resources :endpoints
+        resources :graphs
         root to: "endpoints#index"
       end
 
@@ -19,6 +20,10 @@ module Decidim
         Decidim::Core::Engine.routes do
           mount Decidim::ComparativeStats::AdminEngine, at: "/admin/comparative_stats", as: "decidim_admin_comparative_stats"
         end
+      end
+
+      initializer "decidim_comparative_stats.admin_assets" do |app|
+        app.config.assets.precompile += %w(admin/decidim_comparative_stats_manifest.js)
       end
 
       def load_seed

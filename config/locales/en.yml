@@ -1,6 +1,29 @@
----
 en:
   decidim:
+    comparative_stats:
+      admin:
+        menu:
+          endpoints: Manage API endpoints
+          graphs: Manage Graphs
+        graphs:
+          index:
+            title: "Manage cross-tenant graphs"
+            no_endpoints: It looks that you haven't any active endpoint yer. Please add and activate some Endpoints first!
+        endpoints:
+          index:
+            title: "API Decidim enpoints"
+            endpoint: Endpoint
+            active: Active
+            no_endpoints: It seems that you haven't add any Decidim API endpoint yet!
+          new:
+            title: "Add a Decidim API endpoint"
+            subtitle: 'Add a valid Decidim installation URL that points to its API. For instance "https://www.decidim.barcelona/api"'
+            create: 'Check and add endpoint'
+          create:
+            success: "The API endpoint has been added succesfully"
+            error: "The API endpoint has not been added. Please verify that is a valid Decidim API url"
+      endpoints:
+        add: "Add a Decidim URL"
     components:
       comparative_stats:
-        name: ComparativeStats
+        name: "ComparativeStats"

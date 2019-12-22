@@ -6,6 +6,7 @@ Decidim.register_component(:comparative_stats) do |component|
   component.engine = Decidim::ComparativeStats::Engine
   component.admin_engine = Decidim::ComparativeStats::AdminEngine
   component.icon = "decidim/comparative_stats/icon.svg"
+  component.permissions_class_name = "Decidim::ComparativeStats::Permissions"
 
   # component.on(:before_destroy) do |instance|
   #   # Code executed before removing the component
