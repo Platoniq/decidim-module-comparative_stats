@@ -22,6 +22,11 @@ module Decidim
         end
       end
 
+      initializer "decidim_consultations.add_cells_view_paths" do
+        Cell::ViewModel.view_paths << File.expand_path("#{Decidim::ComparativeStats::Engine.root}/app/cells")
+        Cell::ViewModel.view_paths << File.expand_path("#{Decidim::ComparativeStats::Engine.root}/app/views") # for partials
+      end
+
       initializer "decidim_comparative_stats.admin_assets" do |app|
         app.config.assets.precompile += %w(admin/decidim_comparative_stats_manifest.js)
       end

@@ -8,6 +8,7 @@ module Decidim
     class ApiFetcher
       def initialize(endpoint)
         @errors = []
+        @queries = {}
         @client = Graphlient::Client.new(endpoint,
                                          # headers: {
                                          #   'Authorization' => 'Bearer 123'
@@ -23,7 +24,9 @@ module Decidim
       # Queries the GraphQL api using one of the constants in ApiQueries class
       def query(tag)
         begin
-          return client.query "Decidim::ComparativeStats::ApiQueries::#{tag.upcase}".constantize
+          q = "Decidim::ComparativeStats::ApiQueries::#{tag.upcase}"
+          @queries[q] ||= client.query q.constantize
+          return @queries[q]
         rescue Faraday::Error
           @errors << "Not a valid Decidim API URL"
         rescue Graphlient::Errors::Error => e

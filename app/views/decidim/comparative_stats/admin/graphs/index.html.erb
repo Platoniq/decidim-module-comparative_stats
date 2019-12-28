@@ -8,29 +8,10 @@
   </div>
 
   <div class="card-section">
-    <% if active_endpoints.any?; console %>
-      <%= timeline [], id: "participatoryProcesses", height: "800px" %>
-      <script>
-        google.charts.setOnLoadCallback(function() {
-          var dataTable = new google.visualization.DataTable();
-          dataTable.addColumn({ type: 'string', id: 'Platform' });
-          dataTable.addColumn({ type: 'string', id: 'Process' });
-          dataTable.addColumn({ type: 'date', id: 'Start' });
-          dataTable.addColumn({ type: 'date', id: 'End' });
-          var rows = [];
-          <% timeline_graph.each do |row| %>
-          rows.push([
-            "<%= row[:name] %>",
-            "<%= row[:title] %>",
-            new Date("<%= row[:start_date] %>"),
-            new Date("<%= row[:end_date] %>")
-            ]);
-          <% end %>
-          dataTable.addRows(rows);
-          var chart = Chartkick.charts["participatoryProcesses"];
-          chart.getChartObject().draw(dataTable);
-        });
-      </script>
+    <% if active_endpoints.any? %>
+
+      <%= cell("decidim/comparative_stats/participatory_processes_timeline", timeline_graph) %>
+
     <% else %>
     <%= t ".no_endpoints" %>
     <% end %>
