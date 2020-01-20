@@ -27,16 +27,23 @@ module Decidim
 
         private
 
-        attr_reader :form
+        attr_reader :form, :endpoint
 
         def create_endpoint
-          Decidim.traceability.create!(
-            Endpoint,
-            form.current_user,
-            endpoint: form.endpoint,
-            organization: form.current_organization,
-            active: form.active
-          )
+          @endpoint = Endpoint.new
+
+          @endpoint.endpoint = form.endpoint
+          @endpoint.active = form.active
+          @endpoint.organization = form.current_organization
+          @endpoint.save!
+
+          # Decidim.traceability.create!(
+          #   Endpoint,
+          #   form.current_user,
+          #   endpoint: form.endpoint,
+          #   organization: form.current_organization,
+          #   active: form.active
+          # )
         end
       end
     end

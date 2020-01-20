@@ -29,13 +29,7 @@ module Decidim
         attr_reader :current_user
 
         def destroy_endpoint!
-          Decidim.traceability.perform_action!(
-            "delete",
-            @endpoint,
-            current_user
-          ) do
-            @endpoint.destroy!
-          end
+          @endpoint.destroy!
         end
       end
     end

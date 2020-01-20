@@ -31,10 +31,8 @@ module Decidim
         attr_reader :form
 
         def update_endpoint!
-          Decidim.traceability.update!(
-            @endpoint,
-            form.current_user
-          )
+          @endpoint.assign_attributes(form.endpoint)
+          @endpoint.save!
         end
       end
     end
