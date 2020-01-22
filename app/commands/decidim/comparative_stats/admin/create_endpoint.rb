@@ -34,9 +34,17 @@ module Decidim
             Endpoint,
             form.current_user,
             endpoint: form.endpoint,
+            name: name_and_version.application_name,
+            version: name_and_version.version,
             organization: form.current_organization,
             active: form.active
           )
+        end
+
+        # When creating name and version are fetched from the api
+        # Update action should allow the user to change the name but not the version
+        def name_and_version
+          @name_and_version ||= form.api.fetch_name_and_version.data.decidim
         end
       end
     end

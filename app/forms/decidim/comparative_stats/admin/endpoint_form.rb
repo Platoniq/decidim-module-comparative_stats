@@ -14,12 +14,14 @@ module Decidim
         validate :api_version
 
         def api_version
-          api = ApiFetcher.new endpoint
-
           unless api.valid?
             errors.add :endpoint, :invalid
             errors.add :endpoint, api.error if api.error
           end
+        end
+
+        def api
+          api ||= ApiFetcher.new endpoint
         end
       end
     end

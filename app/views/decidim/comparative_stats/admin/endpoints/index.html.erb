@@ -23,6 +23,8 @@
             <tr>
               <th><%= t ".active" %></th>
               <th><%= t ".endpoint" %></th>
+              <th><%= t ".name" %></th>
+              <th><%= t ".version" %></th>
               <th></th>
             </tr>
           </thead>
@@ -36,6 +38,12 @@
                 </td>
                 <td>
                   <%= endpoint.endpoint %><br>
+                </td>
+                <td>
+                  <%= endpoint.name %><br>
+                </td>
+                <td>
+                  <%= endpoint.version %><br>
                 </td>
                 <td class="table-list__actions">
                   <% if allowed_to? :update, :endpoint, endpoint: endpoint %>
