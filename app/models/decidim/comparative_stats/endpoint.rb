@@ -12,8 +12,8 @@ module Decidim::ComparativeStats
       @api ||= ApiFetcher.new endpoint
     end
 
-    def name
-      @name ||= api.fetch_name_and_version.data.decidim.application_name
-    end
+    # def name
+    #   @name ||= api.fetch_name_and_version.data.decidim.application_name
+    # end
   end
 end
