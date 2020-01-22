@@ -16,6 +16,11 @@ module Decidim
           @form = form(EndpointForm).instance
         end
 
+        def edit
+          enforce_permission_to :update, :endpoint, endpoint: current_endpoint
+          @form = form(EndpointForm).from_model(current_endpoint, endpoint: current_endpoint)
+        end
+
         def create
           enforce_permission_to :create, :endpoint
           @form = form(EndpointForm).from_params(params)
@@ -41,7 +46,7 @@ module Decidim
 
           form = form(EndpointForm).from_params(params, endpoint: current_endpoint)
 
-          UpdateEndpoint.call(current_endpoint, form) do
+          UpdateEndpoint.call(current_endpoint, form, current_user) do
             on(:ok) do
               flash[:notice] = I18n.t("endpoints.update.success", scope: "decidim.comparative_stats.admin")
               redirect_to endpoints_path
