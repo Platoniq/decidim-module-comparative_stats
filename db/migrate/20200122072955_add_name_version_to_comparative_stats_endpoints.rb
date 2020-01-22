@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddNameVersionToComparativeStatsEndpoints < ActiveRecord::Migration[5.2]
   def change
     add_column :decidim_comparative_stats_endpoints, :name, :string
