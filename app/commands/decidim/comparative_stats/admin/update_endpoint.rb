@@ -35,7 +35,9 @@ module Decidim
           Decidim.traceability.update!(
             @endpoint,
             @user,
-            form.endpoint
+            endpoint: form.endpoint,
+            name: form.name,
+            active: form.active
           )
         end
       end
