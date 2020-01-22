@@ -21,7 +21,7 @@ module Decidim
         end
 
         def api
-          api ||= ApiFetcher.new endpoint
+          @api ||= ApiFetcher.new endpoint
         end
       end
     end
