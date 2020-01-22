@@ -30,16 +30,38 @@ module Decidim::ComparativeStats::Admin
       end
     end
 
-    describe "POST create" do
-      context "when there is permission" do
-        let(:endpoint) { create :endpoint, organization: organization }
-        let(:active) { true }
+    # describe "POST create" do
+    #   context "when there is permission" do
+    #     let(:endpoint) { create :endpoint, organization: organization }
+    #     let(:active) { true }
 
-        it "returns ok" do
-          post :create, params: { endpoint: endpoint, active: active }
-          expect(response).to broadcast(:ok)
-        end
-      end
-    end
+    #     it "returns ok" do
+    #       post :create, params: { endpoint: endpoint, active: active }
+    #       expect(response).to broadcast(:ok)
+    #     end
+
+    #     it "creates the new endpoint" do
+    #       post :create, params: { endpoint: endpoint.endpoint, active: active, name: endpoint.name }
+    #       expect(Decidim::ComparativeStats::Endpoint.first.name).to eq(endpoint.name)
+    #     end
+    #   end
+    # end
+
+    # describe "POST update" do
+    #   context "when there is permission" do
+    #     let(:endpoint) { create :endpoint, organization: organization }
+    #     let(:active) { true }
+
+    #     it "returns ok" do
+    #       post :update, params: { endpoint: endpoint, active: active }
+    #       expect(response).to broadcast(:ok)
+    #     end
+
+    #     it "creates the new endpoint" do
+    #       post :create, params: { endpoint: endpoint.endpoint, active: active, name: endpoint.name }
+    #       expect(Decidim::ComparativeStats::Endpoint.first.name).to eq(endpoint.name)
+    #     end
+    #   end
+    # end
   end
 end
