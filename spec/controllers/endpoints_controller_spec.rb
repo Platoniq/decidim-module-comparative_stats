@@ -21,5 +21,25 @@ module Decidim::ComparativeStats::Admin
         expect(subject).to render_template(:index)
       end
     end
+
+    describe "GET new" do
+      it "renders the empty form" do
+        get :new
+        expect(response).to have_http_status(:ok)
+        expect(subject).to render_template(:new)
+      end
+    end
+
+    describe "POST create" do
+      context "when there is permission" do
+        let(:endpoint) { create :endpoint, organization: organization }
+        let(:active) { true }
+
+        it "returns ok" do
+          post :create, params: { endpoint: endpoint, active: active }
+          expect(response).to broadcast(:ok)
+        end
+      end
+    end
   end
 end
