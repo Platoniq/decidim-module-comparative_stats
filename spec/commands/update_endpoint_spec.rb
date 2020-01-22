@@ -4,7 +4,7 @@ require "spec_helper"
 
 module Decidim::ComparativeStats::Admin
   describe UpdateEndpoint do
-    let(:subject) { described_class.new(endpoint, form) }
+    let(:subject) { described_class.new(endpoint, form, user) }
     let(:organization) { create :organization }
     let(:endpoint) { create :endpoint, organization: organization }
     let(:user) { create(:user, :confirmed, :admin, organization: organization) }

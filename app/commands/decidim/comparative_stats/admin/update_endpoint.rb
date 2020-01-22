@@ -8,9 +8,10 @@ module Decidim
         # Public: Initializes the command.
         #
         # form - A form object with the params.
-        def initialize(endpoint, form)
+        def initialize(endpoint, form, user)
           @endpoint = endpoint
           @form = form
+          @user = user
         end
 
         # Executes the command. Broadcasts these events:
@@ -31,8 +32,11 @@ module Decidim
         attr_reader :form
 
         def update_endpoint!
-          @endpoint.assign_attributes(form.endpoint)
-          @endpoint.save!
+          Decidim.traceability.update!(
+            @endpoint,
+            @user,
+            form.endpoint
+          )
         end
       end
     end
