@@ -13,6 +13,8 @@ en:
           index:
             title: "API Decidim enpoints"
             endpoint: Endpoint
+            name: Name
+            version: Version
             active: Active
             no_endpoints: It seems that you haven't add any Decidim API endpoint yet!
           new:
