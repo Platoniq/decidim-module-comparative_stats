@@ -36,6 +36,17 @@ module Decidim::ComparativeStats::Admin
       it "updates the title of the endpoint" do
         expect(endpoint.endpoint).to eq(new_endpoint)
       end
+
+      it "traces the action", versioning: true do
+        expect(Decidim.traceability)
+          .to receive(:update!)
+          .with(endpoint, user, endpoint: form.endpoint, name: form.name, active: form.active)
+          .and_call_original
+
+        expect { subject.call }.to change(Decidim::ActionLog, :count)
+        action_log = Decidim::ActionLog.last
+        expect(action_log.version).to be_present
+      end
     end
   end
 end
