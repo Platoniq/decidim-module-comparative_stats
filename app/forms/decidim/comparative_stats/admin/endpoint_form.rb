@@ -10,6 +10,7 @@ module Decidim
 
         attribute :endpoint, String
         attribute :active, Boolean
+        attribute :name, String
 
         validate :api_version
 
