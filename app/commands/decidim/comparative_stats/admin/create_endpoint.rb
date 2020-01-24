@@ -8,8 +8,10 @@ module Decidim
         # Public: Initializes the command.
         #
         # form - A form object with the params.
-        def initialize(form)
+        # api - An instantiated api object
+        def initialize(form, api)
           @form = form
+          @api = api
         end
 
         # Executes the command. Broadcasts these events:
@@ -27,11 +29,11 @@ module Decidim
 
         private
 
-        attr_reader :form
+        attr_reader :form, :api
 
         def create_endpoint
           Decidim.traceability.create!(
-            Endpoint,
+            Decidim::ComparativeStats::Endpoint,
             form.current_user,
             endpoint: form.endpoint,
             name: name_and_version.application_name,
@@ -44,7 +46,7 @@ module Decidim
         # When creating name and version are fetched from the api
         # Update action should allow the user to change the name but not the version
         def name_and_version
-          @name_and_version ||= form.api.fetch_name_and_version.data.decidim
+          @name_and_version ||= api.fetch_name_and_version.data.decidim
         end
       end
     end

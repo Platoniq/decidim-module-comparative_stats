@@ -2,6 +2,9 @@
 
 module Decidim::ComparativeStats
   class Endpoint < ApplicationRecord
+    include Decidim::Traceable
+    include Decidim::Loggable
+
     self.table_name = "decidim_comparative_stats_endpoints"
 
     belongs_to :organization, foreign_key: :decidim_organization_id, class_name: "Decidim::Organization"
@@ -12,8 +15,8 @@ module Decidim::ComparativeStats
       @api ||= ApiFetcher.new endpoint
     end
 
-    # def name
-    #   @name ||= api.fetch_name_and_version.data.decidim.application_name
-    # end
+    def self.log_presenter_class_for(_log)
+      Decidim::ComparativeStats::AdminLog::EndpointPresenter
+    end
   end
 end

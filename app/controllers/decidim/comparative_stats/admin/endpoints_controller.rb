@@ -23,7 +23,7 @@ module Decidim
 
         def create
           enforce_permission_to :create, :endpoint
-          @form = form(EndpointForm).from_params(params)
+          @form = form(EndpointForm).from_params(params).with_context(api: api(params[:endpoint]))
           CreateEndpoint.call(@form) do
             on(:ok) do
               flash[:notice] = I18n.t("endpoints.create.success", scope: "decidim.comparative_stats.admin")
@@ -41,10 +41,14 @@ module Decidim
           @organization_endpoints ||= Endpoint.where(organization: current_organization)
         end
 
+        def api(endpoint)
+          ApiFetcher.new endpoint
+        end
+
         def update
           enforce_permission_to :update, :endpoint, endpoint: current_endpoint
 
-          form = form(EndpointForm).from_params(params, endpoint: current_endpoint)
+          form = form(EndpointForm).from_params(params, endpoint: current_endpoint).with_context(api: api(params[:endpoint]))
 
           UpdateEndpoint.call(current_endpoint, form, current_user) do
             on(:ok) do

@@ -8,21 +8,17 @@ module Decidim
       class EndpointForm < Decidim::Form
         mimic :endpoint
 
-        attribute :endpoint, String
+        attribute :endpoint, String, presence: true
         attribute :active, Boolean
         attribute :name, String
 
-        validate :api_version
+        validate :valid_api_version
 
-        def api_version
-          unless api.valid?
+        def valid_api_version
+          unless context.api.valid?
             errors.add :endpoint, :invalid
-            errors.add :endpoint, api.error if api.error
+            errors.add :endpoint, context.api.error if context.api.error
           end
-        end
-
-        def api
-          @api ||= ApiFetcher.new endpoint
         end
       end
     end

@@ -7,6 +7,7 @@ FactoryBot.define do
     endpoint { Faker::Internet.url }
     name { Faker::Name.name }
     version { Decidim::ComparativeStats::MIN_API_VERSION }
-    organization
+    organization { create :organization }
+    active { true }
   end
 end
