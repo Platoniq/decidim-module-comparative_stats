@@ -3,7 +3,7 @@
 module Decidim
   module ComparativeStats
     module Admin
-      class EndpointsController < ApplicationController
+      class EndpointsController < ComparativeStats::Admin::ApplicationController
         helper_method :organization_endpoints
         layout "decidim/admin/comparative_stats"
 
@@ -23,8 +23,8 @@ module Decidim
 
         def create
           enforce_permission_to :create, :endpoint
-          @form = form(EndpointForm).from_params(params).with_context(api: api(params[:endpoint]))
-          CreateEndpoint.call(@form) do
+          @form = form(EndpointForm).from_params(params, api: api)
+          CreateEndpoint.call(@form, api) do
             on(:ok) do
               flash[:notice] = I18n.t("endpoints.create.success", scope: "decidim.comparative_stats.admin")
               redirect_to endpoints_path
@@ -41,14 +41,14 @@ module Decidim
           @organization_endpoints ||= Endpoint.where(organization: current_organization)
         end
 
-        def api(endpoint)
-          ApiFetcher.new endpoint
+        def api
+          @api ||= ApiFetcher.new(params[:endpoint][:endpoint])
         end
 
         def update
           enforce_permission_to :update, :endpoint, endpoint: current_endpoint
 
-          form = form(EndpointForm).from_params(params, endpoint: current_endpoint).with_context(api: api(params[:endpoint]))
+          form = form(EndpointForm).from_params(params, endpoint: current_endpoint)
 
           UpdateEndpoint.call(current_endpoint, form, current_user) do
             on(:ok) do

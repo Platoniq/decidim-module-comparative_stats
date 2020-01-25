@@ -25,15 +25,15 @@ module Decidim::ComparativeStats::Admin
     let(:version) { Decidim::ComparativeStats::MIN_API_VERSION }
 
     let(:organization) { create :organization }
-    let(:api) { double }
+    let(:api) do
+      double(
+        name_and_version: name_and_version
+      )
+    end
     let(:endpoint) { Faker::Internet.url }
     let(:user) { create :user, :admin, :confirmed, organization: organization }
 
     let(:invalid) { false }
-
-    before do
-      allow(api).to receive_message_chain(:fetch_name_and_version, :data, :decidim).and_return(name_and_version)
-    end
 
     context "when the form is not valid" do
       let(:invalid) { true }

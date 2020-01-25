@@ -3,7 +3,7 @@
 module Decidim
   module ComparativeStats
     module Admin
-      class GraphsController < ApplicationController
+      class GraphsController < ComparativeStats::Admin::ApplicationController
         helper_method :active_endpoints, :timeline_graph
         layout "decidim/admin/comparative_stats"
 
