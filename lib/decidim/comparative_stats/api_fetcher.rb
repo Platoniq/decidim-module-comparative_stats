@@ -21,6 +21,12 @@ module Decidim
 
       attr_reader :client, :errors
 
+      # When creating name and version are fetched from the api
+      # Update action should allow the user to change the name but not the version
+      def name_and_version
+        @name_and_version ||= fetch_name_and_version.data.decidim
+      end
+
       # Queries the GraphQL api using one of the constants in ApiQueries class
       def query(tag)
         begin

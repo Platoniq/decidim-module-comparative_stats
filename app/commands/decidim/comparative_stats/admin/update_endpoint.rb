@@ -3,15 +3,15 @@
 module Decidim
   module ComparativeStats
     module Admin
-      # A command with all the business logic when creating an endpoint
-      class CreateEndpoint < Rectify::Command
+      # A command with all the business logic when updating an endpoint
+      class UpdateEndpoint < Rectify::Command
         # Public: Initializes the command.
         #
         # form - A form object with the params.
-        # api - An instantiated api object
-        def initialize(form, api)
+        def initialize(endpoint, form, user)
+          @endpoint = endpoint
           @form = form
-          @api = api
+          @user = user
         end
 
         # Executes the command. Broadcasts these events:
@@ -23,22 +23,20 @@ module Decidim
         def call
           return broadcast(:invalid) if form.invalid?
 
-          create_endpoint
+          update_endpoint!
           broadcast(:ok)
         end
 
         private
 
-        attr_reader :form, :api
+        attr_reader :form
 
-        def create_endpoint
-          Decidim.traceability.create!(
-            Decidim::ComparativeStats::Endpoint,
-            form.current_user,
+        def update_endpoint!
+          Decidim.traceability.update!(
+            @endpoint,
+            @user,
             endpoint: form.endpoint,
-            name: api.name_and_version.application_name,
-            version: api.name_and_version.version,
-            organization: form.current_organization,
+            name: form.name,
             active: form.active
           )
         end

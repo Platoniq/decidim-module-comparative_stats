@@ -1,6 +1,11 @@
 en:
   decidim:
     comparative_stats:
+      admin_log:
+        endpoint:
+          create: "%{user_name} created the %{resource_name} API endpoint"
+          delete: "%{user_name} removed the %{resource_name} member from the %{space_name} API endpoint"
+          update: "%{user_name} updated the %{resource_name} API endpoint"
       admin:
         menu:
           endpoints: Manage API endpoints
@@ -24,6 +29,9 @@ en:
           create:
             success: "The API endpoint has been added succesfully"
             error: "The API endpoint has not been added. Please verify that is a valid Decidim API url"
+          edit:
+            title: "Edit a Decidim API endpoint"
+            update: 'Check and update endpoint'
       endpoints:
         add: "Add a Decidim URL"
     components:
