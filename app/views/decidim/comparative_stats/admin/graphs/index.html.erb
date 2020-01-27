@@ -6,16 +6,24 @@
       </div>
     </h2>
   </div>
+</div>
 
-  <div class="card-section">
     <% if active_endpoints.any? %>
 
-      <%#= cell("decidim/comparative_stats/participatory_processes_timeline", timeline_graph) %>
+      <ul class="tabs" data-tabs id="charts-tabs">
+        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Global stats</a></li>
+        <li class="tabs-title"><a href="#panel2">Processes timeline</a></li>
+      </ul>
 
-      <%= cell("decidim/comparative_stats/metric_piecharts", global_metrics_graph) %>
+      <div class="tabs-content" data-tabs-content="charts-tabs">
+        <div class="tabs-panel is-active" id="panel1">
+          <%= cell("decidim/comparative_stats/metric_piecharts", global_metrics_graph) %>
+        </div>
+        <div class="tabs-panel" id="panel2">
+          <%= cell("decidim/comparative_stats/participatory_processes_timeline", timeline_graph) %>
+        </div>
+      </div>
 
     <% else %>
     <%= t ".no_endpoints" %>
     <% end %>
-  </div>
-</div>
