@@ -1,0 +1,4 @@
+<% metrics.each do |name, metric| %>
+	<%= t "decidim.metrics.#{name}.title" %>
+	<%= pie_chart metric, id: "pie_chart_#{name}" %>
+<% end %>
