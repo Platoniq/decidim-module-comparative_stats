@@ -26,6 +26,28 @@ module Decidim
           }
         }
       GRAPHQL
+
+      GLOBAL_METRICS = <<~GRAPHQL
+        query {
+          metrics {
+            count
+            name
+          }
+        }
+      GRAPHQL
+
+      GLOBAL_HISTORY_METRICS = <<~GRAPHQL
+        query {
+          metrics {
+            count
+            name
+            history {
+              key
+              value
+            }
+          }
+        }
+      GRAPHQL
     end
   end
 end
