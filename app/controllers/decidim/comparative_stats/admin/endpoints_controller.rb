@@ -48,7 +48,7 @@ module Decidim
         def update
           enforce_permission_to :update, :endpoint, endpoint: current_endpoint
 
-          form = form(EndpointForm).from_params(params, endpoint: current_endpoint)
+          form = form(EndpointForm).from_params(params, endpoint: current_endpoint, api: api)
 
           UpdateEndpoint.call(current_endpoint, form, current_user) do
             on(:ok) do

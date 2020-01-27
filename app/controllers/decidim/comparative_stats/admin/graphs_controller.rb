@@ -4,7 +4,7 @@ module Decidim
   module ComparativeStats
     module Admin
       class GraphsController < ComparativeStats::Admin::ApplicationController
-        helper_method :active_endpoints, :timeline_graph, :global_metrics_graph
+        helper_method :active_endpoints, :timeline_graph, :global_metrics_graph, :global_metric_timelines_graph
         layout "decidim/admin/comparative_stats"
 
         def index
@@ -39,6 +39,22 @@ module Decidim
             end
           end
           metrics
+        end
+
+        def global_metric_timelines_graph
+          history = {}
+          active_endpoints.each do |endpoint|
+            endpoint.api.fetch_global_history_metrics.data.metrics.each do |item|
+              history[item.name] ||= []
+              history[item.name] << {
+                name: endpoint.name,
+                data: item.history.map do |i|
+                  [i.key, i.value]
+                end.to_h
+              }
+            end
+          end
+          history
         end
       end
     end

@@ -1,4 +1,4 @@
-<div class="row small-up-1 smallmedium-up-2 mediumlarge-up-3 large-up-4 card-grid">
+<div class="row">
   <% metrics.each do |name, metric| %>
     <div class="column" style="padding: 1em">
       <div class="card">
@@ -6,7 +6,7 @@
           <%= t "decidim.metrics.#{name}.title" %>
         </div>
         <div class="card-section">
-          <%= pie_chart metric, id: "pie_chart_#{name}" %>
+          <%= line_chart metric, id: "line_chart_#{name}" %>
         </div>
       </div>
     </div>

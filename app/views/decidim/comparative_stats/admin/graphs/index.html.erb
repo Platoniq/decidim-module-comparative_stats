@@ -12,7 +12,8 @@
 
       <ul class="tabs" data-tabs id="charts-tabs">
         <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Global stats</a></li>
-        <li class="tabs-title"><a href="#panel2">Processes timeline</a></li>
+        <li class="tabs-title"><a href="#panel2">Global stats timeline</a></li>
+        <li class="tabs-title"><a href="#panel3">Processes timeline</a></li>
       </ul>
 
       <div class="tabs-content" data-tabs-content="charts-tabs">
@@ -20,6 +21,9 @@
           <%= cell("decidim/comparative_stats/metric_piecharts", global_metrics_graph) %>
         </div>
         <div class="tabs-panel" id="panel2">
+          <%= cell("decidim/comparative_stats/metric_timelines", global_metric_timelines_graph) %>
+        </div>
+        <div class="tabs-panel" id="panel3">
           <%= cell("decidim/comparative_stats/participatory_processes_timeline", timeline_graph) %>
         </div>
       </div>
