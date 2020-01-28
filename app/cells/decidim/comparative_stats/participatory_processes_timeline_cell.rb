@@ -17,8 +17,23 @@ module Decidim
         render :show
       end
 
-      def timeline_graph
+      def endpoints
         model
+      end
+
+      def timeline_graph
+        rows = []
+        endpoints.each do |endpoint|
+          endpoint.api.fetch_participatory_processes.data.participatory_processes.each do |item|
+            rows << {
+              name: endpoint.name,
+              title: item.title.translations.first.text,
+              start_date: item.start_date,
+              end_date: item.end_date
+            }
+          end
+        end
+        rows
       end
     end
   end

@@ -18,13 +18,13 @@
 
       <div class="tabs-content" data-tabs-content="charts-tabs" id="charts-tabs-content">
         <div class="tabs-panel is-active" id="panel1">
-          <%= cell("decidim/comparative_stats/metric_piecharts", global_metrics_graph) %>
+          <%= cell("decidim/comparative_stats/metric_piecharts", active_endpoints) %>
         </div>
         <div class="tabs-panel" id="panel2">
-          <%= cell("decidim/comparative_stats/metric_timelines", global_metric_timelines_graph) %>
+          <%= cell("decidim/comparative_stats/metric_timelines", active_endpoints) %>
         </div>
         <div class="tabs-panel" id="panel3">
-          <%= cell("decidim/comparative_stats/participatory_processes_timeline", timeline_graph) %>
+          <%= cell("decidim/comparative_stats/participatory_processes_timeline", active_endpoints) %>
         </div>
       </div>
 

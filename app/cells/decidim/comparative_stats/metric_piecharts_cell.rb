@@ -14,8 +14,19 @@ module Decidim
         render :show
       end
 
-      def metrics
+      def endpoints
         model
+      end
+
+      def metrics
+        metrics = {}
+        endpoints.each do |endpoint|
+          endpoint.api.fetch_global_metrics.data.metrics.each do |item|
+            metrics[item.name] ||= {}
+            metrics[item.name][endpoint.name] = item.count
+          end
+        end
+        metrics
       end
     end
   end
