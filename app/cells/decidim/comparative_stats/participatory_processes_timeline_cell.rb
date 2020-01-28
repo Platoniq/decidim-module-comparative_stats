@@ -27,13 +27,18 @@ module Decidim
           endpoint.api.fetch_participatory_processes.data.participatory_processes.each do |item|
             rows << {
               name: endpoint.name,
-              title: item.title.translations.first.text,
+              title: first_text(item.title.translations),
               start_date: item.start_date,
               end_date: item.end_date
             }
           end
         end
         rows
+      end
+
+      def first_text(translations)
+        item = translations.find { |i| i.text.present? }
+        item&.text || ""
       end
     end
   end

@@ -7,9 +7,16 @@
 Allows to compare different Decidim sites by accessing their GraphQL API and
 generate graphs.
 
-> NOTE: This module is in development and not ready to use yet.
+> NOTE: This module is in beta status, feel free to report issues or contribute in it!
 
 ## Usage
+
+This module works by connecting to several Decidim API's. Just go to your `your-decidim-installation.org/admin/comparative_stats` and add endpoints to comparate. For instance, Decidim barcelona endpoint is https://www.decidim.barcelona/api
+
+Then, just go to graphs and see some nice graphs!
+
+![Barcelona/Helsinki comparison](example.png)
+*A real example comparing the participatory processes carried out by the cities of Barcelona and Helsinki in 2019*
 
 ## Installation
 
