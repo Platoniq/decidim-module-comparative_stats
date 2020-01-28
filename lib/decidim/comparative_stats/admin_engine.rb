@@ -41,11 +41,10 @@ module Decidim
                     decidim_admin_comparative_stats.endpoints_path,
                     icon_name: "graph",
                     position: 3.5,
-                    active: :inclusive
+                    active: :inclusive,
                     if: allowed_to?(:enter, :space_area, space_name: :comparative_stats)
         end
       end
-
     end
   end
 end
