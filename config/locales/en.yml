@@ -40,3 +40,6 @@ en:
     components:
       comparative_stats:
         name: "ComparativeStats"
+    admin:
+      menu:
+        comparative_stats: "Comparative Stats"

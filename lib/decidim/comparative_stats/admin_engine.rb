@@ -34,6 +34,18 @@ module Decidim
       def load_seed
         nil
       end
+
+      initializer "decidim_comparative_stats.admin_menu" do
+        Decidim.menu :admin_menu do |menu|
+          menu.item I18n.t("menu.comparative_stats", scope: "decidim.admin"),
+                    decidim_admin_comparative_stats.endpoints_path,
+                    icon_name: "graph",
+                    position: 3.5,
+                    active: :inclusive
+                    if: allowed_to?(:enter, :space_area, space_name: :comparative_stats)
+        end
+      end
+
     end
   end
 end
