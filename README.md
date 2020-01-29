@@ -11,7 +11,9 @@ generate graphs.
 
 ## Usage
 
-This module works by connecting to several Decidim API's. Just go to your `your-decidim-installation.org/admin/comparative_stats` and add endpoints to compare. For instance, Decidim Barcelona endpoint is https://www.decidim.barcelona/api
+This module works by connecting to several Decidim API's.
+Just go to your `your-decidim-installation.org/admin/comparative_stats` and add endpoints to compare.
+For instance, Decidim Barcelona endpoint is https://www.decidim.barcelona/api
 
 Then, go to graphs and see some nice graphs!
 
@@ -20,7 +22,7 @@ Graphs can be embedded anywhere independently, just use the button `embed <>` an
 The generated code will look something like:
 
 ```html
-<iframe src="http://your_url/comparative_stats/widgets/global_stats.html" frameborder="0" width="100%" height="420" scrolling="vertical"></iframe> 
+<iframe src="http://your_url/comparative_stats/widgets/global_stats.html" frameborder="0" width="100%" height="420" scrolling="vertical"></iframe>
 ```
 
 You might want to customize the `height` parameter to match your particular case.
