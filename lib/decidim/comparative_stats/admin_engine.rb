@@ -22,7 +22,7 @@ module Decidim
         end
       end
 
-      initializer "decidim_consultations.add_cells_view_paths" do
+      initializer "decidim_comparative_stats.add_cells_view_paths" do
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::ComparativeStats::Engine.root}/app/cells")
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::ComparativeStats::Engine.root}/app/views") # for partials
       end

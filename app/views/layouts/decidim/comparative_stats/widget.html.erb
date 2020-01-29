@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <title><%= decidim_page_title %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%= javascript_include_tag "decidim/comparative_stats/graphs" %>
+
+  </head>
+
+  <body class="widget">
+
+    <%= yield %>
+
+    <div class="organization">
+      <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
+    </div>
+
+    <%= javascript_include_tag "decidim/widget" %>
+  </body>
+</html>

@@ -11,12 +11,23 @@ module Decidim
 
       routes do
         # Add engine routes here
-        # resources :comparative_stats
-        # root to: "comparative_stats#index"
+        get "widgets/:graph", to: "widgets#show", as: :widget
+        root to: "widgets#show"
+      end
+
+      initializer "decidim_comparative_stats.mount_routes" do
+        Decidim::Core::Engine.routes do
+          mount Decidim::ComparativeStats::Engine, at: "/comparative_stats", as: "decidim_comparative_stats"
+        end
+      end
+
+      initializer "decidim_comparative_stats.add_cells_view_paths" do
+        Cell::ViewModel.view_paths << File.expand_path("#{Decidim::ComparativeStats::Engine.root}/app/cells")
+        Cell::ViewModel.view_paths << File.expand_path("#{Decidim::ComparativeStats::Engine.root}/app/views") # for partials
       end
 
       initializer "decidim_comparative_stats.assets" do |app|
-        app.config.assets.precompile += %w(decidim_comparative_stats_manifest.js decidim_comparative_stats_manifest.css)
+        app.config.assets.precompile += %w(decidim_comparative_stats_manifest.js)
       end
     end
   end

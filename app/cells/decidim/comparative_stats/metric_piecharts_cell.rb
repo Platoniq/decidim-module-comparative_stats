@@ -18,6 +18,12 @@ module Decidim
         model
       end
 
+      def title(name)
+        return t "decidim.comparative_stats.metrics.users.title" if name == "users"
+
+        t "decidim.metrics.#{name}.title"
+      end
+
       def metrics
         metrics = {}
         endpoints.each do |endpoint|

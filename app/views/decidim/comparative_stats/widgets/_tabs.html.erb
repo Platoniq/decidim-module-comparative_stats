@@ -1,0 +1,20 @@
+  <ul class="tabs" data-tabs id="charts-tabs">
+    <li class="tabs-title is-active"><a href="#panel1" aria-selected="true"><%= t ".global_stats" %></a></li>
+    <li class="tabs-title"><a href="#panel2"><%= t ".global_stats_timeline" %></a></li>
+    <li class="tabs-title"><a href="#panel3"><%= t ".processes_timeline" %></a></li>
+  </ul>
+
+  <div class="tabs-content" data-tabs-content="charts-tabs" id="charts-tabs-content">
+    <div class="tabs-panel is-active" id="panel1">
+      <%= render partial: "decidim/comparative_stats/widgets/embed", object: :global_stats %>
+      <%= cell("decidim/comparative_stats/metric_piecharts", active_endpoints) %>
+    </div>
+    <div class="tabs-panel" id="panel2">
+      <%= render partial: "decidim/comparative_stats/widgets/embed", object: :global_stats_timeline %>
+      <%= cell("decidim/comparative_stats/metric_timelines", active_endpoints) %>
+    </div>
+    <div class="tabs-panel" id="panel3">
+      <%= render partial: "decidim/comparative_stats/widgets/embed", object: :processes_timeline %>
+      <%= cell("decidim/comparative_stats/participatory_processes_timeline", active_endpoints) %>
+    </div>
+  </div>
