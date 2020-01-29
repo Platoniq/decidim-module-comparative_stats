@@ -55,7 +55,10 @@ bundle exec rails db:migrate
 
 ## Configuration options
 
-API queries are cached 1 hour by default. This can be tuned by creating an initializer in your Decidim installation. For instance, create the file `config/initializers/comparative_stats.rb` with this content:
+API queries are cached 1 hour by default.
+This can be tuned by creating an initializer in your Decidim installation.
+For instance, create the file `config/initializers/comparative_stats.rb`
+with this content:
 
 ```ruby
 # frozen_string_literal: true
