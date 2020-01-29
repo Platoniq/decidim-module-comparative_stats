@@ -9,6 +9,11 @@ en:
           create: "%{user_name} created the %{resource_name} API endpoint"
           delete: "%{user_name} removed the %{resource_name} member from the %{space_name} API endpoint"
           update: "%{user_name} updated the %{resource_name} API endpoint"
+      widgets:
+        tabs:
+          global_stats: Global stats
+          global_stats_timeline: Global stats timeline
+          processes_timeline: Processes timeline
       admin:
         menu:
           endpoints: Manage API endpoints
