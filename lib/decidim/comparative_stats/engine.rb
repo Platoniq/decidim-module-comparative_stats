@@ -11,11 +11,11 @@ module Decidim
 
       routes do
         # Add engine routes here
-        get "widgets/:graph", to: "widgets#show", as: "widget"
+        get "widgets/:graph", to: "widgets#show", as: :widget
         root to: "widgets#show"
       end
 
-      initializer "decidim_comparative_stats.admin_mount_routes" do
+      initializer "decidim_comparative_stats.mount_routes" do
         Decidim::Core::Engine.routes do
           mount Decidim::ComparativeStats::Engine, at: "/comparative_stats", as: "decidim_comparative_stats"
         end

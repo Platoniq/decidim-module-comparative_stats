@@ -4,6 +4,7 @@ module Decidim
   module ComparativeStats
     module Admin
       class GraphsController < ComparativeStats::Admin::ApplicationController
+        helper ComparativeStats::ApplicationHelper
         helper_method :active_endpoints
         layout "decidim/admin/comparative_stats"
 

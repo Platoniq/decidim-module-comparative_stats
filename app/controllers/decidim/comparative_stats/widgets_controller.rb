@@ -3,6 +3,7 @@
 module Decidim
   module ComparativeStats
     class WidgetsController < Decidim::ApplicationController
+      helper ComparativeStats::ApplicationHelper
       skip_before_action :verify_authenticity_token
       after_action :allow_iframe, only: :show
       helper_method :active_endpoints
@@ -23,4 +24,3 @@ module Decidim
     end
   end
 end
-

@@ -5,6 +5,10 @@ module Decidim
     # Custom helpers, scoped to the comparative_stats engine.
     #
     module ApplicationHelper
+      def embed_modal_for(url)
+        embed_code = String.new(content_tag(:iframe, "", src: url, frameborder: 0, scrolling: "vertical"))
+        render partial: "decidim/shared/embed_modal", locals: { js_embed_code: nil, embed_code: embed_code }
+      end
     end
   end
 end
