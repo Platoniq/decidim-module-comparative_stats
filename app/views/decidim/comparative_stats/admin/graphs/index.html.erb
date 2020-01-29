@@ -8,10 +8,8 @@
   </div>
 </div>
 
-    <% if active_endpoints.any? %>
-
-      <%= render partial: "decidim/comparative_stats/widgets/tabs" %>
-
-    <% else %>
-    <%= t ".no_endpoints" %>
-    <% end %>
+<% if active_endpoints.any? %>
+  <%= render partial: "decidim/comparative_stats/widgets/tabs" %>
+<% else %>
+  <%= t ".no_endpoints" %>
+<% end %>

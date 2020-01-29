@@ -9,7 +9,9 @@ module Decidim
       def initialize(endpoint)
         @errors = []
         @queries = {}
+        @endpoint = endpoint
         @client = Graphlient::Client.new(endpoint,
+                                         http: CachedHTTPAdapter,
                                          # headers: {
                                          #   'Authorization' => 'Bearer 123'
                                          # },
@@ -19,7 +21,7 @@ module Decidim
                                          })
       end
 
-      attr_reader :client, :errors
+      attr_reader :client, :errors, :endpoint
 
       # When creating name and version are fetched from the api
       # Update action should allow the user to change the name but not the version
@@ -29,16 +31,12 @@ module Decidim
 
       # Queries the GraphQL api using one of the constants in ApiQueries class
       def query(tag)
-        begin
-          q = "Decidim::ComparativeStats::ApiQueries::#{tag.upcase}"
-          @queries[q] ||= client.query q.constantize
-          return @queries[q]
-        rescue Faraday::Error
-          @errors << "Not a valid Decidim API URL"
-        rescue Graphlient::Errors::Error => e
-          @errors << e.message
-        end
-        false
+        q = "Decidim::ComparativeStats::ApiQueries::#{tag.upcase}"
+        @queries[q] ||= client.query q.constantize
+      rescue Faraday::Error
+        @errors << "Not a valid Decidim API URL"
+      rescue Graphlient::Errors::Error => e
+        @errors << e.message
       end
 
       # Checks if is a valid Decidim API URL
