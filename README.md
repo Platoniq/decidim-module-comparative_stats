@@ -11,9 +11,28 @@ generate graphs.
 
 ## Usage
 
-This module works by connecting to several Decidim API's. Just go to your `your-decidim-installation.org/admin/comparative_stats` and add endpoints to comparate. For instance, Decidim barcelona endpoint is https://www.decidim.barcelona/api
+This module works by connecting to several Decidim API's.
+Just go to your `your-decidim-installation.org/admin/comparative_stats` and
+add endpoints to compare.
+For instance, Decidim Barcelona endpoint is `https://www.decidim.barcelona/api`
 
-Then, just go to graphs and see some nice graphs!
+Then, go to graphs and see some nice graphs!
+
+Graphs can be embedded anywhere independently, just use the button
+`embed <>` and copy the code to any other place.
+
+The generated code will look something like:
+
+```html
+<iframe
+  src="http://your_url/comparative_stats/widgets/global_stats.html"
+  frameborder="0"
+  width="100%"
+  height="420"
+  scrolling="vertical"></iframe>
+```
+
+You might want to customize the `height` parameter to match your particular case.
 
 ![Barcelona/Helsinki comparison](example.png)
 *A real example comparing the participatory processes carried out by the cities of Barcelona and Helsinki in 2019*
@@ -32,6 +51,21 @@ And then execute:
 bundle
 bundle exec rails decidim_comparative_stats:install:migrations
 bundle exec rails db:migrate
+```
+
+## Configuration options
+
+API queries are cached 1 hour by default.
+This can be tuned by creating an initializer in your Decidim installation.
+For instance, create the file `config/initializers/comparative_stats.rb`
+with this content:
+
+```ruby
+# frozen_string_literal: true
+
+Decidim::ComparativeStats.configure do |config|
+  config.stats_cache_expiration_time = 2.hour
+end
 ```
 
 ## Contributing
