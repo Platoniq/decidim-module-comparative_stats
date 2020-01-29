@@ -41,7 +41,8 @@ module Decidim
                     decidim_admin_comparative_stats.endpoints_path,
                     icon_name: "graph",
                     position: 3.5,
-                    active: :inclusive
+                    active: is_active_link?(decidim_admin_comparative_stats.endpoints_path, :inclusive) ||
+                            is_active_link?(decidim_admin_comparative_stats.graphs_path, :inclusive)
         end
       end
     end
