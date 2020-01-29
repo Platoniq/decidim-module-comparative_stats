@@ -1,6 +1,9 @@
 en:
   decidim:
     comparative_stats:
+      metrics:
+        users:
+          title: Registered users
       admin_log:
         endpoint:
           create: "%{user_name} created the %{resource_name} API endpoint"

@@ -1,23 +1,8 @@
 # frozen_string_literal: true
 
-require "chartkick"
-require "chartkick/helper"
-
 module Decidim
   module ComparativeStats
-    class MetricTimelinesCell < Decidim::ViewModel
-      include Chartkick::Helper
-
-      def show
-        return unless model
-
-        render :show
-      end
-
-      def endpoints
-        model
-      end
-
+    class MetricTimelinesCell < MetricPiechartsCell
       def metrics
         history = {}
         endpoints.each do |endpoint|
