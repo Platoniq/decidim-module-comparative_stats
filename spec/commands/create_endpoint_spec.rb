@@ -4,7 +4,7 @@ require "spec_helper"
 
 module Decidim::ComparativeStats::Admin
   describe CreateEndpoint do
-    let(:subject) { described_class.new(form, api) }
+    let(:subject) { described_class.new(form) }
     let(:form) do
       double(
         # EndpointForm,
@@ -12,7 +12,8 @@ module Decidim::ComparativeStats::Admin
         active: true,
         current_organization: organization,
         current_user: user,
-        invalid?: invalid
+        invalid?: invalid,
+        context: double(api: api)
       )
     end
 
@@ -55,7 +56,7 @@ module Decidim::ComparativeStats::Admin
       it "traces the action", versioning: true do
         expect(Decidim.traceability)
           .to receive(:create!)
-          .with(Decidim::ComparativeStats::Endpoint, user, hash_including(:endpoint, :name, :version))
+          .with(Decidim::ComparativeStats::Endpoint, user, hash_including(:endpoint, :name, :api_version))
           .and_call_original
 
         expect { subject.call }.to change(Decidim::ActionLog, :count)

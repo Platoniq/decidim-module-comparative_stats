@@ -37,6 +37,7 @@ module Decidim
             @user,
             endpoint: form.endpoint,
             name: form.name,
+            api_version: form.context.api.name_and_version.version,
             active: form.active
           )
         end

@@ -8,10 +8,8 @@ module Decidim
         # Public: Initializes the command.
         #
         # form - A form object with the params.
-        # api - An instantiated api object
-        def initialize(form, api)
+        def initialize(form)
           @form = form
-          @api = api
         end
 
         # Executes the command. Broadcasts these events:
@@ -29,15 +27,15 @@ module Decidim
 
         private
 
-        attr_reader :form, :api
+        attr_reader :form
 
         def create_endpoint
           Decidim.traceability.create!(
             Decidim::ComparativeStats::Endpoint,
             form.current_user,
             endpoint: form.endpoint,
-            name: api.name_and_version.application_name,
-            version: api.name_and_version.version,
+            name: form.context.api.name_and_version.application_name,
+            api_version: form.context.api.name_and_version.version,
             organization: form.current_organization,
             active: form.active
           )

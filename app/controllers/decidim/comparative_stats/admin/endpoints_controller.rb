@@ -24,7 +24,7 @@ module Decidim
         def create
           enforce_permission_to :create, :endpoint
           @form = form(EndpointForm).from_params(params, api: api)
-          CreateEndpoint.call(@form, api) do
+          CreateEndpoint.call(@form) do
             on(:ok) do
               flash[:notice] = I18n.t("endpoints.create.success", scope: "decidim.comparative_stats.admin")
               redirect_to endpoints_path
