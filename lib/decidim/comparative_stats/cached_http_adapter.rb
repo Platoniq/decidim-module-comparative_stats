@@ -11,9 +11,8 @@ module Decidim
         body["query"] = document.to_query_string.gsub(/GraphQL__Client__OperationDefinition_[0-9 ]+/, "")
         body["variables"] = variables if variables.any?
 
-        key = "graphlient/api_queries/#{url.hash}/#{body.to_json.hash}"
         Rails.cache.fetch(
-          key,
+          "graphlient/api_queries/#{url.hash}/#{body.to_json.hash}",
           expires_in: Decidim::ComparativeStats.stats_cache_expiration_time
         ) do
           super

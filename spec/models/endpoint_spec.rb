@@ -16,5 +16,9 @@ module Decidim::ComparativeStats
       expect(subject.organization).to eq(organization)
       expect(subject.api_version).to eq(Decidim::ComparativeStats::MIN_API_VERSION)
     end
+
+    it "endpoint api returns ApiFetcher instance" do
+      expect(subject.api).to be_a ApiFetcher
+    end
   end
 end
