@@ -19,7 +19,7 @@ module Decidim
           {
             endpoint: :string,
             name: :string,
-            version: :string,
+            api_version: :string,
             active: :boolean
           }
         end

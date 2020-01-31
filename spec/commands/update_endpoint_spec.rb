@@ -13,9 +13,22 @@ module Decidim::ComparativeStats::Admin
         invalid?: invalid,
         endpoint: Faker::Internet.url,
         name: Faker::Name.name,
-        active: true
+        active: true,
+        context: double(api: api)
       )
     end
+    let(:api) do
+      double(
+        name_and_version: name_and_version
+      )
+    end
+    let(:name_and_version) do
+      double(
+        application_name: "Test Decidim API",
+        version: version
+      )
+    end
+    let(:version) { Decidim::ComparativeStats::MIN_API_VERSION }
     let(:invalid) { false }
 
     context "when the form is not valid" do
@@ -39,7 +52,7 @@ module Decidim::ComparativeStats::Admin
       it "traces the action", versioning: true do
         expect(Decidim.traceability)
           .to receive(:update!)
-          .with(endpoint, user, endpoint: form.endpoint, name: form.name, active: form.active)
+          .with(endpoint, user, endpoint: form.endpoint, name: form.name, api_version: version, active: form.active)
           .and_call_original
 
         expect { subject.call }.to change(Decidim::ActionLog, :count)
