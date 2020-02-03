@@ -27,7 +27,7 @@ module Decidim
           CreateEndpoint.call(@form) do
             on(:ok) do
               flash[:notice] = I18n.t("endpoints.create.success", scope: "decidim.comparative_stats.admin")
-              redirect_to endpoints_path
+              redirect_to decidim_admin_comparative_stats.endpoints_path
             end
 
             on(:invalid) do
@@ -35,14 +35,6 @@ module Decidim
               render :new
             end
           end
-        end
-
-        def organization_endpoints
-          @organization_endpoints ||= Endpoint.where(organization: current_organization)
-        end
-
-        def api
-          @api ||= ApiFetcher.new(params[:endpoint][:endpoint])
         end
 
         def update
@@ -53,7 +45,7 @@ module Decidim
           UpdateEndpoint.call(current_endpoint, form, current_user) do
             on(:ok) do
               flash[:notice] = I18n.t("endpoints.update.success", scope: "decidim.comparative_stats.admin")
-              redirect_to endpoints_path
+              redirect_to decidim_admin_comparative_stats.endpoints_path
             end
 
             on(:invalid) do
@@ -72,6 +64,14 @@ module Decidim
               redirect_to endpoints_path
             end
           end
+        end
+
+        def organization_endpoints
+          @organization_endpoints ||= Endpoint.where(organization: current_organization)
+        end
+
+        def api
+          @api ||= ApiFetcher.new(params[:endpoint][:endpoint])
         end
 
         def current_endpoint

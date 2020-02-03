@@ -22,7 +22,6 @@ module Decidim::ComparativeStats
     end
 
     context "when fetching api resources" do
-      let(:query) { "query { decidim { version } }" }
       let(:version) { "0.19.test" }
       let(:data) { { decidim: { applicationName: "Decidim test", version: version } } }
 
