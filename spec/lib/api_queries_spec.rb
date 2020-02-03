@@ -4,13 +4,14 @@ require "spec_helper"
 require "decidim/api/test/type_context"
 
 module Decidim::ComparativeStats
-  describe ApiFetcher do
+  describe ApiQueries do
     include_context "with a graphql type"
+    let(:subject) { described_class }
     let(:type_class) { Decidim::Api::QueryType }
     let!(:current_user) { nil }
 
     describe "name_and_version" do
-      let(:query) { ApiQueries::NAME_AND_VERSION }
+      let(:query) { subject::NAME_AND_VERSION }
 
       it "return expected data" do
         expect(response["decidim"].keys).to include("applicationName", "version")
@@ -18,7 +19,7 @@ module Decidim::ComparativeStats
     end
 
     describe "participatory_processes" do
-      let(:query) { ApiQueries::PARTICIPATORY_PROCESSES }
+      let(:query) { subject::PARTICIPATORY_PROCESSES }
       let!(:participatoryProcesses) { create_list :participatory_process, 5, organization: current_organization }
 
       it "return expected data" do
@@ -27,7 +28,7 @@ module Decidim::ComparativeStats
     end
 
     describe "global_metrics" do
-      let(:query) { ApiQueries::GLOBAL_METRICS }
+      let(:query) { subject::GLOBAL_METRICS }
       let!(:metrics) { create(:metric, metric_type: "users", day: Time.current, cumulative: 1, quantity: 1, organization: current_organization) }
 
       it "return expected data" do
@@ -36,7 +37,7 @@ module Decidim::ComparativeStats
     end
 
     describe "global_history_metrics" do
-      let(:query) { ApiQueries::GLOBAL_HISTORY_METRICS }
+      let(:query) { subject::GLOBAL_HISTORY_METRICS }
       let!(:metrics) { create(:metric, metric_type: "users", day: Time.current, cumulative: 1, quantity: 1, organization: current_organization) }
 
       it "return expected data" do
