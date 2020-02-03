@@ -10,18 +10,20 @@ module Decidim
         @errors = []
         @queries = {}
         @endpoint = endpoint
-        @client = Graphlient::Client.new(endpoint,
-                                         http: CachedHTTPAdapter,
-                                         # headers: {
-                                         #   'Authorization' => 'Bearer 123'
-                                         # },
-                                         http_options: {
-                                           read_timeout: 20,
-                                           write_timeout: 30
-                                         })
       end
 
-      attr_reader :client, :errors, :endpoint
+      attr_reader :errors, :endpoint
+
+      attr_writer :client
+
+      def client
+        @client ||= Graphlient::Client.new(endpoint,
+                                           http: CachedHTTPAdapter,
+                                           http_options: {
+                                             read_timeout: 20,
+                                             write_timeout: 30
+                                           })
+      end
 
       # When creating name and version are fetched from the api
       # Update action should allow the user to change the name but not the version
