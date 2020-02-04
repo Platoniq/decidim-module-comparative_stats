@@ -61,7 +61,7 @@ module Decidim
           DestroyEndpoint.call(current_endpoint, current_user) do
             on(:ok) do
               flash[:notice] = I18n.t("endpoints.destroy.success", scope: "decidim.comparative_stats.admin")
-              redirect_to endpoints_path
+              redirect_to decidim_admin_comparative_stats.endpoints_path
             end
           end
         end

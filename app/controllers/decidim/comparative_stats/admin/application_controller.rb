@@ -7,9 +7,9 @@ module Decidim
       # this engine inherit.
       #
       class ApplicationController < Decidim::Admin::ApplicationController
-        register_permissions(::Decidim::Admin::ApplicationController,
-                             ::Decidim::ComparativeStats::Admin::Permissions,
-                             ::Decidim::Admin::Permissions)
+        def permission_class_chain
+          [::Decidim::ComparativeStats::Admin::Permissions] + super
+        end
       end
     end
   end

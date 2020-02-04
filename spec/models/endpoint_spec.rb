@@ -20,5 +20,10 @@ module Decidim::ComparativeStats
     it "endpoint api returns ApiFetcher instance" do
       expect(subject.api).to be_a ApiFetcher
     end
+
+    it "overwrites the log presenter" do
+      expect(described_class.log_presenter_class_for(:foo))
+        .to eq Decidim::ComparativeStats::AdminLog::EndpointPresenter
+    end
   end
 end
