@@ -45,6 +45,8 @@ en:
             update: 'Check and update endpoint'
       endpoints:
         add: "Add a Decidim URL"
+      content_blocks:
+        geocod_events: "Geocod events"
     components:
       comparative_stats:
         name: "ComparativeStats"

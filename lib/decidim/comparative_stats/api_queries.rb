@@ -48,6 +48,29 @@ module Decidim
           }
         }
       GRAPHQL
+
+      GLOBAL_EVENTS = <<~GRAPHQL
+        query {
+          assemblies {
+            id
+            components {
+              ...on Meetings{
+                meetings {
+                  edges {
+                    node {
+                      id
+                      coordinates {
+                        latitude
+                        longitude
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      GRAPHQL
     end
   end
 end
