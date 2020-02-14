@@ -53,18 +53,72 @@ module Decidim
         query {
           assemblies {
             id
-            components {
-              ...on Meetings{
-                meetings {
-                  edges {
-                    node {
-                      id
-                      coordinates {
-                        latitude
-                        longitude
-                      }
-                    }
+            slug
+            components (filter: {withGeolocationEnabled: true }) {
+              id
+              ...geolocatedMeetings
+              ...geolocatedProposals
+            }
+          }
+          participatoryProcesses {
+            id
+            slug
+            components (filter: {withGeolocationEnabled: true }) {
+              id
+              ...geolocatedMeetings
+              ...geolocatedProposals
+            }
+          }
+        }
+
+        fragment geolocatedMeetings on Meetings {
+          meetings {
+            edges {
+              node {
+                id
+                address
+                title {
+                  translations {
+                    text
                   }
+                }
+                description {
+                  translations {
+                    text
+                  }
+                }
+                startTime
+                endTime
+                location {
+                  translations {
+                    text
+                  }
+                }
+                locationHints {
+                  translations {
+                    text
+                  }
+                }
+                coordinates {
+                  latitude
+                  longitude
+                }
+              }
+            }
+          }
+        }
+
+        fragment geolocatedProposals on Proposals {
+          proposals {
+            edges {
+              node {
+                id
+                address
+                title
+                body
+                coordinates {
+                  latitude
+                  longitude
                 }
               }
             }
