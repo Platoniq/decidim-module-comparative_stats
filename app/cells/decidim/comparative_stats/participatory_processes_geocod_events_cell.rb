@@ -8,7 +8,7 @@ module Decidim
     class ParticipatoryProcessesGeocodEventsCell < Decidim::ViewModel
       include Decidim::MapHelper
 
-      view_paths << "#{Decidim::ComparativeStats::Engine.root}/app/cells/decidim/comparative_stats/content_blocks/partipatory_processes_geocod_events"
+      view_paths << "#{Decidim::ComparativeStats::Engine.root}/app/cells/decidim/comparative_stats/partipatory_processes_geocod_events"
 
       def show
         render :show
