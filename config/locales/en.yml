@@ -18,6 +18,7 @@ en:
         menu:
           endpoints: Manage API endpoints
           graphs: Manage Graphs
+          aggregated_maps: Aggregated Maps
         graphs:
           index:
             title: "Manage cross-tenant graphs"
@@ -43,6 +44,9 @@ en:
           edit:
             title: "Edit a Decidim API endpoint"
             update: 'Check and update endpoint'
+        aggregated_maps:
+          index:
+            title: "Aggregated meetings and proposals"
       endpoints:
         add: "Add a Decidim URL"
       content_blocks:

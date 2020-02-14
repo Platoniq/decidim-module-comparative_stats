@@ -9,7 +9,7 @@ module Decidim
 
           return permission_action if permission_action.scope != :admin
 
-          return permission_action unless permission_action.subject.in? [:endpoint, :graph]
+          return permission_action unless permission_action.subject.in? [:endpoint, :graph, :aggregated_maps]
 
           case permission_action.action
           when :index, :create, :update, :destroy
