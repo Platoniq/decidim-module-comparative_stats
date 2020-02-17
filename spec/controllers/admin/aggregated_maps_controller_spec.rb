@@ -9,7 +9,7 @@ module Decidim::ComparativeStats::Admin
     let(:user) { create(:user, :confirmed, :admin, organization: organization) }
     let(:organization) { create(:organization) }
     let(:url) { "http://example.com/api" }
-    let(:endpoint) { create :endpoint, endpoint: url, organization: organization) }
+    let(:endpoint) { create :endpoint, endpoint: url, organization: organization }
     let(:active) { true }
     let(:form) do
       {

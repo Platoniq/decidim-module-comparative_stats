@@ -7,6 +7,7 @@ module Decidim
     #
     class ParticipatoryProcessesGeocodEventsCell < Decidim::ViewModel
       include Decidim::MapHelper
+      include Decidim::LayoutHelper
 
       view_paths << "#{Decidim::ComparativeStats::Engine.root}/app/cells/decidim/comparative_stats/partipatory_processes_geocod_events"
 
@@ -18,7 +19,7 @@ module Decidim
         Decidim::ComparativeStats::Endpoint.all
       end
 
-      def upcoming_events
+      def geocoded_events
         @events = {
           meetings: {},
           proposals: {}
@@ -26,6 +27,8 @@ module Decidim
 
         endpoints.each do |endpoint|
           results = endpoint.api.fetch_global_events
+          next unless results.respond_to? :data
+
           results.data.assemblies.each do |assembly|
             assembly.components.each do |component|
               if component.respond_to? :meetings
@@ -68,7 +71,7 @@ module Decidim
           address: proposal.address,
           title: proposal.title,
           body: truncate(proposal.body, length: 100),
-          # icon: icon("proposals", width: 40, height: 70, remove_icon_class: true),
+          icon: icon("proposals", width: 40, height: 70, remove_icon_class: true),
           link: endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/proposals/#{proposal.id}"
         }
       end
@@ -84,7 +87,7 @@ module Decidim
           startTimeMonth: l(meeting.start_time.to_date, format: "%B"),
           startTimeYear: l(meeting.start_time.to_date, format: "%Y"),
           startTime: "#{meeting.start_time.to_date.strftime("%H:%M")} - #{meeting.end_time.to_date.strftime("%H:%M")}",
-          # icon: icon("meetings", width: 40, height: 70, remove_icon_class: true),
+          icon: icon("meetings", width: 40, height: 70, remove_icon_class: true),
           location: first_text(meeting.location.translations),
           locationHints: first_text(meeting.location_hints.translations),
           link: endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/meetings/#{meeting.id}"

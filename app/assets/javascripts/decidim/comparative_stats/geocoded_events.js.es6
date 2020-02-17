@@ -6,7 +6,7 @@
 
 $(function() {
 
-  var map_object = document.getElementById('upcoming_events');
+  var map_object = document.getElementById('geocoded_events');
   var map = L.map(map_object, {
     center: [41,2],
     zoom: 4
@@ -31,7 +31,7 @@ $(function() {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  var events = $('#upcoming_events').data('upcoming-events');
+  var events = $('#geocoded_events').data('geocoded-events');
   var meetings = events.meetings;
   var proposals = events.proposals;
 
@@ -48,8 +48,8 @@ $(function() {
 
     $.tmpl(popupMeetingsTemplateId, meetings[key]).appendTo(node);
     marker.bindPopup(node, {
-      maxwidth: 640,
-      minwidth: 500,
+      maxWidth: 640,
+      minWidth: 500,
       keepInView: true,
       className: "map-info"
     }).openPopup();
