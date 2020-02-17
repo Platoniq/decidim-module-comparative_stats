@@ -26,7 +26,7 @@ $(function() {
       return ""
     }
   });
-  
+
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
@@ -45,7 +45,7 @@ $(function() {
     });
 
     let node = document.createElement("div");
-    
+
     $.tmpl(popupMeetingsTemplateId, meetings[key]).appendTo(node);
     marker.bindPopup(node, {
       maxwidth: 640,
@@ -68,7 +68,7 @@ $(function() {
     });
 
     let node = document.createElement("div");
-    
+
     $.tmpl(popupProposalsTemplateId, proposals[key]).appendTo(node);
     marker.bindPopup(node, {
       maxwidth: 640,
