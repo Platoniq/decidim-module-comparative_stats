@@ -20,6 +20,19 @@ module Decidim::ComparativeStats::Admin
     end
     let(:version) { "0.19.test" }
     let(:data) { { decidim: { applicationName: "Decidim Test", version: version } } }
+
+    before do
+      request.env["decidim.current_organization"] = organization
+      sign_in user
+    end
+
+    describe "GET #index" do
+      it "renders the index" do
+        get :index
+
+        expect(response).to have_http_status(:ok)
+        expect(subject).to render_template(:index)
+      end
+    end
   end
-  
 end
