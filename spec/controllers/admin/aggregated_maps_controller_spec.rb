@@ -3,7 +3,7 @@
 require "spec_helper"
 
 module Decidim::ComparativeStats::Admin
-  describe AggregatedMapsControlller, type: :controller do
+  describe AggregatedMapsController, type: :controller do
     routes { Decidim::ComparativeStats::AdminEngine.routes }
 
     let(:user) { create(:user, :confirmed, :admin, organization: organization) }
