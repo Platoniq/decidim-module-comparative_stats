@@ -34,13 +34,13 @@ $(function() {
   $.template(popupProposalsTemplateId, $(`#${popupProposalsTemplateId}`).html());
   const popupMeetingsTemplateId = "marker-popup-meeting";
   $.template(popupMeetingsTemplateId, $(`#${popupMeetingsTemplateId}`).html());
-  
+ 
   var layers = L.control.layers();
 
   for (let endpoint in endpoints) {
 
     let markerClusters = L.markerClusterGroup();
-  
+
     var meetings = endpoints[endpoint].meetings;
     var proposals = endpoints[endpoint].proposals;
 
@@ -49,7 +49,7 @@ $(function() {
       let marker = L.marker(coordinates, {
         icon: new L.DivIcon.SVGIcon.DecidimIcon()
       });
-  
+
       let node = document.createElement("div");
   
       $.tmpl(popupMeetingsTemplateId, meetings[key]).appendTo(node);
@@ -61,15 +61,15 @@ $(function() {
       }).openPopup();
       markerClusters.addLayer(marker);
     }
-  
+
     for(let key in proposals) {
       var coordinates = [proposals[key].latitude, proposals[key].longitude];
       let marker = L.marker(coordinates, {
         icon: new L.DivIcon.SVGIcon.DecidimIcon()
       });
-  
+
       let node = document.createElement("div");
-  
+
       $.tmpl(popupProposalsTemplateId, proposals[key]).appendTo(node);
       marker.bindPopup(node, {
         maxwidth: 640,
