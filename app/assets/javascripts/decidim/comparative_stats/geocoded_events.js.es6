@@ -11,8 +11,6 @@ $(function() {
     center: [41,2],
     zoom: 4
   });
-  let markerClustersMeetings = L.markerClusterGroup();
-  // let markerClustersMeetings = L.markerClusterGroup();
 
   L.DivIcon.SVGIcon.DecidimIcon = L.DivIcon.SVGIcon.extend({
     options: {
@@ -31,54 +29,65 @@ $(function() {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  var events = $('#geocoded_events').data('geocoded-events');
-  var meetings = events.meetings;
-  var proposals = events.proposals;
-
-  const popupMeetingsTemplateId = "marker-popup-meeting";
-  $.template(popupMeetingsTemplateId, $(`#${popupMeetingsTemplateId}`).html());
-
-  for(let key in meetings) {
-    var coordinates = [meetings[key].latitude, meetings[key].longitude];
-    let marker = L.marker(coordinates, {
-      icon: new L.DivIcon.SVGIcon.DecidimIcon()
-    });
-
-    let node = document.createElement("div");
-
-    $.tmpl(popupMeetingsTemplateId, meetings[key]).appendTo(node);
-    marker.bindPopup(node, {
-      maxWidth: 640,
-      minWidth: 500,
-      keepInView: true,
-      className: "map-info"
-    }).openPopup();
-    markerClustersMeetings.addLayer(marker);
-  }
-
-  // map.addLayer(markerClustersMeetings);
-
+  var endpoints = $('#geocoded_events').data('geocoded-events');
   const popupProposalsTemplateId = "marker-popup-proposal";
   $.template(popupProposalsTemplateId, $(`#${popupProposalsTemplateId}`).html());
+  const popupMeetingsTemplateId = "marker-popup-meeting";
+  $.template(popupMeetingsTemplateId, $(`#${popupMeetingsTemplateId}`).html());
+  
+  var layers = L.control.layers();
 
-  for(let key in proposals) {
-    var coordinates = [proposals[key].latitude, proposals[key].longitude];
-    let marker = L.marker(coordinates, {
-      icon: new L.DivIcon.SVGIcon.DecidimIcon()
-    });
+  for (let endpoint in endpoints) {
 
-    let node = document.createElement("div");
+    let markerClusters = L.markerClusterGroup();
+  
+    var meetings = endpoints[endpoint].meetings;
+    var proposals = endpoints[endpoint].proposals;
 
-    $.tmpl(popupProposalsTemplateId, proposals[key]).appendTo(node);
-    marker.bindPopup(node, {
-      maxwidth: 640,
-      minwidth: 500,
-      keepInView: true,
-      className: "map-info"
-    }).openPopup();
-    markerClustersMeetings.addLayer(marker);
+    for(let key in meetings) {
+      var coordinates = [meetings[key].latitude, meetings[key].longitude];
+      let marker = L.marker(coordinates, {
+        icon: new L.DivIcon.SVGIcon.DecidimIcon()
+      });
+  
+      let node = document.createElement("div");
+  
+      $.tmpl(popupMeetingsTemplateId, meetings[key]).appendTo(node);
+      marker.bindPopup(node, {
+        maxWidth: 640,
+        minWidth: 500,
+        keepInView: true,
+        className: "map-info"
+      }).openPopup();
+      markerClusters.addLayer(marker);
+    }
+  
+    for(let key in proposals) {
+      var coordinates = [proposals[key].latitude, proposals[key].longitude];
+      let marker = L.marker(coordinates, {
+        icon: new L.DivIcon.SVGIcon.DecidimIcon()
+      });
+  
+      let node = document.createElement("div");
+  
+      $.tmpl(popupProposalsTemplateId, proposals[key]).appendTo(node);
+      marker.bindPopup(node, {
+        maxwidth: 640,
+        minwidth: 500,
+        keepInView: true,
+        className: "map-info"
+      }).openPopup();
+      // markerClusters.push(marker);
+      markerClusters.addLayer(marker);
+    }
+
+    layers.addOverlay(markerClusters, endpoints[endpoint].name);
   }
+  layers.addTo(map);
 
-  map.addLayer(markerClustersMeetings);
+  $("[data-tabs]").on('change.zf.tabs', function() {
+    map.invalidateSize(true);
+  });
+
 
 });

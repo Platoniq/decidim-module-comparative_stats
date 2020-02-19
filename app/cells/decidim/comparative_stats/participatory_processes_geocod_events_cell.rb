@@ -20,12 +20,14 @@ module Decidim
       end
 
       def geocoded_events
-        @events = {
-          meetings: {},
-          proposals: {}
-        }
+        @events = {}
 
         endpoints.each do |endpoint|
+          @events[endpoint.id] = {
+            name: endpoint.name,
+            meetings: {},
+            proposals: {}
+          }
           results = endpoint.api.fetch_global_events
           next unless results.respond_to? :data
 
@@ -33,11 +35,11 @@ module Decidim
             assembly.components.each do |component|
               if component.respond_to? :meetings
                 component.meetings.edges.each do |edge|
-                  add_meeting(edge.node, endpoint.endpoint, assembly, component, :assemblies)
+                  add_meeting(edge.node, endpoint, assembly, component, :assemblies)
                 end
               elsif componet.respond_to? :proposals
                 component.proposals.edges.each do |edge|
-                  add_proposal(edge.node, endpoint.endpoint, assembly, component, :assemblies)
+                  add_proposal(edge.node, endpoint, assembly, component, :assemblies)
                 end
               end
             end
@@ -46,11 +48,11 @@ module Decidim
             participatory_process.components.each do |component|
               if component.respond_to? :meetings
                 component.meetings.edges.each do |edge|
-                  add_meeting(edge.node, endpoint.endpoint, participatory_process, component, :processes)
+                  add_meeting(edge.node, endpoint, participatory_process, component, :processes)
                 end
               elsif component.respond_to? :proposals
                 component.proposals.edges.each do |edge|
-                  add_proposal(edge.node, endpoint.endpoint, participatory_process, component, :processes)
+                  add_proposal(edge.node, endpoint, participatory_process, component, :processes)
                 end
               end
             end
@@ -65,19 +67,19 @@ module Decidim
       end
 
       def add_proposal(proposal, endpoint, participatory_space, component, type)
-        @events[:proposals]["#{type}_proposal_#{proposal.id}"] = {
+        @events[endpoint.id][:proposals]["#{type}_proposal_#{proposal.id}"] = {
           latitude: proposal.coordinates.latitude,
           longitude: proposal.coordinates.longitude,
           address: proposal.address,
           title: proposal.title,
           body: truncate(proposal.body, length: 100),
           icon: icon("proposals", width: 40, height: 70, remove_icon_class: true),
-          link: endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/proposals/#{proposal.id}"
+          link: endpoint.endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/proposals/#{proposal.id}"
         }
       end
 
       def add_meeting(meeting, endpoint, participatory_space, component, type)
-        @events[:meetings]["#{type}_meeting_#{meeting.id}"] = {
+        @events[endpoint.id][:meetings]["#{type}_meeting_#{meeting.id}"] = {
           latitude: meeting.coordinates.latitude,
           longitude: meeting.coordinates.longitude,
           address: meeting.address,
@@ -90,7 +92,7 @@ module Decidim
           icon: icon("meetings", width: 40, height: 70, remove_icon_class: true),
           location: first_text(meeting.location.translations),
           locationHints: first_text(meeting.location_hints.translations),
-          link: endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/meetings/#{meeting.id}"
+          link: endpoint.endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/meetings/#{meeting.id}"
         }
       end
     end

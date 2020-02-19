@@ -13,7 +13,6 @@ module Decidim
         # Add admin engine routes here
         resources :endpoints
         resources :graphs
-        resources :aggregated_maps
         root to: "endpoints#index"
       end
 
@@ -43,8 +42,7 @@ module Decidim
                     icon_name: "graph",
                     position: 3.5,
                     active: is_active_link?(decidim_admin_comparative_stats.endpoints_path, :inclusive) ||
-                            is_active_link?(decidim_admin_comparative_stats.graphs_path, :inclusive) ||
-                            is_active_link?(decidim_admin_comparative_stats.aggregated_maps_path, :inclusive)
+                            is_active_link?(decidim_admin_comparative_stats.graphs_path, :inclusive)
         end
       end
     end

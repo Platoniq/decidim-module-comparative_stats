@@ -11,11 +11,6 @@
           <%= aria_selected_link_to I18n.t("menu.graphs", scope: "decidim.comparative_stats.admin"), decidim_admin_comparative_stats.graphs_path %>
         </li>
       <% end %>
-      <% if allowed_to?(:index, :graph) %>
-        <li <% if is_active_link?(decidim_admin_comparative_stats.aggregated_maps_path) %> class="is-active" <% end %>>
-          <%= aria_selected_link_to I18n.t("menu.aggregated_maps", scope: "decidim.comparative_stats.admin"), decidim_admin_comparative_stats.aggregated_maps_path %>
-        </li>
-      <% end %>
     </ul>
   </div>
 <% end %>
