@@ -25,11 +25,17 @@ module Decidim
         rows = []
         endpoints.each do |endpoint|
           endpoint.api.fetch_participatory_processes.data.participatory_processes.each do |item|
+            next unless item.start_date
+
+            start_date = item.start_date
+            end_date = item.end_date.presence || Date.current.end_of_year
+            # let's not trust people writing proper ordered dates
+            start_date, end_date = end_date, start_date if start_date > end_date
             rows << {
               name: endpoint.name,
               title: first_text(item.title.translations),
-              start_date: item.start_date,
-              end_date: item.end_date
+              start_date: start_date,
+              end_date: end_date
             }
           end
         end
