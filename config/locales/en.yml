@@ -14,6 +14,7 @@ en:
           global_stats: Global stats
           global_stats_timeline: Global stats timeline
           processes_timeline: Processes timeline
+          processes_geocod_events: Aggregated maps
       admin:
         menu:
           endpoints: Manage API endpoints
@@ -45,6 +46,8 @@ en:
             update: 'Check and update endpoint'
       endpoints:
         add: "Add a Decidim URL"
+      content_blocks:
+        geocod_events: "Geocod events"
     components:
       comparative_stats:
         name: "ComparativeStats"
