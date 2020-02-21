@@ -34,7 +34,7 @@ $(function() {
   $.template(popupProposalsTemplateId, $(`#${popupProposalsTemplateId}`).html());
   const popupMeetingsTemplateId = "marker-popup-meeting";
   $.template(popupMeetingsTemplateId, $(`#${popupMeetingsTemplateId}`).html());
- 
+
   var layers = L.control.layers();
 
   for (let endpoint in endpoints) {
@@ -51,7 +51,7 @@ $(function() {
       });
 
       let node = document.createElement("div");
-  
+
       $.tmpl(popupMeetingsTemplateId, meetings[key]).appendTo(node);
       marker.bindPopup(node, {
         maxWidth: 640,
