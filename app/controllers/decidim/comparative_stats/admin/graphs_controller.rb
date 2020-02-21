@@ -7,7 +7,7 @@ module Decidim
         helper ComparativeStats::ApplicationHelper
         layout "decidim/admin/comparative_stats"
 
-        def index
+        def show
           enforce_permission_to :index, :graph
         end
       end

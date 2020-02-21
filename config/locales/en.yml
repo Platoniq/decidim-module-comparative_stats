@@ -20,7 +20,7 @@ en:
           endpoints: Manage API endpoints
           graphs: Manage Graphs
         graphs:
-          index:
+          show:
             title: "Manage cross-tenant graphs"
             no_endpoints: It looks that you haven't any active endpoint yer. Please add and activate some Endpoints first!
         endpoints:
