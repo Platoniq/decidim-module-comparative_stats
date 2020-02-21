@@ -8,7 +8,7 @@ module Decidim
         layout "decidim/admin/comparative_stats"
 
         def show
-          enforce_permission_to :index, :graph
+          enforce_permission_to :show, :graph
         end
       end
     end
