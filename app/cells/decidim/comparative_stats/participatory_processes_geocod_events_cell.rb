@@ -9,8 +9,6 @@ module Decidim
       include Decidim::MapHelper
       include Decidim::LayoutHelper
 
-      view_paths << "#{Decidim::ComparativeStats::Engine.root}/app/cells/decidim/comparative_stats/partipatory_processes_geocod_events"
-
       def show
         render :show
       end
