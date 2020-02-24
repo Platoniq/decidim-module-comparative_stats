@@ -2,10 +2,10 @@
 
 module Decidim
   module ComparativeStats
-    # This cell renders a map with participatory processes
+    # This cell renders a map with participatory spaces
     # the `model` is spected to be a collection of API endpoints
     #
-    class ParticipatoryProcessesGeocodEventsCell < Decidim::ViewModel
+    class ParticipatorySpacesGeocodedEventsCell < Decidim::ViewModel
       include Decidim::MapHelper
       include Decidim::LayoutHelper
 
