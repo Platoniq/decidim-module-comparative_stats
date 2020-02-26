@@ -12,7 +12,7 @@ module Decidim
       routes do
         # Add admin engine routes here
         resources :endpoints
-        resources :graphs
+        get "graphs/:graph", to: "graphs#show", as: :graphs, defaults: { graph: "global_stats" }
         root to: "endpoints#index"
       end
 
