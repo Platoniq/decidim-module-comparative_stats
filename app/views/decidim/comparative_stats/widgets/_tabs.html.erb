@@ -6,7 +6,11 @@
 
   <div class="tabs-content" id="charts-tabs-content">
     <div class="tabs-panel is-active">
-      <%= render partial: "decidim/comparative_stats/widgets/embed", object: params[:graph] %>
-      <%= cell(available_graphs[params[:graph].to_sym], active_endpoints) %>
+      <% if available_graphs.include? params[:graph] %>
+        <%= render partial: "decidim/comparative_stats/widgets/embed", object: params[:graph] %>
+        <%= cell(available_graphs[params[:graph].to_sym], active_endpoints) %>
+      <% else %>
+        <p><%= t ".choose_valid_graph" %></p>
+      <% end %>
     </div>
   </div>
