@@ -10,11 +10,13 @@ module Decidim::ComparativeStats
 
     let(:model) do
       [double(
-        api: double(fetch_global_events: api_call),
+        api: double(fetch_global_events: api_call, valid?: is_valid),
         name: "Example endpoint",
         id: 1
       )]
     end
+
+    let(:is_valid) { true }
 
     let(:api_call) do
       double(

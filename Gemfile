@@ -3,13 +3,20 @@
 source "https://rubygems.org"
 
 ruby RUBY_VERSION
-# DECIDIM_VERSION =  { git: "https://github.com/decidim/decidim" }
-DECIDIM_VERSION = "0.19"
+# Inside the development app, the relative require has to be one level up, as
+# the Gemfile is copied to the development_app folder (almost) as is.
+base_path = ""
+base_path = "../" if File.basename(__dir__) == "development_app"
+require_relative "#{base_path}lib/decidim/comparative_stats/version"
+
+# while '0.21' is not published:
+DECIDIM_VERSION =  { git: "https://github.com/decidim/decidim", branch: :master }
+# DECIDIM_VERSION = Decidim::ComparativeStats::DECIDIM_VERSION
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-comparative_stats", path: "."
 
-gem "bootsnap", "~> 1.3"
+gem "bootsnap", "~> 1.4"
 gem "puma", "~> 3.12.2"
 gem "uglifier", "~> 4.1"
 
