@@ -6,7 +6,7 @@
 
   <div class="tabs-content" id="charts-tabs-content">
     <div class="tabs-panel is-active">
-      <% if available_graphs.include? params[:graph] %>
+      <% if available_graphs.include? params[:graph].to_sym %>
         <%= render partial: "decidim/comparative_stats/widgets/embed", object: params[:graph] %>
         <%= cell(available_graphs[params[:graph].to_sym], active_endpoints) %>
       <% else %>

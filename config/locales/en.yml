@@ -55,8 +55,8 @@ en:
             again
           global_stats: Global stats
           global_stats_timeline: Global stats timeline
-          processes_geocod_events: Aggregated maps
           processes_timeline: Processes timeline
+          spaces_geocoded_events: Aggregated maps
     components:
       comparative_stats:
         name: ComparativeStats

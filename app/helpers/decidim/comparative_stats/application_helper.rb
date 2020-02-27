@@ -19,7 +19,7 @@ module Decidim
           global_stats: "decidim/comparative_stats/metric_piecharts",
           global_stats_timeline: "decidim/comparative_stats/metric_timelines",
           processes_timeline: "decidim/comparative_stats/participatory_processes_timeline",
-          processes_geocod_events: "decidim/comparative_stats/participatory_processes_geocod_events"
+          spaces_geocoded_events: "decidim/comparative_stats/participatory_spaces_geocoded_events"
         }
       end
     end

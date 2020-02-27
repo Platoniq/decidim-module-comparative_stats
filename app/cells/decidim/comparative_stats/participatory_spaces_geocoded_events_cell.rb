@@ -2,10 +2,9 @@
 
 module Decidim
   module ComparativeStats
-    # This cell renders a map with participatory processes
-    # the `model` is expected to be a collection of API endpoints
-    #
-    class ParticipatoryProcessesGeocodEventsCell < Decidim::ViewModel
+    # This cell renders a map with participatory spaces
+    # the `model` is spected to be a collection of API endpoints
+    class ParticipatorySpacesGeocodedEventsCell < Decidim::ViewModel
       include Decidim::MapHelper
       include Decidim::LayoutHelper
 
@@ -23,6 +22,9 @@ module Decidim
         @events = {}
 
         endpoints.each do |endpoint|
+          # skip endpoints under version 0.21
+          next unless endpoint.api.valid? "0.21"
+
           @events[endpoint.id] = {
             name: endpoint.name,
             meetings: {},

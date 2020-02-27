@@ -43,6 +43,12 @@ module Decidim::ComparativeStats
         expect(subject.valid?).to eq true
       end
 
+      context "when specifying a specific version number" do
+        it "returns invalid version" do
+          expect(subject.valid?("0.20")).to eq false
+        end
+      end
+
       context "when version is less than required" do
         let(:version) { "0.17" }
 

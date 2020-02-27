@@ -43,12 +43,12 @@ module Decidim
       end
 
       # Checks if is a valid Decidim API URL
-      def valid?
+      def valid?(min_version = MIN_API_VERSION)
         response = fetch_name_and_version
         return false unless response
 
-        if Gem::Version.new(MIN_API_VERSION) > Gem::Version.new(response.data.decidim.version)
-          @errors << "Decidim version detect (#{response.data.decidim.version}) should be at least #{MIN_API_VERSION}"
+        if Gem::Version.new(min_version) > Gem::Version.new(response.data.decidim.version)
+          @errors << "Decidim version detect (#{response.data.decidim.version}) should be at least #{min_version}"
           return false
         end
         true
