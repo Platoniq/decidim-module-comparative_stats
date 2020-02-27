@@ -2,6 +2,7 @@
 
 require "spec_helper"
 require "decidim/api/test/type_context"
+require "decidim/core/test"
 
 module Decidim::ComparativeStats
   describe ApiQueries do
@@ -42,6 +43,41 @@ module Decidim::ComparativeStats
 
       it "return expected data" do
         expect(response["metrics"].first["history"].first.keys).to include("key", "value")
+      end
+    end
+
+    describe "global_events" do
+      let(:query) { subject::GLOBAL_EVENTS }
+      let!(:assembly) { create(:assembly, organization: current_organization) }
+
+      context "when there are meetings" do
+        let!(:component_meeting) { create(:component, manifest_name: :meetings, organization: current_organization, participatory_space: assembly) }
+        let(:meetings) { create_list(:meeting, 3, :published, organization: current_organization, component: component_meeting) }
+        # let!(:all_meetings) do
+        #   create_list(:meeting, 3, component: component_meeting)
+        # end
+
+        it "returns the corrent count of meetigns" do
+          expect(response["assemblies"][0]["components"][0]["meetings"]["edges"]). to be nil
+        end
+
+        it "returns the correct coordinates for all the meetings" do
+          meetings = response["assemblies"]["components"]["meetings"].map { |meeting| meeting }
+          expect(meetings).to include(*all_meetings.map(&[:latitude, :longitude]))
+        end
+      end
+
+      context "when there are proposals" do
+        let!(:component_proposal) { create(:component, manifest_name: :proposals, organization: current_organization, participatory_space: assembly) }
+        let!(:proposals) { create_list(:proposal, 3, :published, organization: current_organization, component: component_proposal) }
+
+        it "returns expected data" do
+          expect(response). to be nil
+        end
+      end
+
+      it "returns zero participatory_processes" do
+        expect(response["participatoryProcesses"]). to eq []
       end
     end
   end
