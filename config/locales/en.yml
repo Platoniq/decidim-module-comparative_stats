@@ -1,56 +1,62 @@
+---
 en:
   decidim:
+    admin:
+      menu:
+        comparative_stats: Comparative Stats
     comparative_stats:
-      metrics:
-        users:
-          title: Registered users
-      admin_log:
-        endpoint:
-          create: "%{user_name} created the %{resource_name} API endpoint"
-          delete: "%{user_name} removed the %{resource_name} member from the %{space_name} API endpoint"
-          update: "%{user_name} updated the %{resource_name} API endpoint"
-      widgets:
-        tabs:
-          global_stats: Global stats
-          global_stats_timeline: Global stats timeline
-          processes_timeline: Processes timeline
-          processes_geocod_events: Aggregated maps
       admin:
+        endpoints:
+          create:
+            error: The API endpoint has not been added. Please verify that is a valid
+              Decidim API url
+            success: The API endpoint has been added succesfully
+          edit:
+            title: Edit a Decidim API endpoint
+            update: Check and update endpoint
+          index:
+            active: Active
+            endpoint: Endpoint
+            name: Name
+            no_endpoints: It seems that you haven't add any Decidim API endpoint yet!
+            title: API Decidim enpoints
+            version: Version
+          new:
+            create: Check and add endpoint
+            subtitle: Add a valid Decidim installation URL that points to its API.
+              For instance "https://www.decidim.barcelona/api"
+            title: Add a Decidim API endpoint
+          update:
+            error: The API endpoint has not been updated. Please verify that is a
+              valid Decidim API url
+            success: The API endpoint has been updated succesfully
+        graphs:
+          show:
+            no_endpoints: It looks that you haven't any active endpoint yer. Please
+              add and activate some Endpoints first!
+            title: Manage cross-tenant graphs
         menu:
           endpoints: Manage API endpoints
           graphs: Manage Graphs
-        graphs:
-          index:
-            title: "Manage cross-tenant graphs"
-            no_endpoints: It looks that you haven't any active endpoint yer. Please add and activate some Endpoints first!
-        endpoints:
-          index:
-            title: "API Decidim enpoints"
-            endpoint: Endpoint
-            name: Name
-            version: Version
-            active: Active
-            no_endpoints: It seems that you haven't add any Decidim API endpoint yet!
-          new:
-            title: "Add a Decidim API endpoint"
-            subtitle: 'Add a valid Decidim installation URL that points to its API. For instance "https://www.decidim.barcelona/api"'
-            create: 'Check and add endpoint'
-          create:
-            success: "The API endpoint has been added succesfully"
-            error: "The API endpoint has not been added. Please verify that is a valid Decidim API url"
-          update:
-            success: "The API endpoint has been updated succesfully"
-            error: "The API endpoint has not been updated. Please verify that is a valid Decidim API url"
-          edit:
-            title: "Edit a Decidim API endpoint"
-            update: 'Check and update endpoint'
+      admin_log:
+        endpoint:
+          create: "%{user_name} created the %{resource_name} API endpoint"
+          delete: "%{user_name} removed the %{resource_name} member from the %{space_name}
+            API endpoint"
+          update: "%{user_name} updated the %{resource_name} API endpoint"
       endpoints:
-        add: "Add a Decidim URL"
-      content_blocks:
-        geocod_events: "Geocod events"
+        add: Add a Decidim URL
+      metrics:
+        users:
+          title: Registered users
+      widgets:
+        tabs:
+          choose_valid_graph: No valid graph specified. Please choose one and try
+            again
+          global_stats: Global stats
+          global_stats_timeline: Global stats timeline
+          spaces_geocoded_events: Aggregated maps
+          processes_timeline: Processes timeline
     components:
       comparative_stats:
-        name: "ComparativeStats"
-    admin:
-      menu:
-        comparative_stats: "Comparative Stats"
+        name: ComparativeStats

@@ -13,6 +13,15 @@ module Decidim
       def active_endpoints
         Endpoint.active.where(organization: current_organization)
       end
+
+      def available_graphs
+        {
+          global_stats: "decidim/comparative_stats/metric_piecharts",
+          global_stats_timeline: "decidim/comparative_stats/metric_timelines",
+          processes_timeline: "decidim/comparative_stats/participatory_processes_timeline",
+          spaces_geocoded_events: "decidim/comparative_stats/participatory_spaces_geocoded_events"
+        }
+      end
     end
   end
 end

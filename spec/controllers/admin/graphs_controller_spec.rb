@@ -14,11 +14,11 @@ module Decidim::ComparativeStats::Admin
       sign_in user
     end
 
-    describe "GET index" do
-      it "renders the index listing" do
-        get :index
+    describe "GET show" do
+      it "renders the default graph" do
+        get :show, params: { graph: "global_stats" }
         expect(response).to have_http_status(:ok)
-        expect(subject).to render_template(:index)
+        expect(subject).to render_template(:show)
       end
     end
   end

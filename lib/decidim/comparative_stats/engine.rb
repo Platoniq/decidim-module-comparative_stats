@@ -11,7 +11,7 @@ module Decidim
 
       routes do
         # Add engine routes here
-        get "widgets/:graph", to: "widgets#show", as: :widget
+        get "widgets/:graph", to: "widgets#show", as: :widget, defaults: { graph: "global_stats" }
         root to: "widgets#show"
       end
 

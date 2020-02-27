@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-module Decidim::ComparativeStats::Admin
+module Decidim::ComparativeStats
   describe WidgetsController, type: :controller do
     routes { Decidim::ComparativeStats::Engine.routes }
 
