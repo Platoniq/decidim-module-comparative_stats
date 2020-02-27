@@ -11,17 +11,18 @@ module Decidim::ComparativeStats
     let(:model) do
       [double(
         api: double(fetch_global_events: api_call),
-        name: "Example endpoint"
+        name: "Example endpoint",
+        id: 1
       )]
     end
 
     let(:api_call) do
-      double(data: double(events: [events]))
-    end
-
-    let(:events) do
       double(
-        name: "endpoint"
+        data:
+          double(
+            assemblies: [],
+            participatory_processes: []
+          )
       )
     end
 
