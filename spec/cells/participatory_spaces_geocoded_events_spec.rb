@@ -13,7 +13,7 @@ module Decidim::ComparativeStats
         api: double(fetch_global_events: api_call),
         name: "Example endpoint"
       )]
-    endend
+    end
 
     let(:api_call) do
       double(data: double(events: [events]))
