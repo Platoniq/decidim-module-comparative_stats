@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "graphlient"
+require "decidim/comparative_stats/version"
 
 module Decidim
   module ComparativeStats
