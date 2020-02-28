@@ -15,12 +15,12 @@ module Decidim
       end
 
       def available_graphs
-        {
-          global_stats: "decidim/comparative_stats/metric_piecharts",
-          global_stats_timeline: "decidim/comparative_stats/metric_timelines",
-          processes_timeline: "decidim/comparative_stats/participatory_processes_timeline",
-          spaces_geocoded_events: "decidim/comparative_stats/participatory_spaces_geocoded_events"
-        }
+        [
+          :global_stats,
+          :global_stats_timeline,
+          :processes_timeline,
+          :spaces_geocoded_events
+        ]
       end
     end
   end

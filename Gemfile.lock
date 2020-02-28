@@ -199,10 +199,13 @@ PATH
   remote: .
   specs:
     decidim-comparative_stats (1.0)
+      cells-erb (~> 0.1.0)
+      cells-rails (~> 0.0.9)
       chartkick (~> 3.3)
       decidim-admin (>= 0.21.0.pre.dev)
       decidim-core (>= 0.21.0.pre.dev)
       graphlient (~> 0.3)
+      jquery-tmpl-rails (~> 1.1)
 
 GEM
   remote: https://rubygems.org/

@@ -23,7 +23,7 @@ module Decidim
 
         endpoints.each do |endpoint|
           # skip endpoints under version 0.21
-          next unless endpoint.api.valid? "0.21"
+          next unless endpoint.api.valid? "0.21.pre.dev"
 
           @events[endpoint.id] = {
             name: endpoint.name,

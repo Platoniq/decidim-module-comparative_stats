@@ -7,10 +7,9 @@
 @import "decidim/modules/address";
 @import "decidim/modules/buttons";
 @import "decidim/modules/map";
-// @import "decidim/modules/modules";
 @import "decidim/extras/leaflet";
 
-
 #geocoded_events {
-  height: 360px;
+  min-height: 360px;
+  height: 100%;
 }

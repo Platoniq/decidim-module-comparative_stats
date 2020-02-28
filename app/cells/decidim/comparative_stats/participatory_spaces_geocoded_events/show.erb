@@ -50,12 +50,6 @@
   </div>
 </template>
 
-<div class="wrapper-home">
-  <div class="row column text-center">
-    <%= content_tag(:div, "", id: "geocoded_events", class: "map", data: { geocoded_events: geocoded_events }) %>
-  </div>
+<div class="row column full-height">
+  <%= content_tag(:div, "", id: "geocoded_events", class: "map", data: { geocoded_events: geocoded_events }) %>
 </div>
-
-<%= javascript_include_tag "decidim/comparative_stats/geocoded_events" %>
-<%= stylesheet_link_tag "decidim/comparative_stats/geocoded_events" %>
-<%= stylesheet_link_tag "decidim/map" %>
