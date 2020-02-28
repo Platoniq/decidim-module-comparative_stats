@@ -1,17 +1,19 @@
-  <ul class="tabs" id="charts-tabs">
-    <% available_graphs.each do |graph| %>
-      <li class="tabs-title"><%= link_to t(".#{graph}"), graphs_path(graph: graph), aria: { selected: is_active_link?(graphs_path(graph: graph)) } %></li>
+<%= stylesheet_link_tag "decidim/comparative_stats/graphs" %>
+
+<ul class="tabs" id="charts-tabs">
+  <% available_graphs.each do |graph| %>
+    <li class="tabs-title"><%= link_to t(".#{graph}"), graphs_path(graph: graph), aria: { selected: is_active_link?(graphs_path(graph: graph)) } %></li>
+  <% end %>
+</ul>
+
+<div class="tabs-content" id="charts-tabs-content">
+  <div class="tabs-panel is-active">
+    <% if available_graphs.include? params[:graph].to_sym %>
+      <%= render partial: "decidim/comparative_stats/widgets/embed", object: params[:graph] %>
+
+      <%= render partial: "decidim/comparative_stats/widgets/#{params[:graph]}" %>
+    <% else %>
+      <p><%= t ".choose_valid_graph" %></p>
     <% end %>
-  </ul>
-
-  <div class="tabs-content" id="charts-tabs-content">
-    <div class="tabs-panel is-active">
-      <% if available_graphs.include? params[:graph].to_sym %>
-        <%= render partial: "decidim/comparative_stats/widgets/embed", object: params[:graph] %>
-
-        <%= render partial: "decidim/comparative_stats/widgets/#{params[:graph]}" %>
-      <% else %>
-        <p><%= t ".choose_valid_graph" %></p>
-      <% end %>
-    </div>
   </div>
+</div>

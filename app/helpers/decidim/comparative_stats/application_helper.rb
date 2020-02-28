@@ -7,7 +7,7 @@ module Decidim
     module ApplicationHelper
       def embed_modal_for(url)
         embed_code = String.new(content_tag(:iframe, "", src: url, frameborder: 0, width: "100%", height: "420", scrolling: "vertical"))
-        render partial: "decidim/shared/embed_modal", locals: { js_embed_code: nil, embed_code: embed_code }
+        render partial: "decidim/comparative_stats/widgets/embed_modal", locals: { url: url, embed_code: embed_code }
       end
 
       def active_endpoints

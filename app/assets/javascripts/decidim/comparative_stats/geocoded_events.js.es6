@@ -36,6 +36,7 @@ $(() => {
   $.template(popupMeetingsTemplateId, $(`#${popupMeetingsTemplateId}`).html());
 
   const randomColor = () => '#'+Math.floor(Math.random()*16777215).toString(16);
+
   const getMarker = (id, point, color) => {
     let coordinates = [point.latitude, point.longitude];
     let marker = L.marker(coordinates, {
@@ -59,8 +60,16 @@ $(() => {
 
   for (let endpoint in endpoints) {
 
-    let markerClusters = L.markerClusterGroup();
+    // In the future the color should come from the assigned to the endpoint
     let color = randomColor();
+    let markerClusters = L.markerClusterGroup({
+      iconCreateFunction: function (cluster) {
+        var childCount = cluster.getChildCount();
+
+        return new L.DivIcon({ html: '<div style="background-color:' + color +'"><span>' + childCount + '</span></div>', className: 'marker-cluster', iconSize: new L.Point(40, 40) });
+
+      }
+    });
 
     let meetings = endpoints[endpoint].meetings;
     let proposals = endpoints[endpoint].proposals;
@@ -73,7 +82,8 @@ $(() => {
       markerClusters.addLayer(getMarker(popupProposalsTemplateId, proposals[key], color));
     }
     markerClusters.addTo(map);
-    layers[endpoints[endpoint].name] = markerClusters;
+    let key = '<span class="endpoint-legend"><span class="square" style="background-color:' + color +'"></span>' + endpoints[endpoint].name + '</span>';
+    layers[key] = markerClusters;
   }
 
   L.control.layers(null, layers).addTo(map);

@@ -50,6 +50,8 @@ en:
         users:
           title: Registered users
       widgets:
+        embed_modal:
+          fullscreen: View in fullscreen
         tabs:
           choose_valid_graph: No valid graph specified. Please choose one and try
             again
