@@ -23,7 +23,7 @@ module Decidim
 
         endpoints.each do |endpoint|
           # skip endpoints under version 0.21
-          next unless endpoint.api.valid? "0.21.pre.dev"
+          next unless endpoint.api.valid? "0.21"
 
           @events[endpoint.id] = {
             name: endpoint.name,
@@ -64,6 +64,8 @@ module Decidim
       end
 
       def first_text(translations)
+        return "" unless translations
+
         item = translations.find { |i| i.text.present? }
         item&.text || ""
       end
@@ -92,8 +94,8 @@ module Decidim
           startTimeYear: l(meeting.start_time.to_date, format: "%Y"),
           startTime: "#{meeting.start_time.to_date.strftime("%H:%M")} - #{meeting.end_time.to_date.strftime("%H:%M")}",
           icon: icon("meetings", width: 40, height: 70, remove_icon_class: true),
-          location: first_text(meeting.location.translations),
-          locationHints: first_text(meeting.location_hints.translations),
+          location: first_text(meeting.location&.translations),
+          locationHints: first_text(meeting.location_hints&.translations),
           link: endpoint.endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/meetings/#{meeting.id}"
         }
       end

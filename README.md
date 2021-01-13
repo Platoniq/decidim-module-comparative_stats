@@ -53,7 +53,8 @@ bundle exec rails decidim_comparative_stats:install:migrations
 bundle exec rails db:migrate
 ```
 
-Depending on your Decidim version, choose the corresponding Awesome version to ensure compatibility:
+Depending on your Decidim version, choose the corresponding Awesome version to ensure 
+compatibility:
 
 | Comparative stats version | Compatible Decidim versions |
 |---|---|

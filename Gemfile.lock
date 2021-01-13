@@ -352,7 +352,7 @@ GEM
     doc2text (0.4.2)
       nokogiri (~> 1.10.0)
       rubyzip (~> 2.0.0)
-    docile (1.3.4)
+    docile (1.3.5)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     doorkeeper (5.4.0)

@@ -56,6 +56,7 @@ module Decidim
             slug
             components (filter: {withGeolocationEnabled: true }) {
               id
+              __typename
               ...geolocatedMeetings
               ...geolocatedProposals
             }
@@ -65,6 +66,7 @@ module Decidim
             slug
             components (filter: {withGeolocationEnabled: true }) {
               id
+              __typename
               ...geolocatedMeetings
               ...geolocatedProposals
             }

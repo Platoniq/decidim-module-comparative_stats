@@ -3,7 +3,6 @@
 require "decidim/comparative_stats/admin"
 require "decidim/comparative_stats/engine"
 require "decidim/comparative_stats/admin_engine"
-require "decidim/comparative_stats/component"
 require "chartkick"
 
 module Decidim
