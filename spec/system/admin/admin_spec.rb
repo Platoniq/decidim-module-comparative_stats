@@ -110,6 +110,26 @@ describe "Visit the admin page", type: :system do
               }
             },
             {
+              "id": "111",
+              "__typename": "Proposals",
+              "proposals": {
+                "edges": [
+                  {
+                    "node": {
+                      "id": "805",
+                      "address": "",
+                      "title": "0.22 title style",
+                      "body": "0.22 description style",
+                      "coordinates": {
+                        "latitude": 31.3,
+                        "longitude": -10.1
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
               "id": "171",
               "__typename": "Proposals",
               "proposals": {
@@ -118,11 +138,17 @@ describe "Visit the admin page", type: :system do
                     "node": {
                       "id": "965",
                       "address": "",
-                      "title": "Kasvipohjaiset juomat vaihtoehdoksi päiväkoteihin ja kouluihin",
+                      "title": {
+                        "translations": [
+                          {
+                            "text": "0.23 title style"
+                          }
+                        ]
+                      },
                       "body": {
                         "translations": [
                           {
-                            "text": "Ruoan osuus kulutuksen ilmastovaikutuksista on lähes samaa luokkaa kuin liikenteen tai asumisen, joten ilmastomyönteisen ruoan suosiminen on tärkeää ilmastonmuutoksen torjunnan kannalta. Keskeisiä toimia ruoan ilmastovaikutusten vähentämisessä ovat eläinperäisten tuotteiden kulutuksen vähentäminen ja kasvisten osuuden lisääminen. (Lähde: Ilmasto-opas.fi). \r\n\r\nEhdotetaan, että yllä oleva huomioon ottaen kasvipohjaiset juomat - ensisijaisesti kotimainen kaurajuoma - lisätään juomavaihtoehdoksi aterioille helsinkiläisissä päiväkodeissa ja kouluissa. Kotimainen kaurajuoma on eettinen ja ekologinen vaihtoehto, joka sopii myös (maito)allergikoille. Kaurajuomien kulutus on kovassa kasvussa, joten lisäys olisi linjassa kulutustottumusten muutoksen kanssa (lähde: Yle.fi). "
+                            "text": "0.23 description style"
                           }
                         ]
                       },

@@ -17,7 +17,7 @@ if !Rails.env.production? || ENV["SEED"]
     admin_user,
     endpoint: "http://localhost:3000/api",
     name: organization.name,
-    api_version: Decicim.version,
+    api_version: Decidim.version,
     organization: organization,
     active: true
   )

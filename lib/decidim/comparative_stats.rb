@@ -12,7 +12,6 @@ module Decidim
     include ActiveSupport::Configurable
 
     autoload :ApiFetcher, "decidim/comparative_stats/api_fetcher"
-    autoload :ApiQueries, "decidim/comparative_stats/api_queries"
     autoload :CachedHTTPAdapter, "decidim/comparative_stats/cached_http_adapter"
 
     # Sets the expiration time for the statistic data.

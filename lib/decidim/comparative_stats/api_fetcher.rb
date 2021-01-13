@@ -32,10 +32,9 @@ module Decidim
         @name_and_version ||= fetch_name_and_version.data.decidim
       end
 
-      # Queries the GraphQL api using one of the constants in ApiQueries class
+      # Queries the GraphQL api using one of files in lib/decidim/comparative_stats/queries
       def query(tag)
-        q = "Decidim::ComparativeStats::ApiQueries::#{tag.upcase}"
-        @queries[q] ||= client.query q.constantize
+        @queries[tag] ||= client.query versioned_query(tag)
       rescue Faraday::Error
         @errors << "Not a valid Decidim API URL"
       rescue Graphlient::Errors::Error => e
@@ -60,6 +59,19 @@ module Decidim
       end
 
       private
+
+      def versioned_query(tag)
+        file = File.join(__dir__, "queries", "#{tag}.graphql")
+        raise NameError unless File.exist?(file)
+
+        unless tag == "name_and_version"
+          if Gem::Version.new(name_and_version.version) < Gem::Version.new("0.23")
+            alt_file = File.join(__dir__, "queries", "v022", "#{tag}.graphql")
+            file = alt_file if File.exist?(alt_file)
+          end
+        end
+        File.open(file).read
+      end
 
       # Syntactic sugar to query ApiQueries constants as methods:
       # i.e:

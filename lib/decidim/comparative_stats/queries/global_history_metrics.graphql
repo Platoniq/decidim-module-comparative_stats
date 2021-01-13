@@ -1,0 +1,10 @@
+query {
+  metrics {
+    count
+    name
+    history {
+      key
+      value
+    }
+  }
+}
