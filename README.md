@@ -42,7 +42,7 @@ You might want to customize the `height` parameter to match your particular case
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "decidim-comparative_stats", "~> 1.0.0"
+gem "decidim-comparative_stats", "~> 1.0.1"
 ```
 
 And then execute:
