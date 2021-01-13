@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.summary = "A decidim comparative_stats module"
   s.description = "A module to compare instances of Decidim by using their API."
 
-  s.files = Dir["{app,config,lib}/**/*", "LICENSE-AGPLv3.txt", "Rakefile", "README.md"]
+  s.files = Dir["{app,config,lib,db,vendor}/**/*", "LICENSE-AGPLv3.txt", "Rakefile", "README.md"]
 
   s.add_dependency "chartkick", "~> 3.3"
   s.add_dependency "decidim-admin", Decidim::ComparativeStats::DECIDIM_VERSION
