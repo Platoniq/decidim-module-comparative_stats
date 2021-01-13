@@ -1,13 +1,13 @@
-//= require chartkick
-//= require Chart.bundle
+// = require chartkick
+// = require Chart.bundle
+// = require_self
 
-
-$(function() {
+$(() => {
 	//create trigger to resizeEnd event
-	$(window).resize(function() {
-	    if(this.resizeTO) clearTimeout(this.resizeTO);
-	    this.resizeTO = setTimeout(function() {
-	        $(this).trigger('resizeEnd');
+	$(window).resize(() => {
+	    if(window.resizeTO) clearTimeout(window.resizeTO);
+	    window.resizeTO = setTimeout(() => {
+        $(window).trigger('resizeEnd');
 	    }, 100);
 	});
 });

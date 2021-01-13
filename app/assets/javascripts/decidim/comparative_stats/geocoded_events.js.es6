@@ -1,10 +1,10 @@
 // = require leaflet
-// = require leaflet.markercluster
 // = require leaflet-svg-icon
+// = require leaflet.markercluster
 // = require jquery-tmpl
 // = require_self
 
-$(function() {
+$(() => {
 
   var map_object = document.getElementById('geocoded_events');
   var map = L.map(map_object, {
@@ -35,59 +35,60 @@ $(function() {
   const popupMeetingsTemplateId = "marker-popup-meeting";
   $.template(popupMeetingsTemplateId, $(`#${popupMeetingsTemplateId}`).html());
 
-  var layers = L.control.layers();
+  const randomColor = () => '#'+Math.floor(Math.random()*16777215).toString(16);
+
+  const getMarker = (id, point, color) => {
+    let coordinates = [point.latitude, point.longitude];
+    let marker = L.marker(coordinates, {
+      icon: new L.DivIcon.SVGIcon.DecidimIcon({fillColor: color})
+    });
+
+    let node = document.createElement("div");
+
+    $.tmpl(id, point).appendTo(node);
+    marker.bindPopup(node, {
+      maxWidth: 640,
+      minWidth: 500,
+      keepInView: true,
+      className: "map-info"
+    }).openPopup();
+
+    return marker;
+  };
+
+  let layers = {};
 
   for (let endpoint in endpoints) {
 
-    let markerClusters = L.markerClusterGroup();
+    // In the future the color should come from the assigned to the endpoint
+    let color = randomColor();
+    let markerClusters = L.markerClusterGroup({
+      iconCreateFunction: function (cluster) {
+        var childCount = cluster.getChildCount();
 
-    var meetings = endpoints[endpoint].meetings;
-    var proposals = endpoints[endpoint].proposals;
+        return new L.DivIcon({ html: '<div style="background-color:' + color +'"><span>' + childCount + '</span></div>', className: 'marker-cluster', iconSize: new L.Point(40, 40) });
+
+      }
+    });
+
+    let meetings = endpoints[endpoint].meetings;
+    let proposals = endpoints[endpoint].proposals;
 
     for(let key in meetings) {
-      var coordinates = [meetings[key].latitude, meetings[key].longitude];
-      let marker = L.marker(coordinates, {
-        icon: new L.DivIcon.SVGIcon.DecidimIcon()
-      });
-
-      let node = document.createElement("div");
-
-      $.tmpl(popupMeetingsTemplateId, meetings[key]).appendTo(node);
-      marker.bindPopup(node, {
-        maxWidth: 640,
-        minWidth: 500,
-        keepInView: true,
-        className: "map-info"
-      }).openPopup();
-      markerClusters.addLayer(marker);
+      markerClusters.addLayer(getMarker(popupMeetingsTemplateId, meetings[key], color));
     }
 
     for(let key in proposals) {
-      var coordinates = [proposals[key].latitude, proposals[key].longitude];
-      let marker = L.marker(coordinates, {
-        icon: new L.DivIcon.SVGIcon.DecidimIcon()
-      });
-
-      let node = document.createElement("div");
-
-      $.tmpl(popupProposalsTemplateId, proposals[key]).appendTo(node);
-      marker.bindPopup(node, {
-        maxwidth: 640,
-        minwidth: 500,
-        keepInView: true,
-        className: "map-info"
-      }).openPopup();
-      // markerClusters.push(marker);
-      markerClusters.addLayer(marker);
+      markerClusters.addLayer(getMarker(popupProposalsTemplateId, proposals[key], color));
     }
-
-    layers.addOverlay(markerClusters, endpoints[endpoint].name);
+    markerClusters.addTo(map);
+    let key = '<span class="endpoint-legend"><span class="square" style="background-color:' + color +'"></span>' + endpoints[endpoint].name + '</span>';
+    layers[key] = markerClusters;
   }
-  layers.addTo(map);
+
+  L.control.layers(null, layers).addTo(map);
 
   $("[data-tabs]").on('change.zf.tabs', function() {
     map.invalidateSize(true);
   });
-
-
 });

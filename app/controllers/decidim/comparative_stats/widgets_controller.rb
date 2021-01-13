@@ -12,7 +12,8 @@ module Decidim
       layout "decidim/comparative_stats/widget"
 
       def show
-        render params[:graph]
+        is_valid = lookup_context.exists?(params[:graph], "decidim/comparative_stats/widgets", true)
+        render plain: "not found", status: :not_found unless is_valid
       end
 
       def allow_iframe

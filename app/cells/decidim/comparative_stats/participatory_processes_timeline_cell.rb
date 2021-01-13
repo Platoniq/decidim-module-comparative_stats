@@ -27,8 +27,8 @@ module Decidim
           endpoint.api.fetch_participatory_processes.data.participatory_processes.each do |item|
             next unless item.start_date
 
-            start_date = item.start_date
-            end_date = item.end_date.presence || Date.current.end_of_year
+            start_date = Date.parse(item.start_date)
+            end_date = Date.parse(item.end_date.presence || Date.current.end_of_year.to_s)
             # let's not trust people writing proper ordered dates
             start_date, end_date = end_date, start_date if start_date > end_date
             rows << {

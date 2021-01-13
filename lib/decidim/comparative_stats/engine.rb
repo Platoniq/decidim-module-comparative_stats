@@ -27,7 +27,7 @@ module Decidim
       end
 
       initializer "decidim_comparative_stats.assets" do |app|
-        app.config.assets.precompile += %w(decidim_comparative_stats_manifest.js)
+        app.config.assets.precompile += %w(comparative_stats_manifest.js comparative_stats_manifest.css)
       end
     end
   end
