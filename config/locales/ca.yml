@@ -2,7 +2,7 @@ ca:
   decidim:
     admin:
       menu:
-        comparative_stats: Comparative Stats
+        comparative_stats: Estadístiques comparatives
     comparative_stats:
       admin:
         endpoints:
