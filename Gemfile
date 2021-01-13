@@ -9,15 +9,13 @@ base_path = ""
 base_path = "../" if File.basename(__dir__) == "development_app"
 require_relative "#{base_path}lib/decidim/comparative_stats/version"
 
-# while '0.21' is not published:
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: :master }.freeze
-# DECIDIM_VERSION = Decidim::ComparativeStats::DECIDIM_VERSION
+DECIDIM_VERSION = "0.21"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-comparative_stats", path: "."
 
 gem "bootsnap", "~> 1.4"
-gem "puma", "~> 3.12.2"
+gem "puma", ">= 4.3.5"
 gem "uglifier", "~> 4.1"
 
 group :development, :test do

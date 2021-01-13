@@ -1,8 +1,8 @@
 # Decidim::ComparativeStats
 
-[![Build Status](https://github.com/Platoniq/decidim-module-comparative_stats/workflows/Build/badge.svg)](https://github.com/Platoniq/decidim-module-comparative_stats/actions)
+![Test](https://github.com/Platoniq/decidim-module-comparative_stats/workflows/Test/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/59d3415b89244ef0d40b/maintainability)](https://codeclimate.com/github/Platoniq/decidim-module-comparative_stats/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/59d3415b89244ef0d40b/test_coverage)](https://codeclimate.com/github/Platoniq/decidim-module-comparative_stats/test_coverage)
+[![Codecov](https://codecov.io/gh/Platoniq/decidim-module-comparative_stats/branch/master/graph/badge.svg?token=XhzWO0IiWt)](https://codecov.io/gh/Platoniq/decidim-module-comparative_stats)
 
 Allows to compare different Decidim sites by accessing their GraphQL API and
 generate graphs.
@@ -159,6 +159,14 @@ SIMPLECOV=1 bundle exec rspec
 
 This will generate a folder named `coverage` in the project root which contains
 the code coverage report.
+
+
+### Localization
+
+If you would like to see this module in your own language, you can help with its
+translation at Crowdin:
+
+https://crowdin.com/translate/decidim-comparative_stats
 
 ## License
 
