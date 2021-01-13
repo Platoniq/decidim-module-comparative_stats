@@ -45,11 +45,11 @@ cs:
           title: Registered users
       widgets:
         embed_modal:
-          fullscreen: View in fullscreen
+          fullscreen: Zobrazit na celou obrazovku
         tabs:
-          choose_valid_graph: No valid graph specified. Please choose one and try again
-          global_stats: Global stats
-          global_stats_timeline: Global stats timeline
+          choose_valid_graph: Nebyl zadán žádný platný graf. Vyberte prosím jeden a zkuste to znovu
+          global_stats: Globální statistiky
+          global_stats_timeline: Časová osa globálních statistik
           processes_timeline: Processes timeline
           spaces_geocoded_events: Aggregated maps
     components:
