@@ -21,7 +21,7 @@ module Decidim::ComparativeStats
 
     describe "participatory_processes" do
       let(:query) { subject::PARTICIPATORY_PROCESSES }
-      let!(:participatoryProcesses) { create_list :participatory_process, 5, organization: current_organization }
+      let!(:participatory_processes) { create_list :participatory_process, 5, organization: current_organization }
 
       it "return expected data" do
         expect(response["participatoryProcesses"].first.keys).to include("id", "title", "startDate", "endDate")
