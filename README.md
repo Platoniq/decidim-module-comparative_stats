@@ -165,7 +165,7 @@ the code coverage report.
 If you would like to see this module in your own language, you can help with its
 translation at Crowdin:
 
-https://crowdin.com/translate/decidim-comparative_stats
+<https://crowdin.com/translate/decidim-comparative_stats>
 
 ## License
 
