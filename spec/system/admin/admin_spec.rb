@@ -110,7 +110,7 @@ describe "Visit the admin page", type: :system do
               }
             },
             {
-              "id": "111",
+              "id": "171",
               "__typename": "Proposals",
               "proposals": {
                 "edges": [
@@ -125,15 +125,7 @@ describe "Visit the admin page", type: :system do
                         "longitude": -10.1
                       }
                     }
-                  }
-                ]
-              }
-            },
-            {
-              "id": "171",
-              "__typename": "Proposals",
-              "proposals": {
-                "edges": [
+                  },
                   {
                     "node": {
                       "id": "965",

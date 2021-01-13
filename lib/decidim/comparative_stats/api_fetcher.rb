@@ -73,9 +73,9 @@ module Decidim
         File.open(file).read
       end
 
-      # Syntactic sugar to query ApiQueries constants as methods:
+      # Syntactic sugar to query graphql queries:
       # i.e:
-      #      ApiQuery::NAME_AND_VERSION => fetch_name_and_version
+      #      query "name_and_version" => fetch_name_and_version
       def method_missing(name)
         _, key = name.to_s.split("fetch_")
         if key

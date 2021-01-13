@@ -3,8 +3,8 @@ PATH
   specs:
     decidim-comparative_stats (1.0.1)
       chartkick (~> 3.3)
-      decidim-admin (>= 0.21.0)
-      decidim-core (>= 0.21.0)
+      decidim-admin (>= 0.21.0, < 0.23.0)
+      decidim-core (>= 0.21.0, < 0.23.0)
       graphlient (~> 0.3)
       jquery-tmpl-rails (~> 1.1)
 
