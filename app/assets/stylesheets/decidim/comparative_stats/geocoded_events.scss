@@ -5,18 +5,19 @@
 @import "decidim/modules/map";
 @import "decidim/extras/leaflet";
 
-#geocoded_events {
+#geocoded_events{
   min-height: 360px;
   height: 100%;
 
-  .endpoint-legend {
-    font-size: 0.8rem;
-    line-height: 0.8;
-    .square {
+  .endpoint-legend{
+    font-size: .8rem;
+    line-height: .8;
+
+    .square{
       display: inline-block;
-      width: 0.9em;
-      height: 0.9em;
-      margin-right: 0.3em;
+      width: .9em;
+      height: .9em;
+      margin-right: .3em;
     }
   }
 }
