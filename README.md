@@ -42,7 +42,7 @@ You might want to customize the `height` parameter to match your particular case
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "decidim-comparative_stats", git: "https://github.com/Platoniq/decidim-module-comparative_stats"
+gem "decidim-comparative_stats", "~> 1.0.0"
 ```
 
 And then execute:
@@ -52,6 +52,12 @@ bundle
 bundle exec rails decidim_comparative_stats:install:migrations
 bundle exec rails db:migrate
 ```
+
+Depending on your Decidim version, choose the corresponding Awesome version to ensure compatibility:
+
+| Comparative stats version | Compatible Decidim versions |
+|---|---|
+| 1.0.x | 0.21.x - 0.23.x |
 
 ## Configuration options
 
@@ -165,7 +171,7 @@ the code coverage report.
 If you would like to see this module in your own language, you can help with its
 translation at Crowdin:
 
-<https://crowdin.com/translate/decidim-comparative_stats>
+<https://crowdin.com/translate/decidim-comparative-stats>
 
 ## License
 
