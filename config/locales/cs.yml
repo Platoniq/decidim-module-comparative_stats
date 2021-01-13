@@ -13,36 +13,36 @@ cs:
             title: Upravit koncový bod API Decidim
             update: Zkontrolovat a aktualizovat koncový bod
           index:
-            active: Active
-            endpoint: Endpoint
-            name: Name
-            no_endpoints: It seems that you haven't add any Decidim API endpoint yet!
-            title: API Decidim enpoints
-            version: Version
+            active: Aktivní
+            endpoint: Koncový bod
+            name: Název
+            no_endpoints: Zdá se, že jste ještě nepřidali žádný koncový bod API Decidim!
+            title: API Decidim koncové body
+            version: Verze
           new:
-            create: Check and add endpoint
-            subtitle: Add a valid Decidim installation URL that points to its API. For instance "https://www.decidim.barcelona/api"
-            title: Add a Decidim API endpoint
+            create: Zkontrolovat a přidat koncový bod
+            subtitle: Přidat platnou URL pro instalaci Decidim odkazující na její API. Například "https://www.decidim.barcelona/api"
+            title: Přidat koncový bod API Decidim
           update:
-            error: The API endpoint has not been updated. Please verify that is a valid Decidim API url
-            success: The API endpoint has been updated succesfully
+            error: Koncový bod API nebyl aktualizován. Ověřte, zda je platná URL pro Decidim API
+            success: Koncový bod API byl úspěšně aktualizován
         graphs:
           show:
-            no_endpoints: It looks that you haven't any active endpoint yer. Please add and activate some Endpoints first!
-            title: Manage cross-tenant graphs
+            no_endpoints: Vypadá to, že jste ještě neměli žádný aktivní koncový bod. Prosím, nejprve přidejte a aktivujte nějaké koncové body!
+            title: Spravovat grafy křížového nájemce
         menu:
-          endpoints: Manage API endpoints
-          graphs: Manage Graphs
+          endpoints: Spravovat koncové body API
+          graphs: Spravovat grafy
       admin_log:
         endpoint:
-          create: "%{user_name} created the %{resource_name} API endpoint"
-          delete: "%{user_name} removed the %{resource_name} member from the %{space_name} API endpoint"
-          update: "%{user_name} updated the %{resource_name} API endpoint"
+          create: "%{user_name} vytvořil koncový bod API %{resource_name}"
+          delete: "%{user_name} odstranil %{resource_name} člena z %{space_name} API koncového bodu"
+          update: "%{user_name} aktualizoval koncový bod API %{resource_name}"
       endpoints:
-        add: Add a Decidim URL
+        add: Přidat URL Decidim
       metrics:
         users:
-          title: Registered users
+          title: Registrovaní uživatelé
       widgets:
         embed_modal:
           fullscreen: Zobrazit na celou obrazovku
@@ -50,8 +50,8 @@ cs:
           choose_valid_graph: Nebyl zadán žádný platný graf. Vyberte prosím jeden a zkuste to znovu
           global_stats: Globální statistiky
           global_stats_timeline: Časová osa globálních statistik
-          processes_timeline: Processes timeline
-          spaces_geocoded_events: Aggregated maps
+          processes_timeline: Procesy časové osy
+          spaces_geocoded_events: Souhrnné mapy
     components:
       comparative_stats:
-        name: ComparativeStats
+        name: Srovnávací statistiky
