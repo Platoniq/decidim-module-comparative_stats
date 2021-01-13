@@ -2,16 +2,16 @@ cs:
   decidim:
     admin:
       menu:
-        comparative_stats: Comparative Stats
+        comparative_stats: Srovnávací statistiky
     comparative_stats:
       admin:
         endpoints:
           create:
-            error: The API endpoint has not been added. Please verify that is a valid Decidim API url
-            success: The API endpoint has been added succesfully
+            error: Koncový bod API nebyl přidán. Ověřte, zda je platná URL pro Decidim API
+            success: Koncový bod API byl úspěšně přidán
           edit:
-            title: Edit a Decidim API endpoint
-            update: Check and update endpoint
+            title: Upravit koncový bod API Decidim
+            update: Zkontrolovat a aktualizovat koncový bod
           index:
             active: Active
             endpoint: Endpoint
