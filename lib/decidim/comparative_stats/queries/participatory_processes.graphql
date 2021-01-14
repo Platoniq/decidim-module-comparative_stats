@@ -1,0 +1,12 @@
+query {
+  participatoryProcesses {
+    id
+    title {
+      translations {
+        text
+      }
+    }
+    startDate
+    endDate
+  }
+}

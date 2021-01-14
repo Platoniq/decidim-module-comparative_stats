@@ -5,14 +5,14 @@ require "decidim/api/test/type_context"
 require "decidim/core/test"
 
 module Decidim::ComparativeStats
-  describe ApiQueries do
+  describe "api queries" do
     include_context "with a graphql type"
-    let(:subject) { described_class }
+    let(:query) { File.open(File.join(__dir__, "../../lib/decidim/comparative_stats/queries", "#{tag}.graphql")).read }
     let(:type_class) { Decidim::Api::QueryType }
     let!(:current_user) { nil }
 
     describe "name_and_version" do
-      let(:query) { subject::NAME_AND_VERSION }
+      let(:tag) { "name_and_version" }
 
       it "return expected data" do
         expect(response["decidim"].keys).to include("applicationName", "version")
@@ -20,8 +20,8 @@ module Decidim::ComparativeStats
     end
 
     describe "participatory_processes" do
-      let(:query) { subject::PARTICIPATORY_PROCESSES }
-      let!(:participatoryProcesses) { create_list :participatory_process, 5, organization: current_organization }
+      let(:tag) { "participatory_processes" }
+      let!(:participatory_processes) { create_list :participatory_process, 5, organization: current_organization }
 
       it "return expected data" do
         expect(response["participatoryProcesses"].first.keys).to include("id", "title", "startDate", "endDate")
@@ -29,7 +29,7 @@ module Decidim::ComparativeStats
     end
 
     describe "global_metrics" do
-      let(:query) { subject::GLOBAL_METRICS }
+      let(:tag) { "global_metrics" }
       let!(:metrics) { create(:metric, metric_type: "users", day: Time.current, cumulative: 1, quantity: 1, organization: current_organization) }
 
       it "return expected data" do
@@ -38,7 +38,7 @@ module Decidim::ComparativeStats
     end
 
     describe "global_history_metrics" do
-      let(:query) { subject::GLOBAL_HISTORY_METRICS }
+      let(:tag) { "global_history_metrics" }
       let!(:metrics) { create(:metric, metric_type: "users", day: Time.current, cumulative: 1, quantity: 1, organization: current_organization) }
 
       it "return expected data" do
@@ -47,8 +47,8 @@ module Decidim::ComparativeStats
     end
 
     describe "global_events" do
-      let(:query) { subject::GLOBAL_EVENTS }
       let!(:assembly) { create(:assembly, organization: current_organization) }
+      let(:tag) { "v022/global_events" }
 
       context "when there are meetings" do
         let!(:component_meeting) { create(:component, manifest_name: :meetings, organization: current_organization, participatory_space: assembly) }
@@ -70,17 +70,11 @@ module Decidim::ComparativeStats
         let!(:proposals) { create_list(:proposal, 3, :published, component: component_proposal) }
 
         before do
-          proposals.first.latitude = Faker::Address.latitude
-          proposals.first.longitude = Faker::Address.longitude
-          proposals.first.save!
-
-          proposals.second.latitude = Faker::Address.latitude
-          proposals.second.longitude = Faker::Address.longitude
-          proposals.second.save!
-
-          proposals.third.latitude = Faker::Address.latitude
-          proposals.third.longitude = Faker::Address.longitude
-          proposals.third.save!
+          proposals.each do |proposal|
+            proposal.latitude = Faker::Address.latitude
+            proposal.longitude = Faker::Address.longitude
+            proposal.save!
+          end
         end
 
         it "returns expected data" do

@@ -57,6 +57,27 @@ module Decidim::ComparativeStats
           expect(subject.error).to include "Decidim version"
         end
       end
+
+      context "when versions have different queries" do
+        let(:graphql) { subject.send(:versioned_query, tag).gsub(" ", "").gsub("\n", " ") }
+        let(:tag) { "global_events" }
+
+        context "when version is < 0.23" do
+          let(:version) { "0.22.1" }
+
+          it "proposals are not translated" do
+            expect(graphql).to include("proposals{ edges{ node{ id address title body coordinates{ latitude longitude } } } }")
+          end
+        end
+
+        context "when version is >= 0.23" do
+          let(:version) { "0.23.1" }
+
+          it "proposals are translated" do
+            expect(graphql).to include("proposals{ edges{ node{ id address title{ translations{ text } } body{ translations{ text } } coordinates{ latitude longitude } } } }")
+          end
+        end
+      end
     end
 
     it "raise error when fetch query does not exists" do
