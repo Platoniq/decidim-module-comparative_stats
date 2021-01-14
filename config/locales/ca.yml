@@ -8,7 +8,7 @@ ca:
         endpoints:
           create:
             error: L'enllaç de l'API no s'ha afegit. Comproveu que sigui una URL vàlida de l'API Decidim
-            success: L'enllaçl de l'API s'ha afegit correctament
+            success: The API endpoint has been added successfully
           edit:
             title: Edita l'enllaç a l'API Decidim
             update: Comprova i actualitza l'enllaç
@@ -25,7 +25,7 @@ ca:
             title: Afegeix un nou punt de l'API Decidim
           update:
             error: L'enllaç de l'API no s'ha actualitzat. Comproveu que sigui una URL vàlida de l'API Decidim
-            success: L'enllaç de l'API s'ha actualitzat correctament
+            success: The API endpoint has been updated successfully
         graphs:
           show:
             no_endpoints: Sembla que no teniu cap enllaç a l'Api Decidim actiu. Afegeix-ne i activa'n alguns primer!
@@ -39,19 +39,19 @@ ca:
           delete: "%{user_name} ha esborrat el membre %{resource_name} de l'enllaç API %{space_name}"
           update: "%{user_name} ha actualitzat el punt API %{resource_name}"
       endpoints:
-        add: Add a Decidim URL
+        add: Afegeix una URL de Decidim
       metrics:
         users:
-          title: Registered users
+          title: Usuaris registrats
       widgets:
         embed_modal:
-          fullscreen: View in fullscreen
+          fullscreen: Mostrar en pantalla completa
         tabs:
-          choose_valid_graph: No valid graph specified. Please choose one and try again
-          global_stats: Global stats
-          global_stats_timeline: Global stats timeline
-          processes_timeline: Processes timeline
-          spaces_geocoded_events: Aggregated maps
+          choose_valid_graph: No s'ha especificat cap gràfic vàlid. Trieu-ne un i torneu-ho a provar
+          global_stats: Estadístiques globals
+          global_stats_timeline: Línia de temps d'estadístiques globals
+          processes_timeline: Línia de temps dels processos
+          spaces_geocoded_events: Mapes agregats
     components:
       comparative_stats:
-        name: ComparativeStats
+        name: Estadístiques comparatives
