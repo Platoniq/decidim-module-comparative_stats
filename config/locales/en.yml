@@ -10,7 +10,7 @@ en:
           create:
             error: The API endpoint has not been added. Please verify that is a valid
               Decidim API url
-            success: The API endpoint has been added succesfully
+            success: The API endpoint has been added successfully
           edit:
             title: Edit a Decidim API endpoint
             update: Check and update endpoint
@@ -29,7 +29,7 @@ en:
           update:
             error: The API endpoint has not been updated. Please verify that is a
               valid Decidim API url
-            success: The API endpoint has been updated succesfully
+            success: The API endpoint has been updated successfully
         graphs:
           show:
             no_endpoints: It looks that you haven't any active endpoint yer. Please

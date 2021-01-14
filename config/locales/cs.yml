@@ -1,0 +1,57 @@
+cs:
+  decidim:
+    admin:
+      menu:
+        comparative_stats: Srovnávací statistiky
+    comparative_stats:
+      admin:
+        endpoints:
+          create:
+            error: Koncový bod API nebyl přidán. Ověřte, zda je platná URL pro Decidim API
+            success: The API endpoint has been added successfully
+          edit:
+            title: Upravit koncový bod API Decidim
+            update: Zkontrolovat a aktualizovat koncový bod
+          index:
+            active: Aktivní
+            endpoint: Koncový bod
+            name: Název
+            no_endpoints: Zdá se, že jste ještě nepřidali žádný koncový bod API Decidim!
+            title: API Decidim koncové body
+            version: Verze
+          new:
+            create: Zkontrolovat a přidat koncový bod
+            subtitle: Přidat platnou URL pro instalaci Decidim odkazující na její API. Například "https://www.decidim.barcelona/api"
+            title: Přidat koncový bod API Decidim
+          update:
+            error: Koncový bod API nebyl aktualizován. Ověřte, zda je platná URL pro Decidim API
+            success: The API endpoint has been updated successfully
+        graphs:
+          show:
+            no_endpoints: Vypadá to, že jste ještě neměli žádný aktivní koncový bod. Prosím, nejprve přidejte a aktivujte nějaké koncové body!
+            title: Spravovat grafy křížového nájemce
+        menu:
+          endpoints: Spravovat koncové body API
+          graphs: Spravovat grafy
+      admin_log:
+        endpoint:
+          create: "%{user_name} vytvořil koncový bod API %{resource_name}"
+          delete: "%{user_name} odstranil %{resource_name} člena z %{space_name} API koncového bodu"
+          update: "%{user_name} aktualizoval koncový bod API %{resource_name}"
+      endpoints:
+        add: Přidat URL Decidim
+      metrics:
+        users:
+          title: Registrovaní uživatelé
+      widgets:
+        embed_modal:
+          fullscreen: Zobrazit na celou obrazovku
+        tabs:
+          choose_valid_graph: Nebyl zadán žádný platný graf. Vyberte prosím jeden a zkuste to znovu
+          global_stats: Globální statistiky
+          global_stats_timeline: Časová osa globálních statistik
+          processes_timeline: Procesy časové osy
+          spaces_geocoded_events: Souhrnné mapy
+    components:
+      comparative_stats:
+        name: Srovnávací statistiky
