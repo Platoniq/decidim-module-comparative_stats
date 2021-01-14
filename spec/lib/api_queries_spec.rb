@@ -48,7 +48,7 @@ module Decidim::ComparativeStats
 
     describe "global_events" do
       let!(:assembly) { create(:assembly, organization: current_organization) }
-      let(:tag) { "v022/global_events" }
+      let(:tag) { "global_events" }
 
       context "when there are meetings" do
         let!(:component_meeting) { create(:component, manifest_name: :meetings, organization: current_organization, participatory_space: assembly) }
@@ -59,7 +59,6 @@ module Decidim::ComparativeStats
         end
 
         it "returns the correct coordinates for all the meetings" do
-          # result = response["assemblies"].first["components"].first["meetings"]["edges"].map { |meeting| meeting.edges.node }
           result = response["assemblies"].first["components"].first["meetings"]["edges"].map { |edges| edges["node"]["id"] }
           expect(result).to include(*meetings.map { |meeting| meeting.id.to_s })
         end
