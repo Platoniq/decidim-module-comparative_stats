@@ -10,13 +10,13 @@ Gem::Specification.new do |s|
   s.email = ["ivan@platoniq.net"]
   s.license = "AGPL-3.0"
   s.homepage = "https://github.com/Platoniq/decidim-module-comparative_stats"
-  s.required_ruby_version = ">= 2.5"
+  s.required_ruby_version = ">= 2.6"
 
   s.name = "decidim-comparative_stats"
   s.summary = "A decidim comparative_stats module"
   s.description = "A module to compare instances of Decidim by using their API."
 
-  s.files = Dir["{app,config,lib}/**/*", "LICENSE-AGPLv3.txt", "Rakefile", "README.md"]
+  s.files = Dir["{app,config,lib,db,vendor}/**/*", "LICENSE-AGPLv3.txt", "Rakefile", "README.md"]
 
   s.add_dependency "chartkick", "~> 3.3"
   s.add_dependency "decidim-admin", Decidim::ComparativeStats::DECIDIM_VERSION

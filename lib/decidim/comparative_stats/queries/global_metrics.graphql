@@ -1,0 +1,6 @@
+query {
+  metrics {
+    count
+    name
+  }
+}

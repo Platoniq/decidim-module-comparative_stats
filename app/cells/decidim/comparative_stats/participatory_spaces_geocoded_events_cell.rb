@@ -23,7 +23,7 @@ module Decidim
 
         endpoints.each do |endpoint|
           # skip endpoints under version 0.21
-          next unless endpoint.api.valid? "0.21.pre.dev"
+          next unless endpoint.api.valid? "0.21"
 
           @events[endpoint.id] = {
             name: endpoint.name,
@@ -37,11 +37,11 @@ module Decidim
             assembly.components.each do |component|
               if component.respond_to? :meetings
                 component.meetings.edges.each do |edge|
-                  add_meeting(edge.node, endpoint, assembly, component, :assemblies)
+                  add_meeting(edge.node.to_h, endpoint, assembly, component, :assemblies)
                 end
               elsif componet.respond_to? :proposals
                 component.proposals.edges.each do |edge|
-                  add_proposal(edge.node, endpoint, assembly, component, :assemblies)
+                  add_proposal(edge.node.to_h, endpoint, assembly, component, :assemblies)
                 end
               end
             end
@@ -50,11 +50,11 @@ module Decidim
             participatory_process.components.each do |component|
               if component.respond_to? :meetings
                 component.meetings.edges.each do |edge|
-                  add_meeting(edge.node, endpoint, participatory_process, component, :processes)
+                  add_meeting(edge.node.to_h, endpoint, participatory_process, component, :processes)
                 end
               elsif component.respond_to? :proposals
                 component.proposals.edges.each do |edge|
-                  add_proposal(edge.node, endpoint, participatory_process, component, :processes)
+                  add_proposal(edge.node.to_h, endpoint, participatory_process, component, :processes)
                 end
               end
             end
@@ -63,38 +63,44 @@ module Decidim
         @events.to_json
       end
 
-      def first_text(translations)
-        item = translations.find { |i| i.text.present? }
-        item&.text || ""
+      def first_translation(text)
+        return text unless text.is_a? Hash
+
+        translations = text["translations"]
+        if translations
+          item = translations.find { |i| i["text"].present? }
+          return item["text"] || "" if item
+        end
+        ""
       end
 
       def add_proposal(proposal, endpoint, participatory_space, component, type)
-        @events[endpoint.id][:proposals]["#{type}_proposal_#{proposal.id}"] = {
-          latitude: proposal.coordinates.latitude,
-          longitude: proposal.coordinates.longitude,
-          address: proposal.address,
-          title: proposal.title,
-          body: truncate(proposal.body, length: 100),
+        @events[endpoint.id][:proposals]["#{type}_proposal_#{proposal["id"]}"] = {
+          latitude: proposal["coordinates"]["latitude"],
+          longitude: proposal["coordinates"]["longitude"],
+          address: proposal["address"],
+          title: first_translation(proposal["title"]),
+          body: truncate(first_translation(proposal["body"]), length: 100),
           icon: icon("proposals", width: 40, height: 70, remove_icon_class: true),
-          link: endpoint.endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/proposals/#{proposal.id}"
+          link: endpoint.endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/proposals/#{proposal["id"]}"
         }
       end
 
       def add_meeting(meeting, endpoint, participatory_space, component, type)
-        @events[endpoint.id][:meetings]["#{type}_meeting_#{meeting.id}"] = {
-          latitude: meeting.coordinates.latitude,
-          longitude: meeting.coordinates.longitude,
-          address: meeting.address,
-          title: first_text(meeting.title.translations),
-          # description: meeting.description,
-          startTimeDay: l(meeting.start_time.to_date, format: "%d"),
-          startTimeMonth: l(meeting.start_time.to_date, format: "%B"),
-          startTimeYear: l(meeting.start_time.to_date, format: "%Y"),
-          startTime: "#{meeting.start_time.to_date.strftime("%H:%M")} - #{meeting.end_time.to_date.strftime("%H:%M")}",
+        @events[endpoint.id][:meetings]["#{type}_meeting_#{meeting["id"]}"] = {
+          latitude: meeting["coordinates"]["latitude"],
+          longitude: meeting["coordinates"]["longitude"],
+          address: meeting["address"],
+          title: first_translation(meeting["title"]),
+          # description: first_translation(meeting["description"]),
+          startTimeDay: l(meeting["startTime"].to_date, format: "%d"),
+          startTimeMonth: l(meeting["startTime"].to_date, format: "%B"),
+          startTimeYear: l(meeting["startTime"].to_date, format: "%Y"),
+          startTime: "#{meeting["startTime"].to_date.strftime("%H:%M")} - #{meeting["endTime"].to_date.strftime("%H:%M")}",
           icon: icon("meetings", width: 40, height: 70, remove_icon_class: true),
-          location: first_text(meeting.location.translations),
-          locationHints: first_text(meeting.location_hints.translations),
-          link: endpoint.endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/meetings/#{meeting.id}"
+          location: first_translation(meeting["location"]),
+          locationHints: first_translation(meeting["location_hints"]),
+          link: endpoint.endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/meetings/#{meeting["id"]}"
         }
       end
     end
