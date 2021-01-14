@@ -1,0 +1,57 @@
+es:
+  decidim:
+    admin:
+      menu:
+        comparative_stats: Estadísticas comparativas
+    comparative_stats:
+      admin:
+        endpoints:
+          create:
+            error: El endpoint de la API no ha sido añadido. Por favor verifique que es una url válida de la API de Decidim
+            success: The API endpoint has been added successfully
+          edit:
+            title: Editar un endpoint de la API de Decidim
+            update: Comprobar y actualizar endpoint
+          index:
+            active: Activo
+            endpoint: Endpoint
+            name: Nombre
+            no_endpoints: '¡Parece que aún no has añadido ningún endpoint de la API de Decidim!'
+            title: Endpoints de la API Decidim
+            version: Versión
+          new:
+            create: Comprobar y añadir endpoint
+            subtitle: Añade una URL de una instancia de Decidim válida que apunte a su API. Por ejemplo "https://www.decidim.barcelona/api"
+            title: Añadir un endpoint de la API de Decidim
+          update:
+            error: El endpoint de la API no ha sido añadido. Por favor verifique que es una url válida de la API de Decidim
+            success: The API endpoint has been updated successfully
+        graphs:
+          show:
+            no_endpoints: Parece que no tienes ningún endpoint activo. ¡Por favor, añade y activa algunos endpoints primero!
+            title: Administrar gráficos multi-instancia
+        menu:
+          endpoints: Administrar endpoints de la API
+          graphs: Administrar Gráficos
+      admin_log:
+        endpoint:
+          create: "%{user_name} ha creado el API endpoint %{resource_name}"
+          delete: "%{user_name} ha eliminado el miembro %{resource_name} del API endpoint %{space_name}"
+          update: "%{user_name} ha actualizado el API endpoint %{resource_name}"
+      endpoints:
+        add: Añadir una URL de Decidim
+      metrics:
+        users:
+          title: Usuarios registrados
+      widgets:
+        embed_modal:
+          fullscreen: Ver en pantalla completa
+        tabs:
+          choose_valid_graph: No se ha especificado un gráfico válido. Por favor, elija uno e inténtalo de nuevo
+          global_stats: Estadísticas Globales
+          global_stats_timeline: Línea de tiempo de estadísticas globales
+          processes_timeline: Línea de tiempo de procesos
+          spaces_geocoded_events: Mapas agregados
+    components:
+      comparative_stats:
+        name: Estadísticas comparativas

@@ -1,0 +1,57 @@
+ca:
+  decidim:
+    admin:
+      menu:
+        comparative_stats: Estadístiques comparatives
+    comparative_stats:
+      admin:
+        endpoints:
+          create:
+            error: L'enllaç de l'API no s'ha afegit. Comproveu que sigui una URL vàlida de l'API Decidim
+            success: The API endpoint has been added successfully
+          edit:
+            title: Edita l'enllaç a l'API Decidim
+            update: Comprova i actualitza l'enllaç
+          index:
+            active: Actiu
+            endpoint: Destinació
+            name: Nom
+            no_endpoints: Sembla que encara no heu afegit cap enllaç de l'API Decidim!
+            title: Punts de l'API Decidim
+            version: Versió
+          new:
+            create: Comprova i afegeix l'enllaç
+            subtitle: Afegeix una URL de Decidim vàlida que apunti a la seva API. Per exemple, "https://www.decidim.barcelona/api"
+            title: Afegeix un nou punt de l'API Decidim
+          update:
+            error: L'enllaç de l'API no s'ha actualitzat. Comproveu que sigui una URL vàlida de l'API Decidim
+            success: The API endpoint has been updated successfully
+        graphs:
+          show:
+            no_endpoints: Sembla que no teniu cap enllaç a l'Api Decidim actiu. Afegeix-ne i activa'n alguns primer!
+            title: Gestiona gràfiques multi-instàncies
+        menu:
+          endpoints: Gestiona els enllaços de l'API
+          graphs: Gestiona les gràfiques
+      admin_log:
+        endpoint:
+          create: "%{user_name} ha creat el punt API %{resource_name}"
+          delete: "%{user_name} ha esborrat el membre %{resource_name} de l'enllaç API %{space_name}"
+          update: "%{user_name} ha actualitzat el punt API %{resource_name}"
+      endpoints:
+        add: Afegeix una URL de Decidim
+      metrics:
+        users:
+          title: Usuaris registrats
+      widgets:
+        embed_modal:
+          fullscreen: Mostrar en pantalla completa
+        tabs:
+          choose_valid_graph: No s'ha especificat cap gràfic vàlid. Trieu-ne un i torneu-ho a provar
+          global_stats: Estadístiques globals
+          global_stats_timeline: Línia de temps d'estadístiques globals
+          processes_timeline: Línia de temps dels processos
+          spaces_geocoded_events: Mapes agregats
+    components:
+      comparative_stats:
+        name: Estadístiques comparatives
