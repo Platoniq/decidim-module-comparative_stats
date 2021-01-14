@@ -8,7 +8,7 @@ cs:
         endpoints:
           create:
             error: Koncový bod API nebyl přidán. Ověřte, zda je platná URL pro Decidim API
-            success: Koncový bod API byl úspěšně přidán
+            success: The API endpoint has been added successfully
           edit:
             title: Upravit koncový bod API Decidim
             update: Zkontrolovat a aktualizovat koncový bod
@@ -25,7 +25,7 @@ cs:
             title: Přidat koncový bod API Decidim
           update:
             error: Koncový bod API nebyl aktualizován. Ověřte, zda je platná URL pro Decidim API
-            success: Koncový bod API byl úspěšně aktualizován
+            success: The API endpoint has been updated successfully
         graphs:
           show:
             no_endpoints: Vypadá to, že jste ještě neměli žádný aktivní koncový bod. Prosím, nejprve přidejte a aktivujte nějaké koncové body!
