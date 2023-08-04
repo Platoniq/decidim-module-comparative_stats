@@ -21,3 +21,5 @@ development_app
 
 .rbenv-vars
 *.gem
+.idea/
+.rubocop-*

@@ -6,10 +6,14 @@ require "decidim/core/test"
 
 module Decidim::ComparativeStats
   describe "api queries" do
-    include_context "with a graphql type"
+    include_context "with a graphql class type"
     let(:query) { File.open(File.join(__dir__, "../../lib/decidim/comparative_stats/queries", "#{tag}.graphql")).read }
     let(:type_class) { Decidim::Api::QueryType }
     let!(:current_user) { nil }
+
+    before do
+      allow(Decidim::Api::Schema).to receive(:max_complexity).and_return(5000)
+    end
 
     describe "name_and_version" do
       let(:tag) { "name_and_version" }
@@ -55,7 +59,7 @@ module Decidim::ComparativeStats
         let!(:meetings) { create_list(:meeting, 3, component: component_meeting) }
 
         it "returns the corrent count of meetigns" do
-          expect(response["assemblies"].first["components"].first["meetings"]["edges"].count). to eq 3
+          expect(response["assemblies"].first["components"].first["meetings"]["edges"].count).to eq 3
         end
 
         it "returns the correct coordinates for all the meetings" do
@@ -85,7 +89,7 @@ module Decidim::ComparativeStats
       end
 
       it "returns zero participatory_processes" do
-        expect(response["participatoryProcesses"]). to eq []
+        expect(response["participatoryProcesses"]).to eq []
       end
     end
   end
