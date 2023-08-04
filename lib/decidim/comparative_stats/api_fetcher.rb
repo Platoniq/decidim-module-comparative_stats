@@ -64,11 +64,9 @@ module Decidim
         file = File.join(__dir__, "queries", "#{tag}.graphql")
         raise NameError unless File.exist?(file)
 
-        unless tag == "name_and_version"
-          if Gem::Version.new(name_and_version.version) < Gem::Version.new("0.23")
-            alt_file = File.join(__dir__, "queries", "v022", "#{tag}.graphql")
-            file = alt_file if File.exist?(alt_file)
-          end
+        if tag != "name_and_version" && Gem::Version.new(name_and_version.version) < Gem::Version.new("0.23")
+          alt_file = File.join(__dir__, "queries", "v022", "#{tag}.graphql")
+          file = alt_file if File.exist?(alt_file)
         end
         File.open(file).read
       end

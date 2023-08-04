@@ -18,6 +18,8 @@ module Decidim
         model
       end
 
+      # rubocop:disable Metrics/CyclomaticComplexity
+      # rubocop:disable Metrics/PerceivedComplexity
       def geocoded_events
         @events = {}
 
@@ -62,6 +64,8 @@ module Decidim
         end
         @events.to_json
       end
+      # rubocop:enable Metrics/CyclomaticComplexity
+      # rubocop:enable Metrics/PerceivedComplexity
 
       def first_translation(text)
         return text unless text.is_a? Hash
