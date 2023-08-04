@@ -3,13 +3,13 @@
 source "https://rubygems.org"
 
 ruby RUBY_VERSION
-DECIDIM_VERSION = "0.23.1"
+DECIDIM_VERSION = "0.24"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-comparative_stats", path: "."
 
 gem "bootsnap", "~> 1.4"
-gem "puma", ">= 4.3.5"
+gem "puma", ">= 5.0.0"
 gem "uglifier", "~> 4.1"
 
 group :development, :test do
@@ -19,7 +19,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "faker", "~> 1.9"
+  gem "faker", "~> 2.14"
   gem "letter_opener_web", "~> 1.3"
   gem "listen", "~> 3.1"
   gem "spring", "~> 2.0"
