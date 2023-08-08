@@ -1,4 +1,4 @@
-<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-<%= javascript_include_tag "decidim/comparative_stats/graphs" %>
+<%= javascript_pack_tag "https://www.gstatic.com/charts/loader.js" %>
+<%= javascript_pack_tag "decidim/comparative_stats/graphs" %>
 
 <%= cell("decidim/comparative_stats/metric_timelines", active_endpoints) %>
