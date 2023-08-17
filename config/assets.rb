@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This file is located at `config/assets.rb` of your module.
 
 # Define the base path of your module. Please note that `Rails.root` may not be
@@ -18,7 +19,8 @@ Decidim::Webpacker.register_path("#{base_path}/app/packs")
 # SCSS files within the entrypoints, they become available for inclusion using
 # `stylesheet_pack_tag`.
 Decidim::Webpacker.register_entrypoints(
-  decidim_comparative_stats: "#{base_path}/app/packs/entrypoints/decidim_comparative_stats.js"
+  decidim_comparative_stats: "#{base_path}/app/packs/entrypoints/decidim_comparative_stats.js",
+  decidim_comparative_stats_widget: "#{base_path}/app/packs/entrypoints/decidim_comparative_stats_widget.scss"
 )
 
 # If you want to import some extra SCSS files in the Decidim main SCSS file

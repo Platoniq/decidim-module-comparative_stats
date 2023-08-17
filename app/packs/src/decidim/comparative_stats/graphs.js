@@ -1,6 +1,4 @@
-// = require chartkick
-// = require Chart.bundle
-// = require_self
+import "chartkick"
 
 $(() => {
     //create trigger to resizeEnd event

@@ -27,10 +27,6 @@ module Decidim
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::ComparativeStats::Engine.root}/app/views") # for partials
       end
 
-      initializer "decidim_comparative_stats.admin_assets" do |app|
-        app.config.assets.precompile += %w(admin/comparative_stats_manifest.js admin/comparative_stats_manifest.css)
-      end
-
       def load_seed
         nil
       end

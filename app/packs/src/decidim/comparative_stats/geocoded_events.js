@@ -1,8 +1,7 @@
-// = require leaflet
-// = require leaflet-svg-icon
-// = require leaflet.markercluster
-// = require jquery-tmpl
-// = require_self
+import "leaflet"
+import "leaflet-svg-icon"
+import "leaflet.markercluster"
+import "jquery-tmpl"
 
 $(() => {
 

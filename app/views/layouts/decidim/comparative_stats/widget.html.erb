@@ -3,9 +3,8 @@
   <head>
     <title><%= decidim_page_title %></title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_pack_tag "application" %>
-    <%= stylesheet_pack_tag "decidim/comparative_stats/widget" %>
-    <%= javascript_pack_tag "application" %>
+    <%= javascript_pack_tag "decidim_comparative_stats" %>
+    <%= stylesheet_pack_tag "decidim_comparative_stats_widget" %>
 
   </head>
 
@@ -17,6 +16,6 @@
       <%= render partial: "layouts/decidim/logo", locals: { organization: current_organization } %>
     </div>
 
-    <%= javascript_pack_tag "decidim/widget" %>
+    <%= javascript_pack_tag "decidim_widget" %>
   </body>
 </html>
