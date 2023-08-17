@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A module for Decidim for comparing different instances",
   "scripts": {
-    "lint": "eslint -c .eslintrc.json --ext .js,.js.es6 app/assets"
+    "lint": "eslint -c .eslintrc.json --ext .js app/packs/src/decidim/comparative_stats"
   },
   "repository": {
     "type": "git",
