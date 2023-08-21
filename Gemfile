@@ -19,7 +19,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "chartkick", "~> 4.0.2"
   gem "faker", "~> 2.14"
   gem "letter_opener_web", "~> 1.3"
   gem "listen", "~> 3.1"
