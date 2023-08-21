@@ -31,4 +31,4 @@ describe "I18n sanity" do
     end
   end
 end
-# rubocop:enable RSpec/EmptyExampleGroup
+# rubocop:enable  RSpec/EmptyExampleGroup

@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "chartkick"
-require "chartkick/helper"
-
 module Decidim
   module ComparativeStats
     class MetricPiechartsCell < Decidim::ViewModel
@@ -26,12 +23,13 @@ module Decidim
 
       def metrics
         metrics = {}
-        endpoints.each do |endpoint|
+        #endpoints.each do |endpoint|
+        endpoint = endpoints[0]
           endpoint.api.fetch_global_metrics.data.metrics.each do |item|
             metrics[item.name] ||= {}
             metrics[item.name][endpoint.name] = item.count
           end
-        end
+        #end
         metrics
       end
     end

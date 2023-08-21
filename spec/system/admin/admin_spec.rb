@@ -9,7 +9,7 @@ describe "Visit the admin page", type: :system do
   let(:data) do
     {
       decidim: {
-        version: "0.22"
+        version: "0.25.2"
       },
       metrics: [
         {

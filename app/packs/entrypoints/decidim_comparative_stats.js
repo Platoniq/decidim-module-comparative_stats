@@ -1,3 +1,4 @@
+import "chartkick"
 import "src/decidim/comparative_stats/graphs.js"
 import "src/decidim/comparative_stats/geocoded_events.js"
 

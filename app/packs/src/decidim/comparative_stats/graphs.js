@@ -1,4 +1,3 @@
-import "chartkick"
 
 $(() => {
     //create trigger to resizeEnd event

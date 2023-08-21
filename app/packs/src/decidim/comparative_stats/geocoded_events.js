@@ -1,7 +1,7 @@
 import "leaflet"
-import "leaflet-svg-icon"
+import "leaflet-svgicon"
 import "leaflet.markercluster"
-import "jquery-tmpl"
+import "jquery-templates"
 
 $(() => {
 
