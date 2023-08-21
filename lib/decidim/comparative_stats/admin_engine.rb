@@ -33,12 +33,13 @@ module Decidim
 
       initializer "decidim_comparative_stats.admin_menu" do
         Decidim.menu :admin_menu do |menu|
-          menu.item I18n.t("menu.comparative_stats", scope: "decidim.admin"),
-                    decidim_admin_comparative_stats.endpoints_path,
-                    icon_name: "graph",
-                    position: 3.5,
-                    active: is_active_link?(decidim_admin_comparative_stats.endpoints_path, :inclusive) ||
-                            is_active_link?(decidim_admin_comparative_stats.graphs_path, :inclusive)
+          menu.add_item :comparative_stats,
+                        I18n.t("menu.comparative_stats", scope: "decidim.admin"),
+                        decidim_admin_comparative_stats.endpoints_path,
+                        icon_name: "graph",
+                        position: 3.5,
+                        active: is_active_link?(decidim_admin_comparative_stats.endpoints_path, :inclusive) ||
+                                is_active_link?(decidim_admin_comparative_stats.graphs_path, :inclusive)
         end
       end
     end
