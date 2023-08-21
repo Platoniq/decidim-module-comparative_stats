@@ -838,7 +838,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (~> 1.4)
   byebug (~> 11.0)
-  chartkick (~> 3.4.2)
   codecov
   decidim (= 0.25.2)
   decidim-comparative_stats!
