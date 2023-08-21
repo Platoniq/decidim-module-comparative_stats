@@ -23,13 +23,12 @@ module Decidim
 
       def metrics
         metrics = {}
-        #endpoints.each do |endpoint|
-        endpoint = endpoints[0]
+        endpoints.each do |endpoint|
           endpoint.api.fetch_global_metrics.data.metrics.each do |item|
             metrics[item.name] ||= {}
             metrics[item.name][endpoint.name] = item.count
           end
-        #end
+        end
         metrics
       end
     end

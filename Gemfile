@@ -19,6 +19,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "chartkick", "~> 4.0.2"
   gem "faker", "~> 2.14"
   gem "letter_opener_web", "~> 1.3"
   gem "listen", "~> 3.1"
@@ -26,7 +27,6 @@ group :development do
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console", "~> 4.0.4"
-  gem 'chartkick', "~> 4.0.2"
 end
 
 group :test do
