@@ -2,7 +2,7 @@
   <%= timeline [], id: "participatoryProcessesChart", height: "100%" %>
 </div>
 <script>
-  (function() {
+  $(document).ready(function () {
     var rows = [];
     <% timeline_graph.each do |row| %>
     rows.push([
@@ -20,12 +20,12 @@
       dataTable.addColumn({ type: 'date', id: 'Start' });
       dataTable.addColumn({ type: 'date', id: 'End' });
       dataTable.addRows(rows);
-      var chart = Chartkick.charts["participatoryProcessesChart"];
-      chart.getChartObject().draw(dataTable);
+      var chart = new google.visualization.Timeline(document.getElementById("participatoryProcessesChart"));
+      chart.draw(dataTable);
 
       // hack the real height
       var h = parseInt($("#participatoryProcessesChart div:first-child div:first-child div:first-child div svg").attr("height")) + 70;
-      chart.getChartObject().draw(dataTable, {
+      chart.draw(dataTable, {
           height: h,
           // hAxis: {
           //   minValue: new Date(2019, 0, 0),
@@ -44,12 +44,13 @@
       $('#participatoryProcessesChart div div div svg g:first text').attr({'x': 5, "text-anchor": "start", "font-weight": "bold"})
     };
 
+    google.charts.load('current', { 'packages': ['timeline'] });
     google.charts.setOnLoadCallback(drawChart);
 
     // Rewdraw on tab appearance
     $("[data-tabs]").on("change.zf.tabs", drawChart);
     // redraw graph when window resize is completed
-    $(window).on('resizeEnd', drawChart);
+    $(window).on('resize', drawChart);
 
   }());
 </script>
