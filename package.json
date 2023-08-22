@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A module for Decidim for comparing different instances",
   "scripts": {
-    "lint": "eslint -c .eslintrc.json --ext .js,.js.es6 app/assets"
+    "lint": "eslint -c .eslintrc.json --ext .js app/packs/src/decidim/comparative_stats"
   },
   "repository": {
     "type": "git",
@@ -182,5 +182,13 @@
     "eslint": "^7.8.1",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0"
+  },
+  "dependencies": {
+    "chart.js": "^4.3.3",
+    "chartkick": "^5.0.1",
+    "foundation-sites": "^6.7.5",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
+    "@decidim/leaflet-svgicon": "^1.0.0"
   }
 }

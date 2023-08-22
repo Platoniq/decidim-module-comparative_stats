@@ -56,9 +56,9 @@ module Decidim::ComparativeStats
 
       context "when there are meetings" do
         let!(:component_meeting) { create(:component, manifest_name: :meetings, organization: current_organization, participatory_space: assembly) }
-        let!(:meetings) { create_list(:meeting, 3, component: component_meeting) }
+        let!(:meetings) { create_list(:meeting, 3, :published, component: component_meeting) }
 
-        it "returns the corrent count of meetigns" do
+        it "returns the corrent count of meetings" do
           expect(response["assemblies"].first["components"].first["meetings"]["edges"].count).to eq 3
         end
 

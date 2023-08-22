@@ -1,0 +1,23 @@
+@import "foundation-sites/scss/_global";
+//@import "stylesheets/decidim/modules/cards";
+//@import "stylesheets/decidim/modules/address";
+//@import "stylesheets/decidim/modules/buttons";
+//@import "stylesheets/decidim/modules/map";
+@import "stylesheets/decidim/extras/leaflet";
+
+#geocoded_events{
+  min-height: 360px;
+  height: 100%;
+
+  .endpoint-legend{
+    font-size: .8rem;
+    line-height: .8;
+
+    .square{
+      display: inline-block;
+      width: .9em;
+      height: .9em;
+      margin-right: .3em;
+    }
+  }
+}

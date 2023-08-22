@@ -2,12 +2,13 @@
 
 require "i18n/tasks"
 
+# rubocop:disable RSpec/EmptyExampleGroup
 describe "I18n sanity" do
   let(:locales) do
     ENV["ENFORCED_LOCALES"].presence || "en"
   end
 
-  let(:i18n) { I18n::Tasks::BaseTask.new(locales: locales.split(",")) }
+  let(:i18n) { I18n::Tasks::BaseTask.new({ locales: locales.split(",") }) }
   let(:missing_keys) { i18n.missing_keys }
   let(:unused_keys) { i18n.unused_keys }
   let(:non_normalized_paths) { i18n.non_normalized_paths }
@@ -30,3 +31,4 @@ describe "I18n sanity" do
     end
   end
 end
+# rubocop:enable  RSpec/EmptyExampleGroup
