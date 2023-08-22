@@ -8,6 +8,7 @@ describe "Visit the admin page", type: :system do
   let!(:endpoint) { create(:endpoint, organization: organization) }
   let(:data) do
     {
+      __schema: Decidim::Api::Schema.execute(GraphQL::Introspection::INTROSPECTION_QUERY).fetch("data").fetch("__schema"),
       decidim: {
         version: "0.25.2"
       },
@@ -161,10 +162,7 @@ describe "Visit the admin page", type: :system do
   end
 
   before do
-    stub_request(:post, endpoint.endpoint).to_return(
-      { status: 200, body: Decidim::Api::Schema.execute(GraphQL::Introspection::INTROSPECTION_QUERY).to_json },
-      status: 200, body: "{\"data\":#{data.to_json}}", headers: {}
-    )
+    stub_request(:post, endpoint.endpoint).to_return({ status: 200, body: "{\"data\":#{data.to_json}}", headers: {} })
 
     switch_to_host(organization.host)
     login_as admin, scope: :user
