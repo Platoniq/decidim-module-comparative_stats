@@ -1,7 +1,7 @@
+import "src/decidim/vendor/jquery-tmpl"
 import "leaflet"
 import "leaflet-svgicon"
 import "leaflet.markercluster"
-import "jquery-templates"
 
 $(() => {
 

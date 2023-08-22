@@ -20,7 +20,8 @@ Decidim::Webpacker.register_path("#{base_path}/app/packs")
 # `stylesheet_pack_tag`.
 Decidim::Webpacker.register_entrypoints(
   decidim_comparative_stats: "#{base_path}/app/packs/entrypoints/decidim_comparative_stats.js",
-  decidim_comparative_stats_widget: "#{base_path}/app/packs/entrypoints/decidim_comparative_stats_widget.scss"
+  decidim_comparative_stats_widget: "#{base_path}/app/packs/entrypoints/decidim_comparative_stats_widget.scss",
+  decidim_comparative_stats_geocoded_events: "#{base_path}/app/packs/entrypoints/decidim_comparative_stats_geocoded_events.js"
 )
 
 # If you want to import some extra SCSS files in the Decidim main SCSS file
