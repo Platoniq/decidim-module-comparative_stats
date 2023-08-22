@@ -4,9 +4,14 @@ import "leaflet.markercluster"
 import "@decidim/leaflet-svgicon"
 
 $(() => {
+  const map_object = document.getElementById('geocoded_events');
+  if (!map_object) {
+    return;
+  } else {
+    map_object._leaflet_id = null;
+  }
 
-  var map_object = document.getElementById('geocoded_events');
-  var map = L.map(map_object, {
+  const map = L.map(map_object, {
     center: [41,2],
     zoom: 4
   });
@@ -28,7 +33,7 @@ $(() => {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  var endpoints = $('#geocoded_events').data('geocoded-events');
+  const endpoints = $('#geocoded_events').data('geocoded-events');
   const popupProposalsTemplateId = "marker-popup-proposal";
   $.template(popupProposalsTemplateId, $(`#${popupProposalsTemplateId}`).html());
   const popupMeetingsTemplateId = "marker-popup-meeting";
@@ -56,17 +61,13 @@ $(() => {
   };
 
   let layers = {};
-
   for (let endpoint in endpoints) {
-
     // In the future the color should come from the assigned to the endpoint
     let color = randomColor();
     let markerClusters = L.markerClusterGroup({
       iconCreateFunction: function (cluster) {
-        var childCount = cluster.getChildCount();
-
+        const childCount = cluster.getChildCount();
         return new L.DivIcon({ html: '<div style="background-color:' + color +'"><span>' + childCount + '</span></div>', className: 'marker-cluster', iconSize: new L.Point(40, 40) });
-
       }
     });
 
