@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 ruby RUBY_VERSION
-DECIDIM_VERSION = "0.26.0"
+DECIDIM_VERSION = "0.26.4"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-comparative_stats", path: "."
