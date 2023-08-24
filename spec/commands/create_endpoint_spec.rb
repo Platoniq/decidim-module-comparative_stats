@@ -4,7 +4,7 @@ require "spec_helper"
 
 module Decidim::ComparativeStats::Admin
   describe CreateEndpoint do
-    let(:subject) { described_class.new(form) }
+    subject { described_class.new(form) }
     let(:form) do
       double(
         # EndpointForm,
@@ -50,7 +50,7 @@ module Decidim::ComparativeStats::Admin
       end
 
       it "creates a new endpoint for the organization" do
-        expect { subject.call }.to change { Decidim::ComparativeStats::Endpoint.count }.by(1)
+        expect { subject.call }.to change(Decidim::ComparativeStats::Endpoint, :count).by(1)
       end
 
       it "traces the action", versioning: true do

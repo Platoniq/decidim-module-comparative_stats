@@ -4,7 +4,7 @@ module Decidim
   module ComparativeStats
     module Admin
       # A command with all the business logic when creating an endpoint
-      class CreateEndpoint < Rectify::Command
+      class CreateEndpoint < Decidim::Command
         # Public: Initializes the command.
         #
         # form - A form object with the params.

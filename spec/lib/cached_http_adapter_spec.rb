@@ -5,7 +5,7 @@ require "spec_helper"
 
 module Decidim::ComparativeStats
   describe CachedHTTPAdapter do
-    let(:subject) { described_class.new(url) }
+    subject { described_class.new(url) }
     let(:url) { "http://example/api" }
     let(:query) { "query { decidim { version } }" }
     let(:document) { double(to_query_string: query) }
