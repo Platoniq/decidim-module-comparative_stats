@@ -62,6 +62,7 @@ compatibility:
 | 1.0.x                     | 0.21.x, 0.22.x              |
 | 1.1.x                     | 0.23.x, 0.24.x              |
 | 1.2.x                     | 0.25.x, 0.26.x              |
+| 1.3.x                     | 0.27.x                      |
 
 ## Configuration options
 
