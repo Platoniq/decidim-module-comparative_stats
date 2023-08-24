@@ -5,7 +5,7 @@ require "spec_helper"
 
 module Decidim::ComparativeStats
   describe ApiFetcher do
-    let(:subject) { described_class.new(url) }
+    subject { described_class.new(url) }
     let(:url) { "http://example.com/api" }
 
     context "when client is not assigned" do
@@ -40,12 +40,12 @@ module Decidim::ComparativeStats
       end
 
       it "returns valid version" do
-        expect(subject.valid?).to eq true
+        expect(subject.valid?).to be true
       end
 
       context "when specifying a specific version number" do
         it "returns invalid version" do
-          expect(subject.valid?("0.20")).to eq false
+          expect(subject.valid?("0.20")).to be false
         end
       end
 
@@ -53,7 +53,7 @@ module Decidim::ComparativeStats
         let(:version) { "0.17" }
 
         it "returns invalid endpoint" do
-          expect(subject.valid?).to eq false
+          expect(subject.valid?).to be false
           expect(subject.error).to include "Decidim version"
         end
       end
@@ -82,12 +82,12 @@ module Decidim::ComparativeStats
 
     it "raise error when fetch query does not exists" do
       expect { subject.fetch_something }.to raise_error NameError
-      expect(subject.respond_to?(:fetch_something)).to eq true
+      expect(subject.respond_to?(:fetch_something)).to be true
     end
 
     it "raise error when is not a fetch query" do
       expect { subject.something }.to raise_error NoMethodError
-      expect(subject.respond_to?(:something)).to eq false
+      expect(subject.respond_to?(:something)).to be false
     end
   end
 end

@@ -14,96 +14,96 @@ describe "Visit the admin page", type: :system do
       },
       metrics: [
         {
-          "count": 55_053,
-          "name": "users",
-          "history": [
+          count: 55_053,
+          name: "users",
+          history: [
             {
-              "key": "2021-01-12",
-              "value": 55_053
+              key: "2021-01-12",
+              value: 55_053
             },
             {
-              "key": "2021-01-11",
-              "value": 55_035
+              key: "2021-01-11",
+              value: 55_035
             }
           ]
         },
         {
-          "count": 28_419,
-          "name": "participants",
-          "history": [
+          count: 28_419,
+          name: "participants",
+          history: [
             {
-              "key": "2021-01-12",
-              "value": 28_419
+              key: "2021-01-12",
+              value: 28_419
             },
             {
-              "key": "2021-01-11",
-              "value": 28_417
+              key: "2021-01-11",
+              value: 28_417
             }
           ]
         }
       ],
       participatoryProcesses: [
         {
-          "id": "5",
-          "title": {
-            "translations": [
+          id: "5",
+          title: {
+            translations: [
               {
-                "text": "Normes de Participació"
+                text: "Normes de Participació"
               },
               {
-                "text": "Normas de Participación"
+                text: "Normas de Participación"
               }
             ]
           },
-          "startDate": "2016-10-20",
-          "endDate": "2017-07-30",
-          "slug": "revisio-de-la-normativa-de-participacio-ciutadana",
-          "components": [
+          startDate: "2016-10-20",
+          endDate: "2017-07-30",
+          slug: "revisio-de-la-normativa-de-participacio-ciutadana",
+          components: [
             {
-              "id": "17",
-              "__typename": "Meetings",
-              "meetings": {
-                "edges": [
+              id: "17",
+              __typename: "Meetings",
+              meetings: {
+                edges: [
                   {
-                    "node": {
-                      "id": "646",
-                      "address": "Carrer del Regomir, 3, 08002 Barcelona, Espanya",
-                      "title": {
-                        "translations": [
+                    node: {
+                      id: "646",
+                      address: "Carrer del Regomir, 3, 08002 Barcelona, Espanya",
+                      title: {
+                        translations: [
                           {
-                            "text": "Sessió de treball amb els secretaris i tècnics de Consells Sectorials de Districte i Tècnics de Barri "
+                            text: "Sessió de treball amb els secretaris i tècnics de Consells Sectorials de Districte i Tècnics de Barri "
                           },
                           {
-                            "text": "Sessió de treball amb els secretaris i tècnics de Consells Sectorials de Districte i Tècnics de Barri "
+                            text: "Sessió de treball amb els secretaris i tècnics de Consells Sectorials de Districte i Tècnics de Barri "
                           }
                         ]
                       },
-                      "description": {
-                        "translations": [
+                      description: {
+                        translations: [
                           {
-                            "text": "<p>L’Ajuntament de Barcelona ha iniciat un procés participatiu</p>"
+                            text: "<p>L’Ajuntament de Barcelona ha iniciat un procés participatiu</p>"
                           },
                           {
-                            "text": "<p>L’Ajuntament de Barcelona ha iniciat un procés participatiu</p>"
+                            text: "<p>L’Ajuntament de Barcelona ha iniciat un procés participatiu</p>"
                           }
                         ]
                       },
-                      "startTime": "2016-10-17T12:00:00+02:00",
-                      "endTime": "2016-10-17T15:00:00+02:00",
-                      "location": {
-                        "translations": [
+                      startTime: "2016-10-17T12:00:00+02:00",
+                      endTime: "2016-10-17T15:00:00+02:00",
+                      location: {
+                        translations: [
                           {
-                            "text": ""
+                            text: ""
                           },
                           {
-                            "text": ""
+                            text: ""
                           }
                         ]
                       },
-                      "locationHints": nil,
-                      "coordinates": {
-                        "latitude": 41.3815653,
-                        "longitude": 2.17902400000003
+                      locationHints: nil,
+                      coordinates: {
+                        latitude: 41.3815653,
+                        longitude: 2.17902400000003
                       }
                     }
                   }
@@ -111,43 +111,43 @@ describe "Visit the admin page", type: :system do
               }
             },
             {
-              "id": "171",
-              "__typename": "Proposals",
-              "proposals": {
-                "edges": [
+              id: "171",
+              __typename: "Proposals",
+              proposals: {
+                edges: [
                   {
-                    "node": {
-                      "id": "805",
-                      "address": "",
-                      "title": "0.22 title style",
-                      "body": "0.22 description style",
-                      "coordinates": {
-                        "latitude": 31.3,
-                        "longitude": -10.1
+                    node: {
+                      id: "805",
+                      address: "",
+                      title: "0.22 title style",
+                      body: "0.22 description style",
+                      coordinates: {
+                        latitude: 31.3,
+                        longitude: -10.1
                       }
                     }
                   },
                   {
-                    "node": {
-                      "id": "965",
-                      "address": "",
-                      "title": {
-                        "translations": [
+                    node: {
+                      id: "965",
+                      address: "",
+                      title: {
+                        translations: [
                           {
-                            "text": "0.23 title style"
+                            text: "0.23 title style"
                           }
                         ]
                       },
-                      "body": {
-                        "translations": [
+                      body: {
+                        translations: [
                           {
-                            "text": "0.23 description style"
+                            text: "0.23 description style"
                           }
                         ]
                       },
-                      "coordinates": {
-                        "latitude": 61.3,
-                        "longitude": 20.1
+                      coordinates: {
+                        latitude: 61.3,
+                        longitude: 20.1
                       }
                     }
                   }

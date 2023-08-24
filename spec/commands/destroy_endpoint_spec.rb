@@ -4,7 +4,7 @@ require "spec_helper"
 
 module Decidim::ComparativeStats::Admin
   describe DestroyEndpoint do
-    let(:subject) { described_class.new(endpoint, user) }
+    subject { described_class.new(endpoint, user) }
     let(:organization) { create :organization }
     let(:endpoint) { create :endpoint, organization: organization }
     let(:user) { create(:user, :confirmed, :admin, organization: organization) }

@@ -68,7 +68,7 @@ module Decidim
           alt_file = File.join(__dir__, "queries", "v022", "#{tag}.graphql")
           file = alt_file if File.exist?(alt_file)
         end
-        File.open(file).read
+        File.read(file)
       end
 
       # Syntactic sugar to query graphql queries:

@@ -11,7 +11,13 @@ module Decidim::ComparativeStats::Admin
       {}
     end
 
-    let(:permission_action) { Decidim::PermissionAction.new(action) }
+    let(:permission_action) do
+      Decidim::PermissionAction.new(
+        action: action[:action],
+        scope: action[:scope],
+        subject: action[:subject]
+      )
+    end
 
     context "when scope is not admin" do
       let(:action) do
@@ -43,7 +49,7 @@ module Decidim::ComparativeStats::Admin
           { scope: :admin, action: :index, subject: :graph }
         end
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "and action is not index" do
@@ -61,7 +67,7 @@ module Decidim::ComparativeStats::Admin
           { scope: :admin, action: :index, subject: :endpoint }
         end
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "and action is create" do
@@ -69,7 +75,7 @@ module Decidim::ComparativeStats::Admin
           { scope: :admin, action: :create, subject: :endpoint }
         end
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "and action is update" do
@@ -77,7 +83,7 @@ module Decidim::ComparativeStats::Admin
           { scope: :admin, action: :update, subject: :endpoint }
         end
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "and action is destroy" do
@@ -85,7 +91,7 @@ module Decidim::ComparativeStats::Admin
           { scope: :admin, action: :destroy, subject: :endpoint }
         end
 
-        it { is_expected.to eq true }
+        it { is_expected.to be true }
       end
 
       context "and action is not index,create,update,destroy" do

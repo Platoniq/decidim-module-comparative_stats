@@ -4,7 +4,7 @@ module Decidim
   module ComparativeStats
     module Admin
       # A command with all the business logic when destroying an endpoint
-      class DestroyEndpoint < Rectify::Command
+      class DestroyEndpoint < Decidim::Command
         # Public: Initializes the command.
         #
         # form - A form object with the params.

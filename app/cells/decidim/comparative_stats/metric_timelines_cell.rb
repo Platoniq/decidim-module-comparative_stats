@@ -10,9 +10,9 @@ module Decidim
             history[item.name] ||= []
             history[item.name] << {
               name: endpoint.name,
-              data: item.history.map do |i|
+              data: item.history.to_h do |i|
                 [i.key, i.value]
-              end.to_h
+              end
             }
           end
         end

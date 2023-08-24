@@ -7,7 +7,7 @@ require "decidim/core/test"
 module Decidim::ComparativeStats
   describe "api queries" do
     include_context "with a graphql class type"
-    let(:query) { File.open(File.join(__dir__, "../../lib/decidim/comparative_stats/queries", "#{tag}.graphql")).read }
+    let(:query) { File.read(File.join(__dir__, "../../lib/decidim/comparative_stats/queries", "#{tag}.graphql")) }
     let(:type_class) { Decidim::Api::QueryType }
     let!(:current_user) { nil }
 

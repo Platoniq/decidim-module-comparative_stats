@@ -8,10 +8,11 @@ module Decidim
       class EndpointForm < Decidim::Form
         mimic :endpoint
 
-        attribute :endpoint, String, presence: true
+        attribute :endpoint, String
         attribute :active, Boolean
         attribute :name, String
 
+        validates :endpoint, presence: true
         validate :valid_api_version
 
         def valid_api_version
