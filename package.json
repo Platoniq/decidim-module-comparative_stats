@@ -179,16 +179,16 @@
     }
   },
   "devDependencies": {
-    "eslint": "^7.8.1",
-    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.22.0"
   },
   "dependencies": {
+    "@decidim/leaflet-svgicon": "^1.0.0",
     "chart.js": "^4.3.3",
     "chartkick": "^5.0.1",
     "foundation-sites": "^6.7.5",
     "leaflet": "^1.9.4",
-    "leaflet.markercluster": "^1.5.3",
-    "@decidim/leaflet-svgicon": "^1.0.0"
+    "leaflet.markercluster": "^1.5.3"
   }
 }

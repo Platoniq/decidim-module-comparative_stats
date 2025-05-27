@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 ruby RUBY_VERSION
-DECIDIM_VERSION = "0.27.4"
+DECIDIM_VERSION = "0.28.6"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-comparative_stats", path: "."
@@ -19,13 +19,11 @@ group :development, :test do
 end
 
 group :development do
-  gem "faker", "~> 2.14"
+  gem "faker"
   gem "letter_opener_web", "~> 1.3"
   gem "listen", "~> 3.1"
   gem "rubocop-faker"
-  gem "spring", "~> 2.0"
-  gem "spring-watcher-listen", "~> 2.0.0"
-  gem "web-console", "~> 4.0.4"
+  gem "web-console", "~> 4.2"
 end
 
 group :test do
