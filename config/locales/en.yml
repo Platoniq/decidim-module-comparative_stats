@@ -62,3 +62,8 @@ en:
     components:
       comparative_stats:
         name: ComparativeStats
+    shared:
+      embed_modal:
+        embed_link: Embed link
+        embed: Embed
+        close_window: Close window

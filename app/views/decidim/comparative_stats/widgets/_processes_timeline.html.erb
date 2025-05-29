@@ -1,4 +1,4 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-<%= javascript_pack_tag "decidim_comparative_stats" %>
+<%= append_javascript_pack_tag "decidim_comparative_stats" %>
 
 <%= cell("decidim/comparative_stats/participatory_processes_timeline", active_endpoints) %>
