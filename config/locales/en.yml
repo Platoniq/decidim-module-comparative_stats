@@ -19,7 +19,7 @@ en:
             endpoint: Endpoint
             name: Name
             no_endpoints: It seems that you haven't add any Decidim API endpoint yet!
-            title: API Decidim enpoints
+            title: API endpoints
             version: Version
           new:
             create: Check and add endpoint
@@ -34,7 +34,7 @@ en:
           show:
             no_endpoints: It looks that you haven't any active endpoint yer. Please
               add and activate some Endpoints first!
-            title: Manage cross-tenant graphs
+            title: Manage graphs
         menu:
           endpoints: Manage API endpoints
           graphs: Manage Graphs
@@ -67,3 +67,8 @@ en:
         embed_link: Embed link
         embed: Embed
         close_window: Close window
+  layouts:
+    decidim:
+      admin:
+        application:
+          title: Comparative Stats
