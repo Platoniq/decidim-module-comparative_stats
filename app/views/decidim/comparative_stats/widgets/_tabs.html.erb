@@ -1,10 +1,14 @@
 <%= append_stylesheet_pack_tag "decidim_comparative_stats" %>
 
-<ul class="tabs" id="charts-tabs">
-  <% available_graphs.each do |graph| %>
-    <li class="tabs-title"><%= link_to t(".#{graph}"), graphs_path(graph: graph), aria: { selected: is_active_link?(graphs_path(graph: graph)) } %></li>
-  <% end %>
-</ul>
+<div class="graphs-menu w-full" id="charts-tabs">
+  <nav class="main-nav" aria-label="Graphs menu">
+    <ul class="main-nav__modules flex flex-row">
+      <% available_graphs.each do |graph| %>
+        <li role="menuitem" class="tabs-title <%= "is-active" if is_active_link?(graphs_path(graph: graph)) %>"><%= link_to t(".#{graph}"), graphs_path(graph: graph), aria: { selected: is_active_link?(graphs_path(graph: graph)) }, class: "p-12" %></li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
 
 <div class="tabs-content" id="charts-tabs-content">
   <div class="tabs-panel is-active">

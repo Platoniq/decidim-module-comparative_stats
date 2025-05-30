@@ -4,3 +4,11 @@
 @import "stylesheets/decidim/typography";
 //@import "stylesheets/decidim/modules/margins";
 @import "stylesheets/decidim/buttons";
+
+.graphs-menu {
+   background-color: rgb(62 76 92 / 1);
+
+   .tabs-title {
+      padding-bottom: 0 !important;
+   }
+}
