@@ -1,11 +1,11 @@
 <div class="row">
   <% metrics.each do |name, metric| %>
-    <div class="column" style="padding: 1em">
+    <div class="column pb-12">
       <div class="card">
-        <div class="card-divider">
-          <%= title name %>
+        <div class="metric-header p-4">
+          <b><%= title name %></b>
         </div>
-        <div class="card-section">
+        <div class="card-section p-2">
           <%= line_chart metric, id: "line_chart_#{name}" %>
         </div>
       </div>
