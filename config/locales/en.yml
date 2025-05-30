@@ -11,6 +11,8 @@ en:
             error: The API endpoint has not been added. Please verify that is a valid
               Decidim API url
             success: The API endpoint has been added successfully
+          destroy: 
+            success: The API endpoint has been deleted successfully
           edit:
             title: Edit a Decidim API endpoint
             update: Check and update endpoint
