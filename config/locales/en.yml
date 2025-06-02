@@ -64,6 +64,15 @@ en:
     components:
       comparative_stats:
         name: ComparativeStats
+    meetings:
+      meetings_map:
+        view_meeting:
+          View meetings
+    proposals:
+      proposals:
+        index:
+          view_proposal:
+            View proposal
     shared:
       embed_modal:
         embed_link: Embed link
