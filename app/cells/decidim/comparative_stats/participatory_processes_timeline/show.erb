@@ -3,57 +3,55 @@
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // Set timeout waiting for the dependencies to be loaded
-    // @todo: find a better solution for this problem
-    setTimeout(() => {
-      const rows = [];
-      <% timeline_graph.each do |row| %>
-        rows.push([
-          "<%= row[:name] %>",
-          "<%= row[:title] %>",
-          new Date("<%= row[:start_date] %>"),
-          new Date("<%= row[:end_date] %>")
-        ]);
-      <% end %>
+    const rows = [];
+    <% timeline_graph.each do |row| %>
+      rows.push([
+        "<%= row[:name] %>",
+        "<%= row[:title] %>",
+        new Date("<%= row[:start_date] %>"),
+        new Date("<%= row[:end_date] %>")
+      ]);
+    <% end %>
 
-      const drawChart = function() {
-        const dataTable = new google.visualization.DataTable();
-        dataTable.addColumn({ type: "string", id: "Platform" });
-        dataTable.addColumn({ type: "string", id: "Process" });
-        dataTable.addColumn({ type: "date", id: "Start" });
-        dataTable.addColumn({ type: "date", id: "End" });
-        dataTable.addRows(rows);
-        const chart = new google.visualization.Timeline(document.getElementById("participatoryProcessesChart"));
-        const h = document.querySelector("#participatoryProcessesChart div:first-child div:first-child div:first-child div svg")?.getAttribute("height");
-        if (h) {
-          chart.draw(dataTable, {
-            height: parseInt(h) + 70,
-            width: "100%",
-            timeline: {
-              rowLabelStyle: {
-                fontSize: 16
-              }
+    const drawChart = function() {
+      const dataTable = new google.visualization.DataTable();
+      dataTable.addColumn({ type: "string", id: "Platform" });
+      dataTable.addColumn({ type: "string", id: "Process" });
+      dataTable.addColumn({ type: "date", id: "Start" });
+      dataTable.addColumn({ type: "date", id: "End" });
+      dataTable.addRows(rows);
+      const chart = new google.visualization.Timeline(document.getElementById("participatoryProcessesChart"));
+      const h = document.querySelector("#participatoryProcessesChart div:first-child div:first-child div:first-child div svg")?.getAttribute("height");
+      if (h) {
+        chart.draw(dataTable, {
+          height: parseInt(h) + 70,
+          width: "100%",
+          timeline: {
+            rowLabelStyle: {
+              fontSize: 16
             }
-          });
-        } else {
-          chart.draw(dataTable);
-        }
-
-        // extra svg tweaks
-        document.querySelectorAll("#participatoryProcessesChart div div div svg g:nth-child(2) > text").forEach(function(elem) {
-          elem.setAttribute("x", "5");
-          elem.setAttribute("text-anchor", "start");
-          elem.setAttribute("font-weight", "bold");
+          }
         });
-      };
+      } else {
+        chart.draw(dataTable);
+      }
 
-      google.charts.load('current', { 'packages': ['timeline'] });
-      google.charts.setOnLoadCallback(drawChart);
+      // extra svg tweaks
+      document.querySelectorAll("#participatoryProcessesChart div div div svg g:nth-child(2) > text").forEach(function(elem) {
+        elem.setAttribute("x", "5");
+        elem.setAttribute("text-anchor", "start");
+        elem.setAttribute("font-weight", "bold");
+      });
+    };
 
-      // Redraw on tab appearance
-      document.querySelector("[data-tabs]")?.on("change.zf.tabs", drawChart)
-      // redraw graph when window resize is completed
-      window.onresize = drawChart;
-    }, 10);
+    google.charts.load('current', { 'packages': ['timeline'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    window.onload = drawChart;
+
+    // Redraw on tab appearance
+    document.querySelector("[data-tabs]")?.on("change.zf.tabs", drawChart)
+    // redraw graph when window resize is completed
+    window.onresize = drawChart;
   });
 </script>
