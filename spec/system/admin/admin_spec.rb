@@ -2,10 +2,10 @@
 
 require "spec_helper"
 
-describe "Visit the admin page", type: :system do
-  let(:organization) { create :organization }
-  let!(:admin) { create(:user, :admin, :confirmed, organization: organization) }
-  let!(:endpoint) { create(:endpoint, organization: organization) }
+describe "Visit the admin page" do
+  let(:organization) { create(:organization) }
+  let!(:admin) { create(:user, :admin, :confirmed, organization:) }
+  let!(:endpoint) { create(:endpoint, organization:) }
   let(:data) do
     {
       __schema: Decidim::Api::Schema.execute(GraphQL::Introspection::INTROSPECTION_QUERY).fetch("data").fetch("__schema"),
@@ -167,7 +167,7 @@ describe "Visit the admin page", type: :system do
     switch_to_host(organization.host)
     login_as admin, scope: :user
     visit decidim_admin.root_path
-    click_link "Comparative Stats"
+    click_on "Comparative Stats"
   end
 
   context "when default" do
@@ -178,7 +178,7 @@ describe "Visit the admin page", type: :system do
 
   context "when visiting manage API endpoints" do
     before do
-      click_link "Manage API endpoints"
+      click_on "Manage API endpoints"
     end
 
     it "renders the page" do
@@ -188,7 +188,7 @@ describe "Visit the admin page", type: :system do
 
   context "when visiting manage graphs" do
     before do
-      click_link "Manage Graphs"
+      click_on "Manage Graphs"
     end
 
     it "renders the page" do
@@ -197,7 +197,7 @@ describe "Visit the admin page", type: :system do
 
     context "and click tab #1" do
       before do
-        click_link "Global stats"
+        click_on "Global stats"
       end
 
       it "renders the page" do
@@ -207,7 +207,7 @@ describe "Visit the admin page", type: :system do
 
     context "and click tab #2" do
       before do
-        click_link "Global stats timeline"
+        click_on "Global stats timeline"
       end
 
       it "renders the page" do
@@ -217,7 +217,7 @@ describe "Visit the admin page", type: :system do
 
     context "and click tab #3" do
       before do
-        click_link "Processes timeline"
+        click_on "Processes timeline"
       end
 
       it "renders the page" do
@@ -227,7 +227,7 @@ describe "Visit the admin page", type: :system do
 
     context "and click tab #4" do
       before do
-        click_link "Aggregated maps"
+        click_on "Aggregated maps"
       end
 
       it "renders the page" do

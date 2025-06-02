@@ -34,8 +34,8 @@ module Decidim
             rows << {
               name: endpoint.name,
               title: first_text(item.title.translations),
-              start_date: start_date,
-              end_date: end_date
+              start_date:,
+              end_date:
             }
           end
         end

@@ -8,9 +8,9 @@ module Decidim::ComparativeStats
       allow(helper).to receive(:current_organization).and_return(organization)
     end
 
-    let(:organization) { create :organization }
-    let!(:active_endpoint) { create :endpoint, active: true, organization: organization }
-    let!(:inactive_endpoint) { create :endpoint, active: false, organization: organization }
+    let(:organization) { create(:organization) }
+    let!(:active_endpoint) { create(:endpoint, active: true, organization:) }
+    let!(:inactive_endpoint) { create(:endpoint, active: false, organization:) }
 
     describe "active_endpoint" do
       it "returns active endpoints only" do

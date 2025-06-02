@@ -1,0 +1,6 @@
+Rails/ThreeStateBooleanColumn:
+  Exclude:
+    - 'db/migrate'
+FactoryBot/FactoryAssociationWithStrategy:
+  Exclude:
+    - 'lib/decidim/comparative_stats/test/factories.rb'

@@ -4,14 +4,14 @@ require "spec_helper"
 
 module Decidim::ComparativeStats::Admin
   describe EndpointForm do
-    subject { described_class.from_params(attributes).with_context(api: api) }
+    subject { described_class.from_params(attributes).with_context(api:) }
 
     let(:name) { Faker::Name.name }
     let(:endpoint) { Faker::Internet.url }
     let(:attributes) do
       {
-        name: name,
-        endpoint: endpoint,
+        name:,
+        endpoint:,
         active: true
       }
     end
@@ -30,7 +30,7 @@ module Decidim::ComparativeStats::Admin
     context "when api version is lower than required" do
       let(:api_valid) { false }
 
-      it { is_expected.to be_invalid }
+      it { is_expected.not_to be_valid }
     end
   end
 end

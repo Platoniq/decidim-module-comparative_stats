@@ -5,27 +5,27 @@ require "spec_helper"
 module Decidim::ComparativeStats::Admin
   describe UpdateEndpoint do
     subject { described_class.new(endpoint, form, user) }
-    let(:organization) { create :organization }
-    let(:endpoint) { create :endpoint, active: false, organization: organization }
-    let(:user) { create(:user, :confirmed, :admin, organization: organization) }
+    let(:organization) { create(:organization) }
+    let(:endpoint) { create(:endpoint, active: false, organization:) }
+    let(:user) { create(:user, :confirmed, :admin, organization:) }
     let(:form) do
       double(
         invalid?: invalid,
         endpoint: new_endpoint,
         name: Faker::Name.name,
         active: true,
-        context: double(api: api)
+        context: double(api:)
       )
     end
     let(:api) do
       double(
-        name_and_version: name_and_version
+        name_and_version:
       )
     end
     let(:name_and_version) do
       double(
         application_name: "Test Decidim API",
-        version: version
+        version:
       )
     end
     let(:version) { Decidim::ComparativeStats::MIN_API_VERSION }
@@ -50,7 +50,7 @@ module Decidim::ComparativeStats::Admin
         expect(endpoint.endpoint).to eq(new_endpoint)
       end
 
-      it "traces the action", versioning: true do
+      it "traces the action", :versioning do
         expect(Decidim.traceability)
           .to receive(:update!)
           .with(endpoint, user, endpoint: form.endpoint, name: form.name, api_version: version, active: form.active)
