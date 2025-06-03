@@ -11,7 +11,7 @@ en:
             error: The API endpoint has not been added. Please verify that is a valid
               Decidim API url
             success: The API endpoint has been added successfully
-          destroy: 
+          destroy:
             success: The API endpoint has been deleted successfully
           edit:
             title: Edit a Decidim API endpoint
@@ -66,18 +66,16 @@ en:
         name: ComparativeStats
     meetings:
       meetings_map:
-        view_meeting:
-          View meetings
+        view_meeting: View meetings
     proposals:
       proposals:
         index:
-          view_proposal:
-            View proposal
+          view_proposal: View proposal
     shared:
       embed_modal:
-        embed_link: Embed link
-        embed: Embed
         close_window: Close window
+        embed: Embed
+        embed_link: Embed link
   layouts:
     decidim:
       admin:

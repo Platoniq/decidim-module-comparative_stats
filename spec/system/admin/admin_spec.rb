@@ -3,7 +3,8 @@
 require "spec_helper"
 
 describe "Visit the admin page" do
-  let(:organization) { create(:organization) }
+  let(:content_security_policy) { { "script-src" => "www.gstatic.com" } }
+  let(:organization) { create(:organization, content_security_policy:) }
   let!(:admin) { create(:user, :admin, :confirmed, organization:) }
   let!(:endpoint) { create(:endpoint, organization:) }
   let(:data) do
@@ -172,17 +173,17 @@ describe "Visit the admin page" do
 
   context "when default" do
     it "renders the admin page" do
-      expect(page).to have_content("API Decidim enpoints")
+      expect(page).to have_content("API endpoints")
     end
   end
 
   context "when visiting manage API endpoints" do
     before do
-      click_on "Manage API endpoints"
+      click_on "Add a Decidim URL"
     end
 
     it "renders the page" do
-      expect(page).to have_content("API Decidim enpoints")
+      expect(page).to have_content("API endpoints")
     end
   end
 
@@ -192,7 +193,7 @@ describe "Visit the admin page" do
     end
 
     it "renders the page" do
-      expect(page).to have_content("Manage cross-tenant graphs")
+      expect(page).to have_content("Manage graphs")
     end
 
     context "and click tab #1" do
