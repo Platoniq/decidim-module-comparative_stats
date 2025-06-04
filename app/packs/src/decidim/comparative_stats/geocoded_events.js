@@ -1,9 +1,8 @@
-import "src/decidim/vendor/jquery-tmpl"
 import "leaflet"
 import "leaflet.markercluster"
 import "@decidim/leaflet-svgicon"
 
-$(() => {
+document.addEventListener("DOMContentLoaded", function () {
   const map_object = document.getElementById('geocoded_events');
   if (!map_object) {
     return;
@@ -33,32 +32,75 @@ $(() => {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  const endpoints = $('#geocoded_events').data('geocoded-events');
-  const popupProposalsTemplateId = "marker-popup-proposal";
-  $.template(popupProposalsTemplateId, $(`#${popupProposalsTemplateId}`).html());
-  const popupMeetingsTemplateId = "marker-popup-meeting";
-  $.template(popupMeetingsTemplateId, $(`#${popupMeetingsTemplateId}`).html());
+  const endpointsElement = document.getElementById('geocoded_events');
+  const endpoints = endpointsElement ? JSON.parse(endpointsElement.getAttribute('data-geocoded-events')) : null;
+
+  const popupMeetingsTemplate = (point) => `
+    <div class="map-info__content">
+      <h3>${point.title}</h3>
+      <div id="bodyContent">
+        <div class="map__date-adress">
+          <div class="card__datetime">
+            <div class="card__datetime__date">
+              ${point.startTimeDay} <span class="card__datetime__month">${point.startTimeMonth} ${point.startTimeYear}</span>
+            </div>
+          </div>
+          <div class="address card__extra">
+            <div class="address__details">
+              <strong>${point.location}</strong><br>
+              <span>${point.address}</span><br>
+            </div>
+          </div>
+        </div>
+        <div class="map-info__button">
+          <a href="${point.link}" class="button button--sc">
+            View meeting
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const popupProposalsTemplate = (point) => `
+    <div class="map-info__content">
+      <h3>${point.title}</h3>
+      <div id="bodyContent">
+        <div class="map__date-adress">
+          <div class="address card__extra">
+            <div class="address__details">
+              <span>${point.address}</span><br>
+            </div>
+          </div>
+        </div>
+        <div class="map-info__button">
+          <a href="${point.link}" class="button button--sc">
+            View proposal
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
 
   const randomColor = () => '#'+Math.floor(Math.random()*16777215).toString(16);
 
-  const getMarker = (id, point, color) => {
+  const getMarker = (template, point, color) => {
     let coordinates = [point.latitude, point.longitude];
     let marker = L.marker(coordinates, {
-      icon: new L.DivIcon.SVGIcon.DecidimIcon({fillColor: color})
+      icon: new L.DivIcon.SVGIcon.DecidimIcon({ fillColor: color })
     });
-
+  
     let node = document.createElement("div");
-
-    $.tmpl(id, point).appendTo(node);
+    node.innerHTML = template(point);
+  
     marker.bindPopup(node, {
       maxWidth: 640,
       minWidth: 500,
       keepInView: true,
       className: "map-info"
     }).openPopup();
-
+  
     return marker;
-  };
+  };  
 
   let layers = {};
   for (let endpoint in endpoints) {
@@ -74,12 +116,12 @@ $(() => {
     let meetings = endpoints[endpoint].meetings;
     let proposals = endpoints[endpoint].proposals;
 
-    for(let key in meetings) {
-      markerClusters.addLayer(getMarker(popupMeetingsTemplateId, meetings[key], color));
+    for (let key in meetings) {
+      markerClusters.addLayer(getMarker(popupMeetingsTemplate, meetings[key], color));
     }
-
-    for(let key in proposals) {
-      markerClusters.addLayer(getMarker(popupProposalsTemplateId, proposals[key], color));
+    
+    for (let key in proposals) {
+      markerClusters.addLayer(getMarker(popupProposalsTemplate, proposals[key], color));
     }
     markerClusters.addTo(map);
     let key = '<span class="endpoint-legend"><span class="square" style="background-color:' + color +'"></span>' + endpoints[endpoint].name + '</span>';
@@ -88,7 +130,9 @@ $(() => {
 
   L.control.layers(null, layers).addTo(map);
 
-  $("[data-tabs]").on('change.zf.tabs', function() {
-    map.invalidateSize(true);
+  document.querySelectorAll("[data-tabs]").forEach(element => {
+    element.addEventListener("change", function () {
+      map.invalidateSize(true);
+    });
   });
 });
