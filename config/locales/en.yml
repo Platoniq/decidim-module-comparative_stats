@@ -11,6 +11,8 @@ en:
             error: The API endpoint has not been added. Please verify that is a valid
               Decidim API url
             success: The API endpoint has been added successfully
+          destroy:
+            success: The API endpoint has been deleted successfully
           edit:
             title: Edit a Decidim API endpoint
             update: Check and update endpoint
@@ -19,7 +21,7 @@ en:
             endpoint: Endpoint
             name: Name
             no_endpoints: It seems that you haven't add any Decidim API endpoint yet!
-            title: API Decidim enpoints
+            title: API endpoints
             version: Version
           new:
             create: Check and add endpoint
@@ -34,7 +36,7 @@ en:
           show:
             no_endpoints: It looks that you haven't any active endpoint yer. Please
               add and activate some Endpoints first!
-            title: Manage cross-tenant graphs
+            title: Manage graphs
         menu:
           endpoints: Manage API endpoints
           graphs: Manage Graphs
@@ -62,3 +64,20 @@ en:
     components:
       comparative_stats:
         name: ComparativeStats
+    meetings:
+      meetings_map:
+        view_meeting: View meetings
+    proposals:
+      proposals:
+        index:
+          view_proposal: View proposal
+    shared:
+      embed_modal:
+        close_window: Close window
+        embed: Embed
+        embed_link: Embed link
+  layouts:
+    decidim:
+      admin:
+        application:
+          title: Comparative Stats

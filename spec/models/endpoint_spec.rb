@@ -7,7 +7,7 @@ module Decidim::ComparativeStats
     subject { endpoint }
 
     let(:organization) { create(:organization) }
-    let(:endpoint) { create(:endpoint, organization: organization) }
+    let(:endpoint) { create(:endpoint, organization:) }
 
     it { is_expected.to be_valid }
 

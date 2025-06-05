@@ -3,10 +3,10 @@
 require "spec_helper"
 
 module Decidim::ComparativeStats::Admin
-  describe GraphsController, type: :controller do
+  describe GraphsController do
     routes { Decidim::ComparativeStats::AdminEngine.routes }
 
-    let(:user) { create(:user, :confirmed, :admin, organization: organization) }
+    let(:user) { create(:user, :confirmed, :admin, organization:) }
     let(:organization) { create(:organization) }
 
     before do

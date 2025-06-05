@@ -5,9 +5,9 @@ require "spec_helper"
 module Decidim::ComparativeStats::Admin
   describe DestroyEndpoint do
     subject { described_class.new(endpoint, user) }
-    let(:organization) { create :organization }
-    let(:endpoint) { create :endpoint, organization: organization }
-    let(:user) { create(:user, :confirmed, :admin, organization: organization) }
+    let(:organization) { create(:organization) }
+    let(:endpoint) { create(:endpoint, organization:) }
+    let(:user) { create(:user, :confirmed, :admin, organization:) }
 
     context "when everything is ok" do
       it "destroys the endpoint" do

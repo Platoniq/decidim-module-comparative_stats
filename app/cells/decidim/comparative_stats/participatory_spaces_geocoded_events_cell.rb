@@ -85,7 +85,7 @@ module Decidim
           address: proposal["address"],
           title: first_translation(proposal["title"]),
           body: truncate(first_translation(proposal["body"]), length: 100),
-          icon: icon("proposals", width: 40, height: 70, remove_icon_class: true),
+          icon: icon("chat-new-line", width: 40, height: 70, remove_icon_class: true),
           link: endpoint.endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/proposals/#{proposal["id"]}"
         }
       end
@@ -101,7 +101,7 @@ module Decidim
           startTimeMonth: l(meeting["startTime"].to_date, format: "%B"),
           startTimeYear: l(meeting["startTime"].to_date, format: "%Y"),
           startTime: "#{meeting["startTime"].to_date.strftime("%H:%M")} - #{meeting["endTime"].to_date.strftime("%H:%M")}",
-          icon: icon("meetings", width: 40, height: 70, remove_icon_class: true),
+          icon: icon("community-line", width: 40, height: 70, remove_icon_class: true),
           location: first_translation(meeting["location"]),
           locationHints: first_translation(meeting["location_hints"]),
           link: endpoint.endpoint.remove("api") << "#{type}/#{participatory_space.slug}/f/#{component.id}/meetings/#{meeting["id"]}"

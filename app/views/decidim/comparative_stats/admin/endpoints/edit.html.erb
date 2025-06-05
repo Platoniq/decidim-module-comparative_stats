@@ -1,16 +1,34 @@
-<%= decidim_form_for(@form) do |f| %>
-  <div class="card">
-    <div class="card-divider">
-      <h2 class="card-title"><%= t ".title" %></h2>
+<div class="item_show__header">
+  <h2 class="item_show__header-title">
+    <%= t(".title") %>
+    <div class="flex align-left gap-x-4">
+      <% if allowed_to?(:index, :endpoint) %>
+        <%= link_to decidim_admin_comparative_stats.endpoints_path, class: "button button__sm button__secondary" do %>
+          <%= t("menu.endpoints", scope: "decidim.comparative_stats.admin") %>
+        <% end %>
+      <% end %>
     </div>
-    <div class="card-section">
-      <%= render partial: "form", object: f %>
-      <div class="row column">
-        <%= f.text_field :name %>
+  </h2>
+</div>
+<div class="item__edit-form">
+  <%= decidim_form_for @form, html: { class: "form-defaults form" } do |f| %>
+    <div class="card">
+      <div class="card-section">
+        <div class="form__wrapper">
+          <div class="card-divider">
+            <h2 class="card-title"><%= t(".title") %></h2>
+          </div>
+          <div class="card-section">
+            <%= render partial: "form", object: f %>
+            <div class="row column">
+              <%= f.text_field :name %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row column pt-4 pb-4">
+        <%= f.submit t(".update"), class: "button button__sm button__secondary" %>
       </div>
     </div>
-  </div>
-  <div class="button--double form-general-submit">
-    <%= f.submit t(".update") %>
-  </div>
-<% end %>
+  <% end %>
+</div>

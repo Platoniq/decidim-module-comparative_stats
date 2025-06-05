@@ -3,23 +3,23 @@
 require "spec_helper"
 
 module Decidim::ComparativeStats::Admin
-  describe EndpointsController, type: :controller do
+  describe EndpointsController do
     routes { Decidim::ComparativeStats::AdminEngine.routes }
 
-    let(:user) { create(:user, :confirmed, :admin, organization: organization) }
+    let(:user) { create(:user, :confirmed, :admin, organization:) }
     let(:organization) { create(:organization) }
     let(:url) { "http://example.com/api" }
-    let(:endpoint) { create :endpoint, endpoint: url, organization: organization }
+    let(:endpoint) { create(:endpoint, endpoint: url, organization:) }
     let(:active) { true }
     let(:form) do
       {
         endpoint: endpoint.endpoint,
         name: "Test name",
-        active: active
+        active:
       }
     end
     let(:version) { "0.19.test" }
-    let(:data) { { decidim: { applicationName: "Decidim test", version: version } } }
+    let(:data) { { decidim: { applicationName: "Decidim test", version: } } }
 
     before do
       request.env["decidim.current_organization"] = organization
@@ -32,7 +32,7 @@ module Decidim::ComparativeStats::Admin
     end
 
     describe "organization_endpoints" do
-      let!(:inactive_endpoint) { create :endpoint, active: false, organization: organization }
+      let!(:inactive_endpoint) { create(:endpoint, active: false, organization:) }
 
       it "returns all endpoints" do
         expect(controller.organization_endpoints).to include(endpoint)
@@ -82,7 +82,7 @@ module Decidim::ComparativeStats::Admin
     end
 
     describe "GET edit" do
-      let(:endpoint) { create :endpoint, name: "Some name", endpoint: url, organization: organization }
+      let(:endpoint) { create(:endpoint, name: "Some name", endpoint: url, organization:) }
 
       it "renders the edit form" do
         get :edit, params: { id: endpoint.id }
@@ -93,7 +93,7 @@ module Decidim::ComparativeStats::Admin
 
     describe "PATCH #update" do
       context "when there is permission" do
-        let(:endpoint) { create :endpoint, name: "Some name", endpoint: url, organization: organization }
+        let(:endpoint) { create(:endpoint, name: "Some name", endpoint: url, organization:) }
 
         it "returns ok" do
           patch :update, params: { id: endpoint.id, endpoint: form }
@@ -119,7 +119,7 @@ module Decidim::ComparativeStats::Admin
     end
 
     describe "DELETE #destroy" do
-      let(:endpoint) { create :endpoint, organization: organization }
+      let(:endpoint) { create(:endpoint, organization:) }
 
       it "destroys the endpoint" do
         delete :destroy, params: { id: endpoint.id }

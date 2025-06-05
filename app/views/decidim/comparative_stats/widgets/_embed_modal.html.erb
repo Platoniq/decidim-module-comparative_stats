@@ -1,27 +1,18 @@
-<div class="grid-x">
-  <div class="cell small-3">
-    <button class="share-link link text-center" data-open="processEmbed">
+<div class="flex flex-row">
+    <button class="flex flex-row items-center button button__sm button__secondary" data-dialog-open="embed-modal">
       <%= t("embed_link", scope: "decidim.shared.embed_modal") %>
-      <%= icon "code", class: "icon--after" %>
+      <%= icon "link", class: "icon--after ml-2" %>
     </button>
-
-  </div>
-  <div class="cell auto">
-    <%= link_to url, class: "share-link link", target: :_blank do %>
+    <%= link_to url, class: "flex flex-row items-center button button__sm button__secondary ml-4" do %>
       <%= t(".fullscreen") %>
-      <%= icon "eye", class: "icon--after" %>
+      <%= icon "eye-line", class: "icon--after ml-2" %>
     <% end %>
-  </div>
 </div>
 
-<div class="reveal reveal--embed" id="processEmbed" data-reveal>
-  <div class="reveal__header">
-    <h3 class="reveal__title"><%= t("embed", scope: "decidim.shared.embed_modal") %>:</h3>
-    <button class="close-button" data-close aria-label="<%= t("close_window", scope: "decidim.shared.embed_modal") %>" type="button">
-      <span aria-hidden="true">&times;</span>
-    </button>
+<%= decidim_modal id: "embed-modal" do %>
+  <div class="p-4">
+    <p class="embed__code">
+      <%= embed_code %>
+    </p>
   </div>
-  <p class="embed__code">
-    <%= embed_code %>
-  </p>
-</div>
+<% end %>

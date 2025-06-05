@@ -1,6 +1,23 @@
-@import 'stylesheets/decidim/variables';
-@import 'stylesheets/decidim/utils/settings';
-@import "stylesheets/decidim/utils/mixins";
-@import "stylesheets/decidim/modules/typography";
-@import "stylesheets/decidim/modules/margins";
-@import "stylesheets/decidim/modules/buttons";
+@import "stylesheets/decidim/legacy/variables";
+@import "stylesheets/decidim/typography";
+@import "stylesheets/decidim/buttons";
+
+.graphs-menu {
+   background-color: rgb(62 76 92 / 1);
+
+   .tabs-title {
+      padding-bottom: 0 !important;
+   }
+}
+
+.metric-header {
+   background-color: rgb(62 76 92 / 0.25);
+}
+
+.metric-body {
+   border: 0.1rem solid rgb(62 76 92 / 0.25);
+}
+
+#embed-modal {
+   z-index: 999 !important;
+}

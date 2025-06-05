@@ -7,7 +7,7 @@ if !Rails.env.production? || ENV.fetch("SEED", nil)
 
   # Set the htmleditor on to facilitate development
   admin_user = Decidim::User.find_by(
-    organization: organization,
+    organization:,
     email: "admin@example.org"
   )
 
@@ -18,7 +18,7 @@ if !Rails.env.production? || ENV.fetch("SEED", nil)
     endpoint: "http://localhost:3000/api",
     name: organization.name,
     api_version: Decidim.version,
-    organization: organization,
+    organization:,
     active: true
   )
   Decidim.traceability.create!(
@@ -27,7 +27,7 @@ if !Rails.env.production? || ENV.fetch("SEED", nil)
     endpoint: "https://www.decidim.barcelona/api",
     name: "Decidim Barcelona",
     api_version: "0.22.0",
-    organization: organization,
+    organization:,
     active: true
   )
   Decidim.traceability.create!(
@@ -36,7 +36,7 @@ if !Rails.env.production? || ENV.fetch("SEED", nil)
     endpoint: "https://omastadi.hel.fi/api",
     name: "City of Helsinki participationary platform",
     api_version: "0.23.1",
-    organization: organization,
+    organization:,
     active: false
   )
 end

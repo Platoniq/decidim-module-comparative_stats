@@ -8,31 +8,31 @@ module Decidim::ComparativeStats::Admin
     let(:form) do
       double(
         # EndpointForm,
-        endpoint: endpoint,
+        endpoint:,
         active: true,
         current_organization: organization,
         current_user: user,
         invalid?: invalid,
-        context: double(api: api)
+        context: double(api:)
       )
     end
 
     let(:name_and_version) do
       double(
         application_name: "Test Decidim API",
-        version: version
+        version:
       )
     end
     let(:version) { Decidim::ComparativeStats::MIN_API_VERSION }
 
-    let(:organization) { create :organization }
+    let(:organization) { create(:organization) }
     let(:api) do
       double(
-        name_and_version: name_and_version
+        name_and_version:
       )
     end
     let(:endpoint) { Faker::Internet.url }
-    let(:user) { create :user, :admin, :confirmed, organization: organization }
+    let(:user) { create(:user, :admin, :confirmed, organization:) }
 
     let(:invalid) { false }
 
@@ -53,7 +53,7 @@ module Decidim::ComparativeStats::Admin
         expect { subject.call }.to change(Decidim::ComparativeStats::Endpoint, :count).by(1)
       end
 
-      it "traces the action", versioning: true do
+      it "traces the action", :versioning do
         expect(Decidim.traceability)
           .to receive(:create!)
           .with(Decidim::ComparativeStats::Endpoint, user, hash_including(:endpoint, :name, :api_version))

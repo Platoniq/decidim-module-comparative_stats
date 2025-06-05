@@ -23,7 +23,7 @@ module Decidim::ComparativeStats
 
     context "when fetching api resources" do
       let(:version) { "0.19.test" }
-      let(:data) { { decidim: { applicationName: "Decidim test", version: version } } }
+      let(:data) { { decidim: { applicationName: "Decidim test", version: } } }
 
       before do
         subject.client = Graphlient::Client.new(url, schema_path: "#{__dir__}/schema.json")

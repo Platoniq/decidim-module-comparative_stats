@@ -2,7 +2,7 @@
 
 ![Test](https://github.com/Platoniq/decidim-module-comparative_stats/workflows/Test/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/59d3415b89244ef0d40b/maintainability)](https://codeclimate.com/github/Platoniq/decidim-module-comparative_stats/maintainability)
-[![Codecov](https://codecov.io/gh/Platoniq/decidim-module-comparative_stats/branch/master/graph/badge.svg?token=XhzWO0IiWt)](https://codecov.io/gh/Platoniq/decidim-module-comparative_stats)
+[![Coverage Status](https://coveralls.io/repos/github/Platoniq/decidim-module-comparative_stats/badge.svg?branch=main)](https://coveralls.io/github/Platoniq/decidim-module-comparative_stats?branch=main)
 
 Allows to compare different Decidim sites by accessing their GraphQL API and
 generate graphs.
@@ -18,24 +18,20 @@ For instance, Decidim Barcelona endpoint is `https://www.decidim.barcelona/api`
 
 Then, go to graphs and see some nice graphs!
 
+Global stats:
+
+![Barcelona/Open Heritage comparison](examples/global_stats.png)
+
+Processes timeline:
+
+![Barcelona/Open Heritage comparison](examples/timeline.png)
+
 Graphs can be embedded anywhere independently, just use the button
-`embed <>` and copy the code to any other place.
+`Embed link` and copy the code to any other place:
 
-The generated code will look something like:
-
-```html
-<iframe
-  src="http://your_url/comparative_stats/widgets/global_stats.html"
-  frameborder="0"
-  width="100%"
-  height="420"
-  scrolling="vertical"></iframe>
-```
+![Embed link example](examples/link.png)
 
 You might want to customize the `height` parameter to match your particular case.
-
-![Barcelona/Helsinki comparison](example.png)
-*A real example comparing the participatory processes carried out by the cities of Barcelona and Helsinki in 2019*
 
 ## Installation
 
@@ -54,7 +50,7 @@ bundle exec rails decidim_comparative_stats:webpacker:install
 bundle exec rails db:migrate
 ```
 
-Depending on your Decidim version, choose the corresponding Awesome version to ensure
+Depending on your Decidim version, choose the corresponding Comparative stats version to ensure
 compatibility:
 
 | Comparative stats version | Compatible Decidim versions |
@@ -63,6 +59,7 @@ compatibility:
 | 1.1.x                     | 0.23.x, 0.24.x              |
 | 1.2.x                     | 0.25.x, 0.26.x              |
 | 1.3.x                     | 0.27.x                      |
+| 1.4.x                     | 0.28.x                      |
 
 ## Configuration options
 

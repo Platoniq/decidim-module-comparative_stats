@@ -6,7 +6,7 @@ module Decidim::ComparativeStats::Admin
   describe Permissions do
     subject { described_class.new(user, permission_action, context).permissions.allowed? }
 
-    let(:user) { create :user }
+    let(:user) { create(:user) }
     let(:context) do
       {}
     end

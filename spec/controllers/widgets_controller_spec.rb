@@ -3,7 +3,7 @@
 require "spec_helper"
 
 module Decidim::ComparativeStats
-  describe WidgetsController, type: :controller do
+  describe WidgetsController do
     routes { Decidim::ComparativeStats::Engine.routes }
 
     let(:organization) { create(:organization) }

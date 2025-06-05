@@ -24,7 +24,7 @@ module Decidim::ComparativeStats
           }
         )
         .to_return(status: 200, body: "{\"data\":#{data.to_json}}", headers: {})
-      response = subject.execute(document: document, operation_name: op_name, variables: variables, context: context)
+      response = subject.execute(document:, operation_name: op_name, variables:, context:)
       expect(response["data"]).to eq(data)
       expect(response["data"]["decidim"]["version"]).to eq(version)
     end
