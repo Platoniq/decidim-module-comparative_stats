@@ -3,11 +3,14 @@
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    function sanitizeString(input) {
+      return input.replace(/""/g, '"\'');
+    }
     const rows = [];
     <% timeline_graph.each do |row| %>
       rows.push([
-        "<%= row[:name] %>",
-        "<%= row[:title] %>",
+        sanitizeString("<%= row[:name] %>"),
+        sanitizeString("<%= row[:title] %>"),
         new Date("<%= row[:start_date] %>"),
         new Date("<%= row[:end_date] %>")
       ]);
