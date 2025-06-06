@@ -8,14 +8,12 @@
     }
     const rows = [];
     <% timeline_graph.each do |row| %>
-      if (sanitizeString("<%= row[:name] %>",) && sanitizeString("<%= row[:title] %>")) {
-        rows.push([
-          "<%= row[:name] %>",
-          "<%= row[:title] %>",
-          new Date("<%= row[:start_date] %>"),
-          new Date("<%= row[:end_date] %>")
-        ]);
-      }
+      rows.push([
+        sanitizeString("<%= row[:name] %>"),
+        sanitizeString("<%= row[:title] %>"),
+        new Date("<%= row[:start_date] %>"),
+        new Date("<%= row[:end_date] %>")
+      ]);
     <% end %>
 
     const drawChart = function() {
