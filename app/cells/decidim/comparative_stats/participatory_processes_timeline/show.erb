@@ -3,17 +3,12 @@
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    function validateJavascript(str) {
-      console.log(str); //just to see, delete when ready
-      if (!str || str.trim() === '') return false;
-      if (/['"]/.test(str)) return false;
-      if (/[\n\r\t\\]/.test(str)) return false;
-      if (/[^\w\s,.!?&-]/.test(str)) return false;
-      return true;
+    function sanitizeString(input) {
+      return input.replace(/""/g, '"\'');
     }
     const rows = [];
     <% timeline_graph.each do |row| %>
-      if (validateJavascript(row.name) && validateJavascript(row.title)) {
+      if (sanitizeString("<%= row[:name] %>",) && sanitizeString("<%= row[:title] %>")) {
         rows.push([
           "<%= row[:name] %>",
           "<%= row[:title] %>",
