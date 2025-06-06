@@ -3,14 +3,24 @@
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    function validateJavascript(str) {
+      console.log(str); //just to see, delete when ready
+      if (!str || str.trim() === '') return false;
+      if (/['"]/.test(str)) return false;
+      if (/[\n\r\t\\]/.test(str)) return false;
+      if (/[^\w\s,.!?&-]/.test(str)) return false;
+      return true;
+    }
     const rows = [];
     <% timeline_graph.each do |row| %>
-      rows.push([
-        "<%= row[:name] %>",
-        "<%= row[:title] %>",
-        new Date("<%= row[:start_date] %>"),
-        new Date("<%= row[:end_date] %>")
-      ]);
+      if (validateJavascript(row.name) && validateJavascript(row.title)) {
+        rows.push([
+          "<%= row[:name] %>",
+          "<%= row[:title] %>",
+          new Date("<%= row[:start_date] %>"),
+          new Date("<%= row[:end_date] %>")
+        ]);
+      }
     <% end %>
 
     const drawChart = function() {
