@@ -1,11 +1,13 @@
 import "chartkick/chart.js"
 
-$(() => {
-    //create trigger to resizeEnd event
-    $(window).resize(() => {
-        if(window.resizeTO) clearTimeout(window.resizeTO);
-        window.resizeTO = setTimeout(() => {
-        $(window).trigger('resizeEnd');
-        }, 100);
+document.addEventListener('DOMContentLoaded', () => {
+    let resizeTO;
+  
+    window.addEventListener('resize', () => {
+      if (resizeTO) clearTimeout(resizeTO);
+      resizeTO = setTimeout(() => {
+        const event = new Event('resizeEnd');
+        window.dispatchEvent(event);
+      }, 100);
     });
-});
+  });

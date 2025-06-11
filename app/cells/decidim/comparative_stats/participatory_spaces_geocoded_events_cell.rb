@@ -41,7 +41,7 @@ module Decidim
                 component.meetings.edges.each do |edge|
                   add_meeting(edge.node.to_h, endpoint, assembly, component, :assemblies)
                 end
-              elsif componet.respond_to? :proposals
+              elsif component.respond_to? :proposals
                 component.proposals.edges.each do |edge|
                   add_proposal(edge.node.to_h, endpoint, assembly, component, :assemblies)
                 end
@@ -91,9 +91,11 @@ module Decidim
       end
 
       def add_meeting(meeting, endpoint, participatory_space, component, type)
+        return if meeting.empty?
+
         @events[endpoint.id][:meetings]["#{type}_meeting_#{meeting["id"]}"] = {
-          latitude: meeting["coordinates"]["latitude"],
-          longitude: meeting["coordinates"]["longitude"],
+          latitude: meeting.dig("coordinates", "latitude"),
+          longitude: meeting.dig("coordinates", "longitude"),
           address: meeting["address"],
           title: first_translation(meeting["title"]),
           # description: first_translation(meeting["description"]),

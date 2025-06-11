@@ -46,7 +46,7 @@ module Decidim
         response = fetch_name_and_version
         return false unless response
 
-        if Gem::Version.new(min_version) > Gem::Version.new(response.data.decidim.version)
+        if Gem::Version.new(min_version) > Gem::Version.new(response.data.decidim.version) && response.data.decidim.version.present?
           @errors << "Decidim version detect (#{response.data.decidim.version}) should be at least #{min_version}"
           return false
         end

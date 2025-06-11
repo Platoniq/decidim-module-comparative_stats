@@ -1,6 +1,7 @@
 # Decidim::ComparativeStats
 
-![Test](https://github.com/Platoniq/decidim-module-comparative_stats/workflows/Test/badge.svg)
+[![Lint](https://github.com/Platoniq/decidim-module-comparative_stats/actions/workflows/lint.yml/badge.svg)](https://github.com/Platoniq/decidim-module-comparative_stats/actions/workflows/lint.yml)
+[![Test](https://github.com/Platoniq/decidim-module-comparative_stats/actions/workflows/test.yml/badge.svg)](https://github.com/Platoniq/decidim-module-comparative_stats/actions/workflows/test.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/59d3415b89244ef0d40b/maintainability)](https://codeclimate.com/github/Platoniq/decidim-module-comparative_stats/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/Platoniq/decidim-module-comparative_stats/badge.svg?branch=main)](https://coveralls.io/github/Platoniq/decidim-module-comparative_stats?branch=main)
 
@@ -60,6 +61,7 @@ compatibility:
 | 1.2.x                     | 0.25.x, 0.26.x              |
 | 1.3.x                     | 0.27.x                      |
 | 1.4.x                     | 0.28.x                      |
+| 1.5.x                     | 0.29.x                      |
 
 ## Configuration options
 
@@ -181,8 +183,8 @@ This engine is distributed under the GNU AFFERO GENERAL PUBLIC LICENSE.
 
 ## Credits
 
-This plugin has been developed by ![Platoniq](app/assets/images/platoniq-logo.png)
+This plugin has been developed by ![Platoniq](examples/platoniq-logo.png)
 
 > Amb el suport de l'Ajuntament de Barcelona - Direcció de Serveis d'Innovació Democràtica
 >
-> ![Logo Barcelona](app/assets/images/bcn-logo.png)
+> ![Logo Barcelona](examples/bcn-logo.png)
