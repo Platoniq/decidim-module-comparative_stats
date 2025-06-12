@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "chartkick", "~> 5.0"
   s.add_dependency "decidim-admin", Decidim::ComparativeStats::DECIDIM_VERSION
   s.add_dependency "decidim-core", Decidim::ComparativeStats::DECIDIM_VERSION
-  s.add_dependency "graphlient", "< 0.6"
+  s.add_dependency "graphlient", ">= 0.5", "< 0.6"
 
   s.add_development_dependency "decidim-dev", Decidim::ComparativeStats::DECIDIM_VERSION
 end
