@@ -5,7 +5,7 @@ PATH
       chartkick (~> 5.0)
       decidim-admin (>= 0.29.0, < 0.30)
       decidim-core (>= 0.29.0, < 0.30)
-      graphlient (< 0.6)
+      graphlient (>= 0.5, < 0.6)
 
 GEM
   remote: https://rubygems.org/
