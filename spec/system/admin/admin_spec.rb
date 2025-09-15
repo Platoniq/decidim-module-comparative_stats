@@ -163,7 +163,7 @@ describe "Visit the admin page" do
   end
 
   before do
-    stub_request(:post, endpoint.endpoint).to_return({ status: 200, body: "{\"data\":#{data.to_json}}", headers: {} })
+    stub_request(:post, endpoint.endpoint).to_return({ status: 200, body: "{\"data\":#{data.to_json}}", headers: { "Content-Type" => "application/json" } })
 
     switch_to_host(organization.host)
     login_as admin, scope: :user

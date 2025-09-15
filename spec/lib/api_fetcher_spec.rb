@@ -12,7 +12,8 @@ module Decidim::ComparativeStats
       before do
         stub_request(:post, url).to_return(
           status: 200,
-          body: Decidim::Api::Schema.execute(GraphQL::Introspection::INTROSPECTION_QUERY).to_json
+          body: Decidim::Api::Schema.execute(GraphQL::Introspection::INTROSPECTION_QUERY).to_json,
+          headers: { "Content-Type" => "application/json" }
         )
       end
 
@@ -28,7 +29,7 @@ module Decidim::ComparativeStats
       before do
         subject.client = Graphlient::Client.new(url, schema_path: "#{__dir__}/schema.json")
         stub_request(:post, url)
-          .to_return(status: 200, body: "{\"data\":#{data.to_json}}", headers: {})
+          .to_return(status: 200, body: "{\"data\":#{data.to_json}}", headers: { "Content-Type" => "application/json" })
       end
 
       it "returns name and version" do
