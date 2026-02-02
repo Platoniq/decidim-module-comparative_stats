@@ -63,6 +63,7 @@ compatibility:
 | 1.4.x                     | 0.28.x                      |
 | 1.5.x                     | 0.29.x                      |
 | 1.6.x                     | 0.30.x                      |
+| 1.7.x                     | 0.31.x                      |
 
 ## Configuration options
 

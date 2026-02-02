@@ -1,5 +1,11 @@
 ---
 en:
+  activemodel:
+    attributes:
+      decidim/superspaces/superspace: # Try the namespaced version
+        hero_image: "Hero image"
+      superspace: # Keep this as a fallback
+        hero_image: "Hero image"
   decidim:
     admin:
       menu:
