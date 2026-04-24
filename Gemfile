@@ -7,6 +7,7 @@ DECIDIM_VERSION = "0.31.0"
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-comparative_stats", path: "."
+gem "decidim-initiatives", DECIDIM_VERSION
 
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 5.1.0"
