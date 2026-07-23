@@ -40,16 +40,11 @@ es:
           update: "%{user_name} ha actualizado el API endpoint %{resource_name}"
       endpoints:
         add: Añadir una URL de Decidim
-      metrics:
-        users:
-          title: Usuarios registrados
       widgets:
         embed_modal:
           fullscreen: Ver en pantalla completa
         tabs:
           choose_valid_graph: No se ha especificado un gráfico válido. Por favor, elija uno e inténtalo de nuevo
-          global_stats: Estadísticas Globales
-          global_stats_timeline: Línea de tiempo de estadísticas globales
           processes_timeline: Línea de tiempo de procesos
           spaces_geocoded_events: Mapas agregados
     components:

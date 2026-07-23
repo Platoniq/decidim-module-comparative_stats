@@ -40,16 +40,11 @@ cs:
           update: "%{user_name} aktualizoval koncový bod API %{resource_name}"
       endpoints:
         add: Přidat URL Decidim
-      metrics:
-        users:
-          title: Registrovaní uživatelé
       widgets:
         embed_modal:
           fullscreen: Zobrazit na celou obrazovku
         tabs:
           choose_valid_graph: Nebyl zadán žádný platný graf. Vyberte prosím jeden a zkuste to znovu
-          global_stats: Globální statistiky
-          global_stats_timeline: Časová osa globálních statistik
           processes_timeline: Procesy časové osy
           spaces_geocoded_events: Souhrnné mapy
     components:

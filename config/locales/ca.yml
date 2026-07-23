@@ -40,16 +40,11 @@ ca:
           update: "%{user_name} ha actualitzat el punt API %{resource_name}"
       endpoints:
         add: Afegeix una URL de Decidim
-      metrics:
-        users:
-          title: Usuaris registrats
       widgets:
         embed_modal:
           fullscreen: Mostrar en pantalla completa
         tabs:
           choose_valid_graph: No s'ha especificat cap gràfic vàlid. Trieu-ne un i torneu-ho a provar
-          global_stats: Estadístiques globals
-          global_stats_timeline: Línia de temps d'estadístiques globals
           processes_timeline: Línia de temps dels processos
           spaces_geocoded_events: Mapes agregats
     components:

@@ -12,7 +12,10 @@ module Decidim::ComparativeStats
       before do
         stub_request(:post, url).to_return(
           status: 200,
-          body: Decidim::Api::Schema.execute(GraphQL::Introspection::INTROSPECTION_QUERY).to_json,
+          body: Decidim::Api::Schema.execute(
+            GraphQL::Introspection::INTROSPECTION_QUERY,
+            context: { scopes: Doorkeeper::OAuth::Scopes.from_string("api:read") }
+          ).to_json,
           headers: { "Content-Type" => "application/json" }
         )
       end

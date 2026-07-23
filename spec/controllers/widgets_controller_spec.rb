@@ -24,18 +24,6 @@ module Decidim::ComparativeStats
         expect(response).to have_http_status(:not_found)
       end
 
-      it "renders the global_stats widgets" do
-        get :show, params: { graph: :global_stats }
-        expect(response).to have_http_status(:ok)
-        expect(subject).to render_template(:show)
-      end
-
-      it "renders the global_stats_timeline widgets" do
-        get :show, params: { graph: :global_stats_timeline }
-        expect(response).to have_http_status(:ok)
-        expect(subject).to render_template(:show)
-      end
-
       it "renders the processes_timeline widgets" do
         get :show, params: { graph: :processes_timeline }
         expect(response).to have_http_status(:ok)
