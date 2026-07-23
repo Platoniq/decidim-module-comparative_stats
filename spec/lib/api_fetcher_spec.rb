@@ -14,7 +14,7 @@ module Decidim::ComparativeStats
           status: 200,
           body: Decidim::Api::Schema.execute(
             GraphQL::Introspection::INTROSPECTION_QUERY,
-            context: { scopes: Doorkeeper::OAuth::Scopes.from_string("api:read") }
+            context: { scopes: Doorkeeper::OAuth::Scopes.from_string("api:read"), can_introspect: true }
           ).to_json,
           headers: { "Content-Type" => "application/json" }
         )

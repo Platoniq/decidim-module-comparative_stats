@@ -11,7 +11,7 @@ describe "Visit the admin page" do
     {
       __schema: Decidim::Api::Schema.execute(
         GraphQL::Introspection::INTROSPECTION_QUERY,
-        context: { scopes: Doorkeeper::OAuth::Scopes.from_string("api:read") }
+        context: { scopes: Doorkeeper::OAuth::Scopes.from_string("api:read"), can_introspect: true }
       ).fetch("data").fetch("__schema"),
       decidim: {
         version: "0.25.2"
