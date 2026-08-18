@@ -11,12 +11,19 @@ if !Rails.env.production? || ENV.fetch("SEED", nil)
     email: "admin@example.org"
   )
 
+  organization_name = if organization.name.is_a?(Hash)
+                        organization.name[organization.default_locale.to_s].presence ||
+                          organization.name.values.grep(String).find(&:present?)
+                      else
+                        organization.name
+                      end
+
   # add enpoints bcn - helsinki
   Decidim.traceability.create!(
     Decidim::ComparativeStats::Endpoint,
     admin_user,
     endpoint: "http://localhost:3000/api",
-    name: organization.name,
+    name: organization_name,
     api_version: Decidim.version,
     organization:,
     active: true

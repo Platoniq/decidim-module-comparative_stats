@@ -16,8 +16,6 @@ module Decidim
 
       def available_graphs
         [
-          :global_stats,
-          :global_stats_timeline,
           :processes_timeline,
           :spaces_geocoded_events
         ]

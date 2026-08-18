@@ -3,18 +3,9 @@
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    function sanitizeString(input) {
-      return input.replace(/""/g, '"\'');
-    }
-    const rows = [];
-    <% timeline_graph.each do |row| %>
-      rows.push([
-        sanitizeString("<%= row[:name] %>"),
-        sanitizeString("<%= row[:title] %>"),
-        new Date("<%= row[:start_date] %>"),
-        new Date("<%= row[:end_date] %>")
-      ]);
-    <% end %>
+    const rows = <%= timeline_rows %>.map(function(row) {
+      return [row[0], row[1], new Date(row[2]), new Date(row[3])];
+    });
 
     const drawChart = function() {
       const dataTable = new google.visualization.DataTable();

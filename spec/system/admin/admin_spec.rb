@@ -9,40 +9,13 @@ describe "Visit the admin page" do
   let!(:endpoint) { create(:endpoint, organization:) }
   let(:data) do
     {
-      __schema: Decidim::Api::Schema.execute(GraphQL::Introspection::INTROSPECTION_QUERY).fetch("data").fetch("__schema"),
+      __schema: Decidim::Api::Schema.execute(
+        GraphQL::Introspection::INTROSPECTION_QUERY,
+        context: { scopes: Doorkeeper::OAuth::Scopes.from_string("api:read") }
+      ).fetch("data").fetch("__schema"),
       decidim: {
         version: "0.25.2"
       },
-      metrics: [
-        {
-          count: 55_053,
-          name: "users",
-          history: [
-            {
-              key: "2021-01-12",
-              value: 55_053
-            },
-            {
-              key: "2021-01-11",
-              value: 55_035
-            }
-          ]
-        },
-        {
-          count: 28_419,
-          name: "participants",
-          history: [
-            {
-              key: "2021-01-12",
-              value: 28_419
-            },
-            {
-              key: "2021-01-11",
-              value: 28_417
-            }
-          ]
-        }
-      ],
       participatoryProcesses: [
         {
           id: "5",
@@ -198,26 +171,6 @@ describe "Visit the admin page" do
 
     context "and click tab #1" do
       before do
-        click_on "Global stats"
-      end
-
-      it "renders the page" do
-        expect(page).to have_content("Registered users")
-      end
-    end
-
-    context "and click tab #2" do
-      before do
-        click_on "Global stats timeline"
-      end
-
-      it "renders the page" do
-        expect(page).to have_content("Registered users")
-      end
-    end
-
-    context "and click tab #3" do
-      before do
         click_on "Processes timeline"
       end
 
@@ -226,7 +179,7 @@ describe "Visit the admin page" do
       end
     end
 
-    context "and click tab #4" do
+    context "and click tab #2" do
       before do
         click_on "Aggregated maps"
       end

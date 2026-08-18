@@ -1,5 +1,11 @@
 ---
 en:
+  activemodel:
+    attributes:
+      decidim/superspaces/superspace:
+        hero_image: Hero image
+      superspace:
+        hero_image: Hero image
   decidim:
     admin:
       menu:
@@ -48,17 +54,12 @@ en:
           update: "%{user_name} updated the %{resource_name} API endpoint"
       endpoints:
         add: Add a Decidim URL
-      metrics:
-        users:
-          title: Registered users
       widgets:
         embed_modal:
           fullscreen: View in fullscreen
         tabs:
           choose_valid_graph: No valid graph specified. Please choose one and try
             again
-          global_stats: Global stats
-          global_stats_timeline: Global stats timeline
           processes_timeline: Processes timeline
           spaces_geocoded_events: Aggregated maps
     components:

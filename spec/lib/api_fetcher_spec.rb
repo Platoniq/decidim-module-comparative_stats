@@ -9,16 +9,24 @@ module Decidim::ComparativeStats
     let(:url) { "http://example.com/api" }
 
     context "when client is not assigned" do
-      before do
-        stub_request(:post, url).to_return(
-          status: 200,
-          body: Decidim::Api::Schema.execute(GraphQL::Introspection::INTROSPECTION_QUERY).to_json,
-          headers: { "Content-Type" => "application/json" }
-        )
-      end
-
+      # no request is stubbed, the endpoint is never introspected
       it "retrieves schema" do
         expect(subject.client.schema).to be_a Graphlient::Schema
+      end
+
+      it "uses the schema of the local Decidim installation" do
+        expect(subject.client.schema.graphql_schema.query.fields).to include("decidim")
+      end
+    end
+
+    context "when the endpoint is not reachable" do
+      before do
+        stub_request(:post, url).to_raise(Faraday::ConnectionFailed)
+      end
+
+      it "is not valid and does not raise" do
+        expect(subject.valid?).to be false
+        expect(subject.error).to be_present
       end
     end
 
@@ -27,7 +35,6 @@ module Decidim::ComparativeStats
       let(:data) { { decidim: { applicationName: "Decidim test", version: } } }
 
       before do
-        subject.client = Graphlient::Client.new(url, schema_path: "#{__dir__}/schema.json")
         stub_request(:post, url)
           .to_return(status: 200, body: "{\"data\":#{data.to_json}}", headers: { "Content-Type" => "application/json" })
       end
@@ -47,6 +54,15 @@ module Decidim::ComparativeStats
       context "when specifying a specific version number" do
         it "returns invalid version" do
           expect(subject.valid?("0.20")).to be false
+        end
+      end
+
+      context "when version is not disclosed" do
+        let(:version) { nil }
+
+        it "returns valid endpoint" do
+          expect(subject.valid?).to be true
+          expect(subject.error).to be_nil
         end
       end
 
@@ -73,6 +89,14 @@ module Decidim::ComparativeStats
 
         context "when version is >= 0.23" do
           let(:version) { "0.23.1" }
+
+          it "proposals are translated" do
+            expect(graphql).to include("proposals{ edges{ node{ id address title{ translations{ text } } body{ translations{ text } } coordinates{ latitude longitude } } } }")
+          end
+        end
+
+        context "when version is not disclosed" do
+          let(:version) { nil }
 
           it "proposals are translated" do
             expect(graphql).to include("proposals{ edges{ node{ id address title{ translations{ text } } body{ translations{ text } } coordinates{ latitude longitude } } } }")

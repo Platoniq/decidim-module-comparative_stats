@@ -32,24 +32,6 @@ module Decidim::ComparativeStats
       end
     end
 
-    describe "global_metrics" do
-      let(:tag) { "global_metrics" }
-      let!(:metrics) { create(:metric, metric_type: "users", day: Time.current, cumulative: 1, quantity: 1, organization: current_organization) }
-
-      it "return expected data" do
-        expect(response["metrics"].first.keys).to include("count", "name")
-      end
-    end
-
-    describe "global_history_metrics" do
-      let(:tag) { "global_history_metrics" }
-      let!(:metrics) { create(:metric, metric_type: "users", day: Time.current, cumulative: 1, quantity: 1, organization: current_organization) }
-
-      it "return expected data" do
-        expect(response["metrics"].first["history"].first.keys).to include("key", "value")
-      end
-    end
-
     describe "global_events" do
       let!(:assembly) { create(:assembly, organization: current_organization) }
       let(:tag) { "global_events" }
