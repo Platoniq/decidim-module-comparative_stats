@@ -26,7 +26,6 @@ module Decidim::ComparativeStats::Admin
       sign_in user
 
       controller.params["endpoint"] = form
-      controller.api.client = Graphlient::Client.new(url, schema_path: "#{__dir__}/../../lib/schema.json")
       stub_request(:post, url)
         .to_return(status: 200, body: "{\"data\":#{data.to_json}}", headers: { "Content-Type" => "application/json" })
     end
