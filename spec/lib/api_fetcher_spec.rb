@@ -9,19 +9,25 @@ module Decidim::ComparativeStats
     let(:url) { "http://example.com/api" }
 
     context "when client is not assigned" do
-      before do
-        stub_request(:post, url).to_return(
-          status: 200,
-          body: Decidim::Api::Schema.execute(
-            GraphQL::Introspection::INTROSPECTION_QUERY,
-            context: { scopes: Doorkeeper::OAuth::Scopes.from_string("api:read") }
-          ).to_json,
-          headers: { "Content-Type" => "application/json" }
-        )
-      end
-
+      # No request is stubbed on purpose: Decidim disables introspection on its
+      # API, so the schema is never downloaded from the endpoint.
       it "retrieves schema" do
         expect(subject.client.schema).to be_a Graphlient::Schema
+      end
+
+      it "uses the schema of the local Decidim installation" do
+        expect(subject.client.schema.graphql_schema).to eq Decidim::Api::Schema
+      end
+    end
+
+    context "when the endpoint is not reachable" do
+      before do
+        stub_request(:post, url).to_raise(Faraday::ConnectionFailed)
+      end
+
+      it "is not valid and does not raise" do
+        expect(subject.valid?).to be false
+        expect(subject.error).to eq "Not a valid Decidim API URL"
       end
     end
 
@@ -53,6 +59,15 @@ module Decidim::ComparativeStats
         end
       end
 
+      context "when version is not disclosed" do
+        let(:version) { nil }
+
+        it "returns valid endpoint" do
+          expect(subject.valid?).to be true
+          expect(subject.error).to be_nil
+        end
+      end
+
       context "when version is less than required" do
         let(:version) { "0.17" }
 
@@ -76,6 +91,16 @@ module Decidim::ComparativeStats
 
         context "when version is >= 0.23" do
           let(:version) { "0.23.1" }
+
+          it "proposals are translated" do
+            expect(graphql).to include("proposals{ edges{ node{ id address title{ translations{ text } } body{ translations{ text } } coordinates{ latitude longitude } } } }")
+          end
+        end
+
+        # Decidim only discloses its version when the instance sets
+        # DECIDIM_API_DISCLOSE_SYSTEM_VERSION, so it is usually blank
+        context "when version is not disclosed" do
+          let(:version) { nil }
 
           it "proposals are translated" do
             expect(graphql).to include("proposals{ edges{ node{ id address title{ translations{ text } } body{ translations{ text } } coordinates{ latitude longitude } } } }")

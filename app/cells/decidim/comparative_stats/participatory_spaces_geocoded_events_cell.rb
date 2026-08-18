@@ -67,6 +67,16 @@ module Decidim
       # rubocop:enable Metrics/CyclomaticComplexity
       # rubocop:enable Metrics/PerceivedComplexity
 
+      # Geolocated components can hold non geocoded resources, they cannot be
+      # placed in the map
+      def map_coordinates(item)
+        coordinates = item["coordinates"]
+        return if coordinates.blank?
+        return if coordinates["latitude"].blank? || coordinates["longitude"].blank?
+
+        coordinates
+      end
+
       def first_translation(text)
         return text unless text.is_a? Hash
 
@@ -79,9 +89,11 @@ module Decidim
       end
 
       def add_proposal(proposal, endpoint, participatory_space, component, type)
+        return if (coordinates = map_coordinates(proposal)).blank?
+
         @events[endpoint.id][:proposals]["#{type}_proposal_#{proposal["id"]}"] = {
-          latitude: proposal["coordinates"]["latitude"],
-          longitude: proposal["coordinates"]["longitude"],
+          latitude: coordinates["latitude"],
+          longitude: coordinates["longitude"],
           address: proposal["address"],
           title: first_translation(proposal["title"]),
           body: truncate(first_translation(proposal["body"]), length: 100),
@@ -92,10 +104,11 @@ module Decidim
 
       def add_meeting(meeting, endpoint, participatory_space, component, type)
         return if meeting.empty?
+        return if (coordinates = map_coordinates(meeting)).blank?
 
         @events[endpoint.id][:meetings]["#{type}_meeting_#{meeting["id"]}"] = {
-          latitude: meeting.dig("coordinates", "latitude"),
-          longitude: meeting.dig("coordinates", "longitude"),
+          latitude: coordinates["latitude"],
+          longitude: coordinates["longitude"],
           address: meeting["address"],
           title: first_translation(meeting["title"]),
           # description: first_translation(meeting["description"]),

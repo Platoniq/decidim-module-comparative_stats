@@ -42,6 +42,14 @@ module Decidim
         rows
       end
 
+      # Rows are handed over to the graph as JSON, so names or titles containing
+      # quotes do not break the generated JavaScript
+      def timeline_rows
+        timeline_graph.map do |row|
+          [row[:name].to_s, row[:title].to_s, row[:start_date].to_s, row[:end_date].to_s]
+        end.to_json
+      end
+
       def first_text(translations)
         item = translations.find { |i| i.text.present? }
         item&.text || ""
