@@ -67,8 +67,6 @@ module Decidim
       # rubocop:enable Metrics/CyclomaticComplexity
       # rubocop:enable Metrics/PerceivedComplexity
 
-      # Geolocated components can hold non geocoded resources, they cannot be
-      # placed in the map
       def map_coordinates(item)
         coordinates = item["coordinates"]
         return if coordinates.blank?

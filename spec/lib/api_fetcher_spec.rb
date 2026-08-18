@@ -9,8 +9,7 @@ module Decidim::ComparativeStats
     let(:url) { "http://example.com/api" }
 
     context "when client is not assigned" do
-      # No request is stubbed on purpose: Decidim disables introspection on its
-      # API, so the schema is never downloaded from the endpoint.
+      # no request is stubbed, the endpoint is never introspected
       it "retrieves schema" do
         expect(subject.client.schema).to be_a Graphlient::Schema
       end
@@ -96,8 +95,6 @@ module Decidim::ComparativeStats
           end
         end
 
-        # Decidim only discloses its version when the instance sets
-        # DECIDIM_API_DISCLOSE_SYSTEM_VERSION, so it is usually blank
         context "when version is not disclosed" do
           let(:version) { nil }
 

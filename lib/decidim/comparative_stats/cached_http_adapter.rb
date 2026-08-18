@@ -19,12 +19,11 @@ module Decidim
         end
       end
 
-      # Endpoints are often behind a redirect (i.e. from the naked domain to the
-      # "www" one). Faraday does not follow them by default, so the API answers
-      # with the empty body of the redirection instead of the GraphQL response.
+      # Endpoints are often behind a redirect (i.e. to the "www" domain), which
+      # Faraday does not follow by default
       def connection
         @connection ||= super do |conn|
-          # standards_compliant keeps the POST method when following 301/302
+          # standards_compliant keeps the POST method on 301/302
           conn.use FaradayMiddleware::FollowRedirects, standards_compliant: true
           conn.adapter Faraday::Adapter::NetHttp
         end
@@ -32,8 +31,6 @@ module Decidim
 
       private
 
-      # Responses that are not JSON (i.e. an HTML page) cannot be handled by the
-      # GraphQL client, they are not valid API endpoints
       def validate_response(response)
         return response if response.is_a?(Hash)
 

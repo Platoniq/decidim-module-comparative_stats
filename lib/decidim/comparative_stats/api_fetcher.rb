@@ -32,8 +32,6 @@ module Decidim
         @name_and_version ||= fetch_name_and_version&.data&.decidim
       end
 
-      # Decidim only discloses its version when the instance opts in by setting
-      # DECIDIM_API_DISCLOSE_SYSTEM_VERSION, so this is usually blank.
       def api_version
         name_and_version&.version
       end
@@ -53,7 +51,7 @@ module Decidim
       def valid?(min_version = MIN_API_VERSION)
         return false if name_and_version.nil?
 
-        # Instances not disclosing their version are assumed to be recent enough
+        # the version is only disclosed if DECIDIM_API_DISCLOSE_SYSTEM_VERSION is set
         return true if api_version.blank?
 
         if Gem::Version.new(min_version) > Gem::Version.new(api_version)
