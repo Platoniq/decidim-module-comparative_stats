@@ -11,16 +11,17 @@ module Decidim
 
       layout "decidim/comparative_stats/widget"
 
-      def show
+      # Widgets are public and meant to be embedded in other sites, so there is no permission to check.
+      def show # rubocop:disable Decidim/EnforcePermissionTo
         is_valid = lookup_context.exists?(params[:graph], "decidim/comparative_stats/widgets", true)
         render plain: "not found", status: :not_found unless is_valid
       end
 
+      private
+
       def allow_iframe
         response.headers.delete "X-Frame-Options"
       end
-
-      private
 
       # Mock admin path for tabs.html.erb
       def graphs_path(graph)
