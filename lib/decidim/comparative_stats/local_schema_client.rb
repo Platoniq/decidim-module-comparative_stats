@@ -20,7 +20,8 @@ module Decidim
         def local_introspection_result
           Decidim::Api::Schema.execute(
             GraphQL::Introspection::INTROSPECTION_QUERY,
-            context: { scopes: ::Doorkeeper::OAuth::Scopes.from_string("api:read") }
+            # internal call: Decidim only allows introspection when the context says so (can_introspect)
+            context: { scopes: ::Doorkeeper::OAuth::Scopes.from_string("api:read"), can_introspect: true }
           ).to_h
         end
       end
