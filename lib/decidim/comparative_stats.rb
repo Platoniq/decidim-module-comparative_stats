@@ -19,6 +19,7 @@ module Decidim
 
     autoload :ApiFetcher, "decidim/comparative_stats/api_fetcher"
     autoload :CachedHTTPAdapter, "decidim/comparative_stats/cached_http_adapter"
+    autoload :LocalSchemaClient, "decidim/comparative_stats/local_schema_client"
 
     # Sets the expiration time for the statistic data.
     mattr_accessor :stats_cache_expiration_time, default: 24.hours

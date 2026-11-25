@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "graphlient/adapters/http/http_adapter"
+require "graphlient"
 
 module Decidim
   module ComparativeStats
@@ -15,8 +15,26 @@ module Decidim
           "graphlient/api_queries/#{url.hash}/#{body.to_json.hash}",
           expires_in: Decidim::ComparativeStats.stats_cache_expiration_time
         ) do
-          super
+          validate_response(super)
         end
+      end
+
+      # Endpoints are often behind a redirect (i.e. to the "www" domain), which
+      # Faraday does not follow by default
+      def connection
+        @connection ||= super do |conn|
+          # standards_compliant keeps the POST method on 301/302
+          conn.use FaradayMiddleware::FollowRedirects, standards_compliant: true
+          conn.adapter Faraday::Adapter::NetHttp
+        end
+      end
+
+      private
+
+      def validate_response(response)
+        return response if response.is_a?(Hash)
+
+        raise Graphlient::Errors::ServerError, "Not a valid Decidim API URL"
       end
     end
   end
