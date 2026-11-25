@@ -66,6 +66,8 @@ module Decidim
           end
         end
 
+        private
+
         def organization_endpoints
           @organization_endpoints ||= Endpoint.where(organization: current_organization)
         end
@@ -75,7 +77,7 @@ module Decidim
         end
 
         def current_endpoint
-          @current_endpoint ||= Endpoint.find(params[:id])
+          @current_endpoint ||= organization_endpoints.find(params[:id])
         end
       end
     end
