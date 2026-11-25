@@ -34,8 +34,30 @@ module Decidim::ComparativeStats::Admin
       let!(:inactive_endpoint) { create(:endpoint, active: false, organization:) }
 
       it "returns all endpoints" do
-        expect(controller.organization_endpoints).to include(endpoint)
-        expect(controller.organization_endpoints).to include(inactive_endpoint)
+        expect(controller.send(:organization_endpoints)).to include(endpoint)
+        expect(controller.send(:organization_endpoints)).to include(inactive_endpoint)
+      end
+    end
+
+    context "with an endpoint from another organization" do
+      let!(:other_endpoint) { create(:endpoint, name: "Other organization") }
+
+      it "is not listed" do
+        expect(controller.send(:organization_endpoints)).not_to include(other_endpoint)
+      end
+
+      it "cannot be edited" do
+        expect { get :edit, params: { id: other_endpoint.id } }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it "cannot be updated" do
+        expect { patch :update, params: { id: other_endpoint.id, endpoint: form } }.to raise_error(ActiveRecord::RecordNotFound)
+        expect(other_endpoint.reload.name).to eq("Other organization")
+      end
+
+      it "cannot be destroyed" do
+        expect { delete :destroy, params: { id: other_endpoint.id } }.to raise_error(ActiveRecord::RecordNotFound)
+        expect(Decidim::ComparativeStats::Endpoint.exists?(other_endpoint.id)).to be(true)
       end
     end
 

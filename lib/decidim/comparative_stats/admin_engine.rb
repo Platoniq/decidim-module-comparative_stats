@@ -18,7 +18,11 @@ module Decidim
 
       initializer "decidim_comparative_stats.admin_mount_routes" do
         Decidim::Core::Engine.routes do
-          mount Decidim::ComparativeStats::AdminEngine, at: "/admin/comparative_stats", as: "decidim_admin_comparative_stats"
+          extend Decidim::Routes::LocaleRedirects
+
+          scope "/:locale", **locale_scope_options do
+            mount Decidim::ComparativeStats::AdminEngine, at: "/admin/comparative_stats", as: "decidim_admin_comparative_stats"
+          end
         end
       end
 

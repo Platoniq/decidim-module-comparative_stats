@@ -7,6 +7,8 @@ module Decidim
       # this engine inherit.
       #
       class ApplicationController < Decidim::Admin::ApplicationController
+        private
+
         def permission_class_chain
           [::Decidim::ComparativeStats::Admin::Permissions] + super
         end
